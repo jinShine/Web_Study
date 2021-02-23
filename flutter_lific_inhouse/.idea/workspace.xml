@@ -20,10 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cab660bb-aab2-4ade-af24-036a0581d589" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/root_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/tabbar_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/utilities/theme/AppTheme.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/utilities/theme/ThemeColor.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_lific_inhouse.iml" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_lific_inhouse.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,24 +82,25 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1750" height="281" key="GridCell.Tab.0.bottom" timestamp="1613923866302">
+    <state width="1750" height="281" key="GridCell.Tab.0.bottom" timestamp="1613928550823">
       <screen x="0" y="23" width="1792" height="1045" />
     </state>
-    <state width="1750" height="281" key="GridCell.Tab.0.bottom/-507.-1417.2560.1417/0.23.1792.1045@0.23.1792.1045" timestamp="1613923866302" />
-    <state width="1750" height="281" key="GridCell.Tab.0.center" timestamp="1613923866301">
+    <state width="1750" height="281" key="GridCell.Tab.0.bottom/-507.-1417.2560.1417/0.23.1792.1045@0.23.1792.1045" timestamp="1613928550823" />
+    <state width="1750" height="281" key="GridCell.Tab.0.center" timestamp="1613928550822">
       <screen x="0" y="23" width="1792" height="1045" />
     </state>
-    <state width="1750" height="281" key="GridCell.Tab.0.center/-507.-1417.2560.1417/0.23.1792.1045@0.23.1792.1045" timestamp="1613923866301" />
-    <state width="1750" height="281" key="GridCell.Tab.0.left" timestamp="1613923866301">
+    <state width="1750" height="281" key="GridCell.Tab.0.center/-507.-1417.2560.1417/0.23.1792.1045@0.23.1792.1045" timestamp="1613928550822" />
+    <state width="1750" height="281" key="GridCell.Tab.0.left" timestamp="1613928550822">
       <screen x="0" y="23" width="1792" height="1045" />
     </state>
-    <state width="1750" height="281" key="GridCell.Tab.0.left/-507.-1417.2560.1417/0.23.1792.1045@0.23.1792.1045" timestamp="1613923866301" />
-    <state width="1750" height="281" key="GridCell.Tab.0.right" timestamp="1613923866301">
+    <state width="1750" height="281" key="GridCell.Tab.0.left/-507.-1417.2560.1417/0.23.1792.1045@0.23.1792.1045" timestamp="1613928550822" />
+    <state width="1750" height="281" key="GridCell.Tab.0.right" timestamp="1613928550822">
       <screen x="0" y="23" width="1792" height="1045" />
     </state>
-    <state width="1750" height="281" key="GridCell.Tab.0.right/-507.-1417.2560.1417/0.23.1792.1045@0.23.1792.1045" timestamp="1613923866301" />
+    <state width="1750" height="281" key="GridCell.Tab.0.right/-507.-1417.2560.1417/0.23.1792.1045@0.23.1792.1045" timestamp="1613928550822" />
     <state x="561" y="255" width="670" height="676" key="search.everywhere.popup" timestamp="1613923421242">
       <screen x="0" y="23" width="1792" height="1045" />
     </state>
