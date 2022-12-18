@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    `use strict`
+    /* 
+    Math 객체 
+
+    Math 객체에는 PI, e, sin, cos, tan 등 수학 상수들이 존재한다.
+    */
+
+    // 가장 많이 사용하는 random 함수
+    const randomNum = Math.random() // 0보다는 크고 1보다는 작은 수가 랜덤으로 리턴
+    console.log(randomNum * 10) // 0보다는 크고 10보다는 작은 수
+
+    // round() - 반올림 처리
+    console.log(Math.round(4.9)); // 5
+    console.log(Math.round(4.4)); // 4
+
+    // ceil() - 무조건 올림 처리
+    console.log(Math.ceil(4.6)); // 5
+    console.log(Math.ceil(4.1)); // 5
+
+    // 페이징처리
+    // 게시판에 작성된 글이 51개 등록되었다라고 가정.
+    // 게시판 한 페이지에 10개의 글 목록을 보여주게 구성되어 있음.
+    let total = 51;
+    let countPerPage = 10;
+    let totalPage = Math.ceil(total / countPerPage);
+    console.log(totalPage);
+
+    // floor() - 무조건 내림 처리
+    console.log(Math.floor(4.7)); // 4
+    console.log(Math.floor(-4.2)); // -5
+
+    // trunc() - 소수점 이하는 무조건 버림 처리
+    console.log(Math.trunc(4.7)); // 4
+    console.log(Math.trunc(-4.2)); // -4
+
+    // function solution(a, b) {
+    //   const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+
+    //   const year = 2016;
+    //   const month = a - 1;
+    //   const day = b;
+    //   const date = new Date(year, month, day)
+
+    //   return days[date.getDay()];
+    // }
+
+    // solution(5, 24)
+
+    // function solution(arr, divisor) {
+    //   const result = arr.filter((element) => element % divisor === 0)
+
+    //   return result.length === 0 ? [-1] : result.sort((prev, next) => prev - next)
+    // }
+
+    // solution([5, 9, 7, 10], 5)
+
+    // function solution(n) {
+    //   const array = Array.from({ length: n }).map((v, i) => i)
+    //   const result = array.map((i) => (i % 2 === 0) ? "수" : "박")
+
+    //   return result.join("")
+    // }
+
+    // solution(3)
+
+
+    // function solution(participant, completion) {
+
+    //   participant = participant.sort()
+    //   completion = completion.sort()
+
+    //   for (let i = 0; i < participant.length; i++) {
+    //     if (participant[i] !== completion[i]) {
+    //       return participant[i]
+    //     }
+    //   }
+    // }
+
+    // console.log(solution(["mislav", "stanko", "mislav", "ana", "stanko"], ["stanko", "ana", "mislav", "stanko"]))
+
+    // [...str] : 전개연산자 잘 볼것
+    // function solution(s) {
+    //   return s.split(" ")
+    //     .map((str) => [...str].map((char, index) => (index % 2 === 0) ? char.toUpperCase() : char.toLowerCase()).join(""))
+    //     .join(" ")
+    // }
+
+    // solution("try hello world")
+
+    // Array.from() , mapfunc까지 알아보기
+    // function solution(n) {
+    //   return Array.from(String(n), (v) => Number(v))
+    //     .reduce((prev, value) => prev + value)
+    // }
+
+    // solution(123)
+
+    // function solution(n) {
+    //   return Array.from(String(n)).reverse().map((n) => Number(n))
+    // }
+
+    // solution(12345)
+
+    // function solution(n) {
+
+    //   let result = Array.from(String(n), (n) => Number(n))
+    //     .sort((prev, next) => next - prev)
+    //     .join("")
+
+    //   return Number(result)
+    // }
+
+    // solution(118372)
+
+    // function solution(n) {
+
+    //   let result = Array.from(String(n), (n) => Number(n))
+    //     .sort((prev, next) => next - prev)
+    //     .join("")
+
+    //   return Number(result)
+    // }
+
+    // solution(121)
+
+    // function solution(n) {
+    //   let result = Math.floor(Math.sqrt(n))
+    //   return (result * result) === n ? (result + 1) * (result + 1) : -1
+    // }
+
+    // console.log(solution(3))
+
+    // 작은 수 찾는 알고리즘
+    // function solution(arr) {
+    //   if (arr.length === 1) {
+    //     return [-1]
+    //   }
+
+    //   let min = arr[0]
+    //   arr.forEach((ele) => {
+    //     if (min > ele) {
+    //       min = ele
+    //     }
+    //   })
+
+    //   let index = arr.indexOf(min)
+    //   arr.splice(index, 1)
+
+    //   return arr
+    // }
+
+    // solution([4, 3, 2, 1])
+
+    // 다시 한번 풀어보기
+    // function solution(num) {
+    //   let count = 0
+
+    //   while (num !== 1 && count !== 500) {
+    //     (num % 2 === 0) ? num /= 2 : num = (num * 3) + 1
+    //     count += 1
+    //   }
+
+    //   return num === 1 ? count : -1
+    // }
+
+    // solution(6)
+
+    // function solution(x) {
+    //   let sum = Array.from(String(x), (v) => Number(v))
+    //     .reduce((prev, value) => prev + value)
+
+    //   return x % sum === 0
+    // }
+
+    // solution(13)
+
+    // function solution(n) {
+    //   let remainders = []
+
+    //   while (n !== 0) {
+    //     remainders.push(n % 3)
+    //     n = Math.floor(n / 3)
+    //   }
+
+    //   return remainders
+    //     .reduce((prev, value, index) => prev + (value * Math.pow(3, remainders.length - index - 1)), 0)
+    // }
+
+    // console.log(solution(45))
+
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+    // function solution(sizes) {
+    //   let big = 0;
+    //   let small = 0;
+
+    //   for (let len of sizes) {
+    //     if (len[0] > len[1]) {
+    //       if (big < len[0]) big = len[0];
+    //       if (small < len[1]) small = len[1];
+    //     }
+    //     else { // 세로가 더 긴 경우
+    //       if (big < len[1]) big = len[1];
+    //       if (small < len[0]) small = len[0];
+    //     }
+    //   };
+    //   return big * small;
+    // }
+
+    // solution([[60, 50], [30, 70], [60, 30], [80, 40]])
+
+    function solution(arr) {
+      var answer = [];
+
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i] !== arr[i + 1]) {
+          answer.push(arr[i])
+        }
+      }
+
+      return answer
+    }
+
+
+    function solution(numbers) {
+      const temp = []
+
+      temp.splice(1,)
+
+      for (i = 0; i < numbers.length; i++) {
+        for (let j = i + 1; j < numbers.length; j++) {
+          temp.push(numbers[i] + numbers[j])
+        }
+      }
+
+      const answer = [...new Set(temp)]
+
+      return answer.sort((a, b) => a - b)
+    }
+
+    function ttt() {
+      for (i = 0; i < 10; i++) {
+        console.log(i)
+      }
+    }
+
+    ttt()
+
+
+  </script>
+</body>
+
+</html>
