@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-
-<body>
-
-  <script>
-    /*
+/*
     10부제
 
     서울시는 6월 1일부터 교통 혼잡을 막기 위해서 자동차 10부제를 시행한다. 자동차 10부제는 자동차 번호의 일의 자리 숫자와 날짜의 일의 자리 숫자가 일치하면 해당 자동차의 운행을 금 지하는 것이다. 
@@ -31,22 +18,18 @@
     ▣ 출력예제 2 3
     */
 
-    // x % 10 === day
-    function solution(day, arr) {
-      let answer = 0;
+// x % 10 === day
+function solution(day, arr) {
+  let answer = 0;
 
-      for (let x of arr) {
-        if (x % 10 === day) {
-          answer += x
-        }
-      }
-
-      return answer;
+  for (let x of arr) {
+    if (x % 10 === day) {
+      answer += x;
     }
+  }
 
-    arr = [25, 23, 11, 47, 53, 17, 33];
-    console.log(solution(3, arr));
-  </script>
-</body>
+  return answer;
+}
 
-</html>l
+arr = [25, 23, 11, 47, 53, 17, 33];
+console.log(solution(3, arr));

@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-
-<body>
-
-  <script>
-    /*
+/*
     일곱 난쟁이
 
     왕비를 피해 일곱 난쟁이들과 함께 평화롭게 생활하고 있던 백설공주에게 위기가 찾아왔다. 일과를 마치고 돌아온 난쟁이가 일곱 명이 아닌 아홉 명이었던 것이다.
@@ -27,26 +14,22 @@
     20 7 23 19 10 8 13
     */
 
-    function solution(arr) {
-      let answer = arr;
-      let sum = arr.reduce((a, b) => a + b, 0)
+function solution(arr) {
+  let answer = arr;
+  let sum = arr.reduce((a, b) => a + b, 0);
 
-      for (let i = 0; i < arr.length; i++) {
-        for (let j = i + 1; j < arr.length; j++) {
-          if (sum - (arr[i] + arr[j]) === 100) {
-            console.log(arr[i], arr[j])
-            answer.splice(j, 1)
-            answer.splice(i, 1)
-          }
-        }
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (sum - (arr[i] + arr[j]) === 100) {
+        console.log(arr[i], arr[j]);
+        answer.splice(j, 1);
+        answer.splice(i, 1);
       }
-
-      return answer;
     }
+  }
 
-    let arr = [20, 7, 23, 19, 10, 15, 25, 8, 13];
-    console.log(solution(arr));
-  </script>
-</body>
+  return answer;
+}
 
-</html>l
+let arr = [20, 7, 23, 19, 10, 15, 25, 8, 13];
+console.log(solution(arr));
