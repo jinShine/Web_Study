@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <h1>h1-1</h1>
+  <h1>h1-2</h1>
+  <h1>h1-3</h1>
+  <h1>h1-4</h1>
+  <h1>h1-5</h1>
+
+  <div id="desc">
+    <p class="user first">이름: 버즈</p>
+    <p class="user second" style="display:none">주소: 서울시 동대문구</p>
+    <p class="user third">연락처: 010-0000-0000</p>
+  </div>
+
+  <div>
+    <img src="" alt="" class="rect">
+    <img src="" alt="" class="rect">
+    <img src="" alt="" class="rect">
+  </div>
+
+  <script>
+    /*
+    문서 객체 모델(DOM, Document Objects Model)
+
+    DOM
+      * 웹문서에 접근하고 제어할 수 있도록 우베문서를 체계적으로 정리하는 방법
+      * 즉 HTML을 조작한다라는 뜻
+
+    DOM 요소를 부모와 자식으로 구분해서 표시하면 DOM 트리를 구성하게 된다.
+    DOM의 시작부분인 HTML을 루트노드, 갈라져 나가는 부분은 노드(Node)라고 하며 같은 부모 노드를 가진 노드는 형제노드(Sibling)라고 합니다.
+    DOM에서 이런 구조로 웹문서를 해석한다는것을 기억!
+
+    */
+
+    //////////////////////////////////////////////////////////
+    // 웹 요소 접근하기
+    /////////////////////////////////////////////////////////
+
+    document.head
+    document.body
+    document.title
+
+    // 1. querySelector()
+    // document.querySelector(선택자)
+    // 하나의 요소만 가져온다.
+    document.querySelector("#id")
+    document.querySelector(".class")
+    document.querySelector("#profile img")
+
+    document.addEventListener("DOMContentLoaded", () => {
+      let h1Tag = document.querySelector("h1")
+
+      h1Tag.textContent = "안녕하세요"
+      h1Tag.style.color = "white"
+      h1Tag.style.backgroundColor = "black"
+      h1Tag.style.padding = "10px"
+    })
+
+    // 2. querySelectorAll()
+    // document.querySelectorAll(선택자)
+    // 선택한 요소 모두 가져온다.
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("h1").forEach((v) => {
+        v.style.textContent = "안녕 SelectorAll"
+        v.style.color = "gray"
+      })
+    })
+
+    /*
+    3. 
+      * getElementById(ID명)
+      * getElementByClassName(Class명)
+      * getElementByTagName(태그명)
+      
+      querySelector(), querySelectorAll()메서드가 나오기 전엔 getElement~ 메서드들을 많이 사용했다.
+      요즘엔 querySelector~ 메서드를 많이 사용한다.
+    */
+
+
+    //////////////////////////////////////////////////////////
+    // 웹 요소의 내용 get, set
+    /////////////////////////////////////////////////////////
+
+    // innerText
+    // innerHTML
+    // textContent
+
+    // 1. innnerText
+    // 웹브라우저 창에 보이는 내용만 가져온다. 즉, display: none, 공백등 무시하고 웹브라우저 창에 보이는 대로만!
+    const first = document.querySelector(".first")
+    let innerText = first.innerText
+    console.log("innnerText : ", innerText)
+    first.innerText = "<h3>innerText</h3>" // 입력된 문자 그대로 넣어준다.
+
+    // 2. innnerHTML
+    // 태그와 내용등을 함께 보여준다. style에 상관없이 소스에 있는 대로 가져온다!
+    const second = document.querySelector(".second")
+    second.style.display = ""
+    second.style.color = "blue"
+    let innerHTML = second.innerHTML
+    console.log("innnerHTML : ", innerHTML)
+    second.innerHTML = "<h3>innerHTML</h3>"
+
+    // 3. textContent
+    // 요소 내용을 가져오되, 웹브라우저 창에 보이는 대로가 아니라 소스에 있는대로 가져온다.
+    const third = document.querySelector(".third")
+    let textContent = third.textContent
+    console.log("textContent : ", textContent)
+    third.textContent = "<h3>textContent</h3>"
+
+
+    /*
+    innerText vs textContent
+      * 두 속성이 비슷하지만 textContent속성은 최신 웹 브라우저 또는 인터넷익스플러 9이후의 웹브라우저에서 사용할 수 있는 속성.
+        그 이전의 익스플로러에서 innerText속성을 사용했습니다. innerText속성의 성능 문제로 textContent 속성이 추가된 것이므로, 글자를 조작할 때는 성능이 좋은 최신의 textContent 속성을 사용하는 것이 좋습니다.
+    */
+
+
+    //////////////////////////////////////////////////////////
+    // 속성(Attribute) 조작
+    /////////////////////////////////////////////////////////
+
+    // 객체.setAttribute(속성이름, 값)
+    // 객체.getAttribute(속성이름)
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const rects = document.querySelectorAll(".rect")
+
+      rects.forEach((v, i) => {
+        const src = "https://placekitten.com/100/250"
+        v.setAttribute("src", src)
+      })
+    })
+
+
+    //////////////////////////////////////////////////////////
+    // 스타일 수정
+    /////////////////////////////////////////////////////////
+
+    // 요소.style.속성명
+    // 팁: CSS에서 배경색에 접근할때 background-color 속성을 이용한다. 하지만 JS로 접근할때는 대시(-)없이 연결해서 사용한다. backgroundColor
+    const title = document.querySelector("#title")
+    // title.style.ba
+    // title.style.backgroundColor = "black"
+    // title.style.color = "white"
+
+    //////////////////////////////////////////////////////////
+    // 문서 객체 생성하기
+    /////////////////////////////////////////////////////////
+
+    /*
+      지금까지는 body내부에 있는 객체를 읽어들이고 이를 조작했는데,
+      객체를 생성하고 싶을때 document.createElement()를 사용합니다.
+      생성한 뒤에는 appendChild()메서드를 이용해서 어떤 부모객체 아래에 자식 객체로 추가할지 결정합니다.
+
+      생성 : document.createElement()
+      추가 : 부모객체.appendChild(자식객체)
+      제거 : 부모객체.removeChild(자식객체)
+    */
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const titleH2 = document.createElement("h2")
+      titleH2.textContent = "문서 객체 동적으로 생성방법"
+      titleH2.style.color = "white"
+      titleH2.style.backgroundColor = "purple"
+
+      document.querySelector("#desc").appendChild(titleH2)
+
+      setTimeout(() => {
+        document.querySelector("#desc").removeChild(titleH2)
+        // titleH2.parentNode.removeChild(titleH2) // parentNode 사용 가능
+      }, 5000)
+    })
+  </script>
+</body>
+
+</html>
