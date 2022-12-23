@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <h1> 글자수: 0</h1>
+  <div>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+  </div>
+  <br>
+  <div>
+    <select>
+      <option>초밥</option>
+      <option>라멘</option>
+      <option>돈까스</option>
+    </select>
+    <p></p>
+  </div>
+
+  <script>
+
+    /*
+      이벤트를 연결하는 방법은 이벤트모델(Event Model)이라고 한다.
+      연결할때는 addEventListener() 메서드 사용
+     */
+
+    // 표준
+    document.body.addEventListener("keyup", () => {
+      // 이벤트 콜백
+    })
+
+    // 예전
+    // 1. on~ 로 시작하는 속성에 함수를 할당해서 이벤트 연결
+    document.body.onkeyup = (evnet) => {
+      // 이벤트 콜백
+    }
+    // 2. HTML요소에 직접 넣는 인라인 이벤트
+    // <body onkeyup="testListener(event)">
+
+    const testListener = (event) => {
+      // 이벤트 콜백
+    }
+
+    /*
+      !!!!!!!
+      모든 이벤트 모델의 이벤트 리스너는 첫번째 매개변수로 이벤트객체(Event Object)를 받습니다.
+      이벤트 객체에는 많은 정보가 있어 모두 설명하는것은 불가능
+     */
+
+    //////////////////////////////////////////////////////////
+    // 키보드 이벤트
+    /////////////////////////////////////////////////////////
+
+    // 1. keydown : 키가 눌릴때 실행, 꾹 누르고 있어도 실행
+    // 2. keypress : 키가 입력 되었을때 실행, 하지만 웹 브라우저에 따라 아시아권의 문자를 제대로 처리하지 못하는 경우도 존재
+    // 3. keyup : 키보드에서 키가 떨어질 때
+
+    /*
+    !!!!!!
+
+    아시아권의 문자를 일반적으로 조합형문자(IME)라고 하는데,
+    웹브라우저에 따라 keypress 이벤트는 조합 중에 발생하기도 하고 발생하지 않기도 하는 문제가 존재
+    */
+
+    document.addEventListener("DOMContentLoaded", (event) => {
+      const textarea = document.querySelector("textarea")
+      const h1 = document.querySelector("h1")
+
+      textarea.addEventListener("keyup", (event) => {
+        const length = textarea.value.length
+        h1.textContent = `글자수: ${length}`
+      })
+    })
+
+    //////////////////////////////////////////////////////////
+    // 이벤트 발생 객체
+    /////////////////////////////////////////////////////////
+
+    /*
+      지금까지는 이벤트 내부에서 문서 객체 변수를 사용해서 문서 객체와 관련된 정보를 추출\
+      하지만 내부에서 해당 변수에 접근할 수 없는 경우 대처
+    */
+
+    const testKeyup = (event) => {
+      // const length = textarea.value.length // textarea에 접근할 수 없다.
+    }
+
+    document.addEventListener("DOMContentLoaded", (event) => {
+      const textarea = document.querySelector("textarea")
+      const h1 = document.querySelector("h1")
+
+      textarea.addEventListener("keyup", testKeyup)
+    })
+
+    /*
+    규모가 커지면서 이처럼 이벤트 리스너를 외부로 분리하는 경우가 많아집니다.
+    그렇기 때문에 해당 이벤트를 발생시킨 객체를 어떻게 접근할지가 관건
+
+      1. event.currentTarget
+        * () => {}와 function () {} 형태 모두 사용가능
+      2. this 키워드
+        * funciton() {} 형태로만 사용 가능
+    */
+
+    const testKeyup1 = (event) => {
+      // const length = textarea.value.length // textarea에 접근할 수 없다.
+      const length = event.currentTarget.value.length // event.currentTarget
+    }
+
+    const testKeyup2 = function (event) {
+      const length = this.value.length // this 사용
+    }
+
+
+
+    // change 이벤트
+
+    document.addEventListener("DOMContentLoaded", (event) => {
+      const select = document.querySelector("select")
+      const p = document.querySelector("p")
+
+      select.addEventListener("change", (event) => {
+        const options = event.currentTarget.options
+        const index = event.currentTarget.selectedIndex
+
+        p.textContent = `선택: ${options[index].textContent}`
+      })
+    })
+
+    // 이벤트 막기
+    // 마우스 오른쪽 버튼과 같이 기본이벤트(Context Menu)를 제거 할때는 preventDefault()
+    document.addEventListener("DOMContentLoaded", () => {
+      const imgs = document.querySelectorAll("img")
+
+      imgs.forEach((img) => {
+        img.addEventListener("contextmenu", (event) => {
+          event.preventDefault() // 기본 이벤트 제거
+        })
+      })
+    })
+
+  </script>
+</body>
+
+</html>
