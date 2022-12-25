@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<style>
+</style>
+
+<body>
+
+  <div>
+    <label for="order-name" class="field">이름 : </label>
+    <input type="text" class="input-box" id="order-name" name="order-name">
+  </div>
+
+  <div>
+    <select name="major" id="major">
+      <option value="archi">건축공학과</option>
+      <option value="mechanic">기계공학과</option>
+      <option value="computer">컴퓨터공학과</option>
+    </select>
+  </div>
+
+  <div>
+    <label for=""><input type="radio" name="subject" value="speaking">회화</label>
+    <label for=""><input type="radio" name="subject" value="grammar">문법</label>
+    <label for=""><input type="radio" name="subject" value="writing">작문</label>
+  </div>
+
+  <div>
+    <label for=""><input type="checkbox" name="mailing" value="javascript">Javascript</label>
+    <label for=""><input type="checkbox" name="mailing" value="swift">Swift</label>
+    <label for=""><input type="checkbox" name="mailing" value="kotlin">Kotlin</label>
+  </div>
+
+  <button id="confirm-btn">라디오, 체크박스 확인 버튼</button>
+
+  <script>
+    /*
+    Form : 사용자가 정보를 입력할 수 있게 만들어 놓은 웹 요소
+    */
+
+    /////////////////////////////////
+    // 1. 폼 요소에 접근하고 값 가져오기
+    // id, class 속성 값을 이용해서 가져옴
+    // Element.value
+
+    const inputName = document.querySelector("#order-name")
+    inputName.value
+
+    /////////////////////////////////
+    // 2. 선택항목과 항목에 접근
+    // <select>, <option>
+    // 요소.options
+    // selectedIndex
+    const selectMajor = document.querySelector("#major")
+    console.log(selectMajor.options)
+
+    selectMajor.onchange = () => {
+      let selectedText = selectMajor.options[selectMajor.selectedIndex].textContent
+      console.log(selectedText)
+    }
+
+    /////////////////////////////////
+    // 3. 라디오 버튼과 체크박스 접근
+    // 라디오 버튼과 체크박스의 name은 그룹으로 형성되어있기 떄문에 name을 동일하게 사용해야한다.
+    // checked속성으로 접근
+
+    const confirmBtn = document.querySelector("#confirm-btn")
+
+    confirmBtn.onclick = () => {
+      const checkedRadio = document.querySelectorAll("input[name='subject']:checked")
+      const checkedCheckbox = document.querySelectorAll("input[name='mailing']:checked")
+
+      console.log(checkedRadio)
+      console.log(checkedCheckbox)
+    }
+
+  </script>
+</body>
+
+</html>
