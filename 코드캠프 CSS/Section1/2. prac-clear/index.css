@@ -1,0 +1,24 @@
+.box {
+  width: 300px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.box1 {
+  height: 400px;
+  background-color: red;
+  float: left;
+}
+
+.box2 {
+  height: 200px;
+  background-color: blue;
+  float: right;
+}
+
+/* 
+  * clear를 사용할때 clearfix를 만들어서 사용하는것이 관례
+  * clear해줘야될 부분에 div.clearfix만들어서 적용한다.
+*/
+.clearfix {
+  clear: both;
+}
