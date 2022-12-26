@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+.flex-container {
+  height: 300px;
+  background: gray;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.flex-container div {
+  background-color: white;
+  border: 1px solid red;
+}
+
+.flex-container div {
+  background-image: image;
+}
