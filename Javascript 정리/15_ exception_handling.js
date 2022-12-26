@@ -61,22 +61,32 @@ function test2() {
     let user = JSON.parse(json);
 
     if (user.version >= 1.0) {
-      throw "버전 업데이트가 필요합니다.";
-      updateVersion();
+      throw "needUpdate";
     }
 
     if (Object.keys(json).length !== 0) {
-      throw "재 요청 필요";
-      retryAPI();
+      throw "retry";
     }
   } catch (error) {
     console.error(error);
+
+    if (error === "needUpdate") {
+      updateVersion();
+    }
+
+    if (error === "retry") {
+      requestAPI();
+    }
   }
 }
 test2();
 
-function updateVersion() {}
-function retryAPI() {}
+function updateVersion() {
+  console.log("업데이트 필요");
+}
+function retryAPI() {
+  console.log("재시도");
+}
 
 /*
 예외를 강제로 발생시키는 이유는 뭘까?
