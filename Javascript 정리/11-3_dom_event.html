@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    #test1+#test2 {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <div>테스트0</div>
+    <p id="test1">테스트1</p>
+    <p id="test2">테스트2</p>
+    <p id="test3">테스트3</p>
+  </div>
+  <div>
+    <button id="test-btn">테스트 버튼</button>
+  </div>
+
+  <h1> 글자수: 0</h1>
+  <div>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+  </div>
+  <br>
+  <div>
+    <select>
+      <option>초밥</option>
+      <option>라멘</option>
+      <option>돈까스</option>
+    </select>
+    <p></p>
+  </div>
+
+  <br>
+  <br>
+  <br>
+  <div>
+    <p>아무키나 눌러보세요</p>
+    <p class="code"></p>
+  </div>
+
+  <div onclick="console.log('이벤트 전파 ##Container')">
+    ##Container
+    <section onclick="console.log('이벤트 전파 ##Section')">
+      ##Section
+
+      <p onclick="console.log('이벤트 전파 ##P')"">
+        ##P
+      </p>
+    </section>
+  </div>
+
+  <script>
+
+    /*
+      이벤트를 연결하는 방법은 이벤트모델(Event Model)이라고 한다.
+      연결할때는 addEventListener() 메서드 사용
+      on~과 다르게 여러 이벤트를 연결이 가능하다
+
+      Element.addEventListener(이벤트명, 함수, 캡처 여부)
+        * 캡처여부 : true면 챕처링, false면 버블링(기본값)
+     */
+
+    // 표준
+    document.body.addEventListener(" keyup", () => {
+      // 이벤트 콜백
+    })
+
+    // 예전
+    // 1. on~ 로 시작하는 속성에 함수를 할당해서 이벤트 연결
+    // 여러 이벤트를 연결해도 마지막에 연결된 이벤트만 처리할 수 있다.
+    function test() {
+      document.body.style.backgroundColor = "green"
+    }
+    const testBtn = document.querySelector("#test-btn")
+    testBtn.onclick = test
+    testBtn.onclick = () => {
+      alert("alert!")
+    }
+
+
+    // 2. HTML요소에 직접 넣는 인라인 이벤트
+    // <button onclick="alert('클릭!')">Click</button>
+
+    /*
+
+    <body onkeyup="testListener(event)">
+      */
+
+
+    const testListener = (event) => {
+      // 이벤트 콜백
+    }
+
+    /*
+    !!!!!!!
+    모든 이벤트 모델의 이벤트 리스너는 첫번째 매개변수로 이벤트객체(Event Object)를 받습니다.
+    이벤트 객체에는 많은 정보가 있어 모두 설명하는것은 불가능
+
+    프로퍼티는 pageX, pageY, target, type 등 여러가지인데, 메서드는 preventDefault() 뿐!
+    */
+
+    //////////////////////////////////////////////////////////
+    // 마우스 이벤트
+    /////////////////////////////////////////////////////////
+
+    // click한 위치 알아내기
+    document.body.addEventListener("click", (event) => {
+      // console.log(`이벤트 발생 위치 : ${event.pageX}, ${event.pageY}`)
+      console.log(`이벤트 발생 위치 : ${event.screenX}, ${event.pageX}, ${event.target}`)
+    })
+
+    // document.body.addEventListener("mousemove", (event) => {
+    // console.log(`이벤트 발생 위치 : ${event.pageX}, ${event.pageY}`)
+    // })
+
+    //////////////////////////////////////////////////////////
+    // 키보드 이벤트
+    /////////////////////////////////////////////////////////
+
+    // 1. keydown : 키가 눌릴때 실행, 꾹 누르고 있어도 실행
+    // 2. keypress : 키가 입력 되었을때 실행, 하지만 웹 브라우저에 따라 아시아권의 문자를 제대로 처리하지 못하는 경우도 존재
+    // 3. keyup : 키보드에서 키가 떨어질 때
+
+    const codeResult = document.querySelector(".code")
+
+    // 키보드 값을 알아내기
+    // code, key 를 가장 많이 사용
+    document.body.addEventListener("keydown", (event) => {
+      codeResult.textContent = `code : ${event.code}, \n key : ${event.key}`
+    })
+
+    /*
+    !!!!!!
+
+    아시아권의 문자를 일반적으로 조합형문자(IME)라고 하는데,
+    웹브라우저에 따라 keypress 이벤트는 조합 중에 발생하기도 하고 발생하지 않기도 하는 문제가 존재
+    */
+
+    document.addEventListener("DOMContentLoaded", (event) => {
+      const textarea = document.querySelector("textarea")
+      const h1 = document.querySelector("h1")
+
+      textarea.addEventListener("keyup", (event) => {
+        const length = textarea.value.length
+        h1.textContent = `글자수: ${length}`
+      })
+    })
+
+    //////////////////////////////////////////////////////////
+    // 이벤트 발생 객체
+    /////////////////////////////////////////////////////////
+
+    /*
+    지금까지는 이벤트 내부에서 문서 객체 변수를 사용해서 문서 객체와 관련된 정보를 추출\
+    하지만 내부에서 해당 변수에 접근할 수 없는 경우 대처
+    */
+
+    const testKeyup = (event) => {
+      // const length = textarea.value.length // textarea에 접근할 수 없다.
+    }
+
+    document.addEventListener("DOMContentLoaded", (event) => {
+      const textarea = document.querySelector("textarea")
+      const h1 = document.querySelector("h1")
+
+      textarea.addEventListener("keyup", testKeyup)
+    })
+
+    /*
+    규모가 커지면서 이처럼 이벤트 리스너를 외부로 분리하는 경우가 많아집니다.
+    그렇기 때문에 해당 이벤트를 발생시킨 객체를 어떻게 접근할지가 관건
+
+    1. event.currentTarget
+    * () => { }와 function () { } 형태 모두 사용가능
+    2. this 키워드
+    * funciton() { } 형태로만 사용 가능
+    */
+
+    const testKeyup1 = (event) => {
+      // const length = textarea.value.length // textarea에 접근할 수 없다.
+      const length = event.currentTarget.value.length // event.currentTarget
+    }
+
+    const testKeyup2 = function (event) {
+      const length = this.value.length // this 사용
+    }
+
+
+
+    // change 이벤트
+
+    document.addEventListener("DOMContentLoaded", (event) => {
+      const select = document.querySelector("select")
+      const p = document.querySelector("p")
+
+      select.addEventListener("change", (event) => {
+        const options = event.currentTarget.options
+        const index = event.currentTarget.selectedIndex
+
+        p.textContent = `선택: ${options[index].textContent}`
+      })
+    })
+
+    // 이벤트 막기
+    // 마우스 오른쪽 버튼과 같이 기본이벤트(Context Menu)를 제거 할때는 preventDefault()
+    document.addEventListener("DOMContentLoaded", () => {
+      const imgs = document.querySelectorAll("img")
+
+      imgs.forEach((img) => {
+        img.addEventListener("contextmenu", (event) => {
+          event.preventDefault() // 기본 이벤트 제거
+        })
+      })
+    })
+
+    //////////////////////////////////////////////////////////
+    // 이벤트 전파 (event propagation)
+    /////////////////////////////////////////////////////////
+
+    /*
+    웹 요소에서 이벤트가 발생했을 때 해당 요소만 이벤트가 처리되는 것이 아니라 해당 요소를 감싸고 있는
+    부모, 그리고 그 요소의 부모 요소의 부모까지 똑같이 이벤트가 처리되는 것을 '이벤트 전파'라고 한다.
+
+    이벤트 버블링, 이벤트 캡처링
+    */
+
+    /*
+    1. 이벤트 버블링
+    특정 요소에서 이벤트가 발생했을 때 그 이벤트가 해당 요소뿐만 아니라 그 요소의 부모, 부모의 부모요소까지
+    똑같이 이벤트가 발생하는것
+
+    브라우저는 기본적으로 이벤트 버블링 전파 방식을 사용!
+
+    가장 안쪽의 p를 선택했을시 section요소를 거처 div -> body -> html까지 이벤트가 전달되게 된다!!
+    만약 section을 선택했다면 p의 이벤트는 동작을 하지 않는다. 즉 자신요소엔 영향이 미치지 않음!
+    */
+
+
+    /*
+    event.target vs event.currentTarget
+
+    이벤트가 발생하면 해당 이벤트와 관려된 정보는 event객체에 담겨지는데,
+    event객체의 프로퍼티 중에서 이벤트 전파과 관련이 있는 프로퍼티는 target 프로퍼티와 currnetTarget프로퍼티다.
+
+    event.target은 처음 이벤트가 발생한 대상을 가리키며
+    event.currentTarget은 이벤트가 전파되면서 현재 이벤트 처리기가 실행되는 대상을 가리킨다.
+    */
+    const elements1 = document.querySelectorAll(" *");
+    elements1.forEach(el => {
+      el.addEventListener("click", e => {
+        console.log(`event.target : ${e.target.tagName}, event.currentTarget : ${e.currentTarget.tagName}`)
+      })
+    })
+
+    //event.target : P, event.currentTarget : P
+    //event.target : P, event.currentTarget : SECTION
+    //event.target : P, event.currentTarget : DIV
+    //event.target : P, event.currentTarget : BODY
+    //event.target : P, event.currentTarget : HTML
+
+
+    /*
+    2. 이벤트 캡처링
+    최상위 요소에서 이벤트가 발생한 요소까지 이벤트가 전달 되는 방식
+    즉, 버블링은 자식 -> 부모요소라면 캡처링은 부모 -> 자식으로 이벤트가 전파되는 방식
+    */
+
+    const elements2 = document.querySelectorAll(" *");
+    elements2.forEach(el => {
+      el.addEventListener("click", e => {
+        console.log(`event.target : ${e.target.tagName}, event.currentTarget : ${e.currentTarget.tagName}`)
+      }, true)
+    })
+          //event.target : P, event.currentTarget : HTML
+          //event.target : P, event.currentTarget : BODY
+          //event.target : P, event.currentTarget : DIV
+          //event.target : P, event.currentTarget : SECTION
+          //event.target : P, event.currentTarget : P
+
+  </script>
+
+        </body>
+
+</html>
