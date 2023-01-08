@@ -10,6 +10,7 @@ import CommentList from "./chapter_05/CommentList";
 import NotificationList from "./chapter_06/NotificationList";
 import Accommodate from "./chapter_07/Accommodate";
 import SignUp from "./chapter_11/SignUp";
+import Calculator from "./chapter_12/Calculator";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,7 +20,8 @@ root.render(
     {/* <CommentList /> */}
     {/* <NotificationList /> */}
     {/* <Accommodate /> */}
-    {<SignUp />}
+    {/* {<SignUp />} */}
+    <Calculator />
   </React.StrictMode>
 );
 
