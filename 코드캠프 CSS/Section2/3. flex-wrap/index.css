@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 600px;
+  height: 500px;
+  background: #eeeeee;
+  border: 2px solid red;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.container div {
+  background: blue;
+  color: white;
+  margin: 5px;
+  width: 200px;
+}
+
+.box4 {
+  order: 4;
+}
+
+.box5 {
+  order: 1;
+}
