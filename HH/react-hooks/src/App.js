@@ -5,6 +5,7 @@ import { Info } from "./2_UseEffect";
 import { useState } from "react";
 import { UseReducerPrac } from "./3_UseReducer";
 import { UseMemoPrac } from "./4_UseMemo";
+import { UseCallbackPrac } from "./5_UseCallback";
 
 function App() {
   const [visible, setVisible] = useState(false);
@@ -19,6 +20,7 @@ function App() {
           <Info />
           <UseReducerPrac />
           <UseMemoPrac />
+          <UseCallbackPrac />
         </div>
       )}
     </div>
