@@ -6,6 +6,8 @@ import { useState } from "react";
 import { UseReducerPrac } from "./3_UseReducer";
 import { UseMemoPrac } from "./4_UseMemo";
 import { UseCallbackPrac } from "./5_UseCallback";
+import { UseRefPrac } from "./6_UseRef";
+import Info2 from "./7_CustomHook";
 
 function App() {
   const [visible, setVisible] = useState(false);
@@ -21,6 +23,8 @@ function App() {
           <UseReducerPrac />
           <UseMemoPrac />
           <UseCallbackPrac />
+          <UseRefPrac />
+          <Info2 />
         </div>
       )}
     </div>
