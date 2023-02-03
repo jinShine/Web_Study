@@ -1,0 +1,11 @@
+.btn-box {
+  width: 170px;
+  color: white;
+  background-color: #123ecf;
+  transition: width 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+
+.btn-box:hover {
+  width: 320px;
+  background-color: #002398;
+}
