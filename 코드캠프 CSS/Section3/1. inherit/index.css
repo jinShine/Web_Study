@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  color: red; /* 상속 O */
+  font-size: 30px; /* 상속 O*/
+  border: 4px solid orange; /* 상속 X */
+}
+
+.inner-box {
+  color: blue;
+}
