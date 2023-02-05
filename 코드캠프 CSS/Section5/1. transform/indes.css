@@ -1,0 +1,104 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  position: relative;
+  width: 500px;
+  height: 320px;
+}
+
+.base {
+  width: 200px;
+  height: 200px;
+  border: 2px dashed #aaaaaa;
+  border-radius: 10px;
+  background: #dddddd;
+}
+
+.target {
+  width: 200px;
+  height: 200px;
+  background: rgba(0, 0, 255, 0.8);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border: 2px solid blue;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.target span {
+  color: #ffffff;
+}
+
+.target1 {
+  transform: translate(50%, 20px);
+}
+
+.target2 {
+  transform: scale(0.5, 0.5);
+}
+
+.target3 {
+  transform: skew(50deg, 20deg);
+}
+
+.target4 {
+  transform: rotate(45deg);
+}
+
+.target5 {
+  transform: skew(30deg, 10deg) rotate(45deg);
+}
+
+.box {
+  width: 600px;
+  height: 120px;
+  background-image: linear-gradient(to top, orange, red);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.box span {
+  font-size: 36px;
+  color: white;
+  font-weight: 600;
+  transition: transform 0.4s ease-in-out;
+}
+
+.box #text1 {
+  transition: transform 0.4s ease-in-out 0.1s;
+}
+.box #text2 {
+  transition: transform 0.4s ease-in-out 0.2s;
+}
+.box #text3 {
+  transition: transform 0.4s ease-in-out 0.3s;
+}
+.box #text4 {
+  transition: transform 0.4s ease-in-out 0.4s;
+}
+.box #text5 {
+  transition: transform 0.4s ease-in-out 0.5s;
+}
+.box #text6 {
+  transition: transform 0.4s ease-in-out 0.6s;
+}
+.box #text7 {
+  transition: transform 0.4s ease-in-out 0.7s;
+}
+.box #text8 {
+  transition: transform 0.4s ease-in-out 0.8s;
+}
+.box #text9 {
+  transition: transform 0.4s ease-in-out 0.9s;
+}
+
+.box:hover span {
+  transform: translate(0, -20px);
+}
