@@ -1,12 +1,14 @@
+import Router from "./Router";
 import { createGlobalStyle } from "styled-components";
 import "./App.css";
-import Router from "./Router";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 function App() {
   return (
     <>
       <GlobalStyle />
       <Router />
+      <ReactQueryDevtools initialIsOpen={true} />
     </>
   );
 }
@@ -71,5 +73,6 @@ table {
 }
 a {
   text-decoration: none;
+  color: inherit;
 }
 `;
