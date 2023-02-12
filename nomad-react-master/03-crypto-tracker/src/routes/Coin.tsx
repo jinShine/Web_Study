@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { useQuery } from "react-query";
 import { Switch, Route, useLocation, useParams, Link, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
@@ -112,12 +113,16 @@ function Coin() {
   const { isLoading: tickersLoading, data: tickersData } = useQuery<InfoPriceData>(
     ["tickers", coinId],
     () => fetchTicker(coinId)
+    // { refetchInterval: 1000 } // refetch
   );
 
   const loading = infoLoading || tickersLoading;
 
   return (
     <Container>
+      <Helmet>
+        <title>{state?.name ? state.name : loading ? "Loading..." : infoData?.name}</title>
+      </Helmet>
       <Header>
         <Title>{state?.name ? state.name : loading ? "Loading..." : infoData?.name}</Title>
       </Header>
@@ -135,8 +140,8 @@ function Coin() {
               <span>{infoData?.symbol}</span>
             </OverviewItem>
             <OverviewItem>
-              <span>OPEN SOURCE:</span>
-              <span>{infoData?.open_source ? "Yes" : "No"}</span>
+              <span>PRICE:</span>
+              <span>{tickersData?.quotes.USD.price.toFixed(2)}</span>
             </OverviewItem>
           </Overview>
           <Description>{infoData?.description}</Description>
@@ -156,16 +161,20 @@ function Coin() {
           </Overview>
           <Tabs>
             <Tab isActive={chartMatch !== null}>
-              <Link to={`/${coinId}/chart`}>
-                <Chart />
-              </Link>
+              <Link to={`/${coinId}/chart`}>Chart</Link>
             </Tab>
             <Tab isActive={priceMatch !== null}>
-              <Link to={`/${coinId}/price`}>
-                <Price />
-              </Link>
+              <Link to={`/${coinId}/price`}>Price</Link>
             </Tab>
           </Tabs>
+          <Switch>
+            <Route path={`/:coinId/chart`}>
+              <Chart coinId={coinId} />
+            </Route>
+            <Route path={`/:coinId/price`}>
+              <Price />
+            </Route>
+          </Switch>
         </>
       )}
     </Container>
