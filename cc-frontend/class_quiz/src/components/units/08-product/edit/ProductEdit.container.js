@@ -1,8 +1,8 @@
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import ProductEditUI from "./ProductEdit.presenter";
-import { UPDATE_PRODUCT } from "./ProductEdit.queries";
+import { FETCH_PRODUCT, UPDATE_PRODUCT } from "./ProductEdit.queries";
 
 export default function ProductEdit() {
   // Router
@@ -10,6 +10,11 @@ export default function ProductEdit() {
 
   // GQL
   const [updateProduct] = useMutation(UPDATE_PRODUCT);
+  const { data } = useQuery(FETCH_PRODUCT, {
+    variables: {
+      productId: router.query.productId,
+    },
+  });
 
   // Properties
   const [info, setInfo] = useState({
@@ -29,14 +34,7 @@ export default function ProductEdit() {
   const onClickSubmit = async () => {
     try {
       const result = await updateProduct({
-        variables: {
-          productId: router.query.productId,
-          updateProductInput: {
-            name: info.name,
-            detail: info.detail,
-            price: Number(info.price),
-          },
-        },
+        variables: getVariablesForUpdate(),
       });
 
       console.log(result);
@@ -48,9 +46,24 @@ export default function ProductEdit() {
     }
   };
 
+  // Helper
+  function getVariablesForUpdate() {
+    const variables = {
+      productId: router.query.productId,
+      updateProductInput: {},
+    };
+
+    if (info.name) variables.updateProductInput.name = info.name;
+    if (info.detail) variables.updateProductInput.detail = info.detail;
+    if (info.price) variables.updateProductInput.price = Number(info.price);
+
+    return variables;
+  }
+
   return (
     <ProductEditUI
       isEdit={true}
+      data={data}
       onChangeInputInfo={onChangeInputInfo}
       onClickSubmit={onClickSubmit}
     />

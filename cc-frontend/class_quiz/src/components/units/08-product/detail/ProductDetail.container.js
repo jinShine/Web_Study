@@ -14,6 +14,7 @@ export default function ProductDetail() {
     },
   });
 
+  // Handler
   const onClickMoveProductDetail = () => {
     router.push(`/08/${router.query.productId}/edit`);
   };

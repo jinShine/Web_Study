@@ -1,4 +1,4 @@
-import BoardRegister from "@/src/components/units/board-07/write/BoardWrite.container";
+import BoardRegister from "@/src/components/units/07-board/write/BoardWrite.container";
 
 export default function RegisterPage() {
   return <BoardRegister />;
