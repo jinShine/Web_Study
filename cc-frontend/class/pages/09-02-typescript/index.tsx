@@ -22,6 +22,7 @@ export default function Qqq() {
     name: string;
     age: number | string;
     school: string;
+    hobby?: string;
   }
   const profile: IProfile = {
     name: "철수",

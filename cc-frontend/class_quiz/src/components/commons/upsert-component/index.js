@@ -1,5 +1,4 @@
 export default function UpsertComponent({ isEdit, data, onChangeInputInfo, onClickSubmit }) {
-  console.log("#########", data);
   return (
     <>
       <h1>상품 {isEdit ? "수정" : "등록"}</h1>
@@ -10,6 +9,7 @@ export default function UpsertComponent({ isEdit, data, onChangeInputInfo, onCli
         name="seller"
         onChange={onChangeInputInfo}
         defaultValue={data?.fetchProduct.seller}
+        readOnly={isEdit ? true : false}
       />
       <br />
       상품 이름 :{" "}

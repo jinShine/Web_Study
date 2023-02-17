@@ -1,4 +1,5 @@
-import qqq, { BlueButton, RedInput } from "./BoardWrite.styles";
+import { BlueButton, RedInput } from "./BoardWrite.styles";
+import { IBoardWriteUIProps } from "./BoardWrite.types";
 
 export default function BoardWriteUI({
   onChangeWriter,
@@ -9,7 +10,7 @@ export default function BoardWriteUI({
   isActiveSubmitColor,
   isEdit,
   data,
-}) {
+}: IBoardWriteUIProps) {
   return (
     <>
       작성자 :{" "}
