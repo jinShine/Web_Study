@@ -1,0 +1,12 @@
+{
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "module": "CommonJS",
+    "rootDir": "src",
+    "outDir": "dist",
+    "target": "ES5",
+    "sourceMap": true,
+    "noImplicitAny": true // Any형태의 타입을 방지한다.
+  }
+}
