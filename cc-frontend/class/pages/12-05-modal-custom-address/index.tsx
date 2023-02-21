@@ -29,7 +29,7 @@ const App: React.FC = () => {
         모달창 열기
       </Button>
 
-      {/* 모달 종료 방식 - 1. 모달 숨기는 방법 */}
+      {/* 모달 종료 방식 - 1. 모달 숨기는 방법 ex) 이력서 등 */}
       {/* <Modal
         title="Basic Modal"
         open={isModalOpen}
@@ -39,7 +39,7 @@ const App: React.FC = () => {
         <DaumPostcodeEmbed onComplete={handleComplete} />
       </Modal> */}
 
-      {/* 모달 종료 방식 - 2. 모달 삭제하는 방법 */}
+      {/* 모달 종료 방식 - 2. 모달 삭제하는 방법 ex) 신용카드, 비밀번호 등 */}
       {isModalOpen && (
         <Modal
           title="Basic Modal"
