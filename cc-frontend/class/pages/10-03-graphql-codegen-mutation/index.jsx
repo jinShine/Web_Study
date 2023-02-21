@@ -14,22 +14,22 @@ const CREATE_BOARD = gql`
 `;
 
 export default function GraphqlMutationPage() {
-  
-  // useMutation 타입
-  // useMutation<Result타입, Variables타입>
-  const [createBoard] = useMutation<Pick<IMutation, "createBoard">, Pick<IMutation, IMutationCreateBoardArgs>>(CREATE_BOARD);
+      
+      // useMutation 타입
+      // useMutation<Result타입, Variables타입>
+      const [createBoard] = useMutation<Pick<IMutation, "createBoard">, Pick<IMutation, IMutationCreateBoardArgs>>(CREATE_BOARD);
 
-  const [writer, setWriter] = useState<string>("");
-  const [title, setTitle] = useState<string>("");
-  const [contents, setContents] = useState<string>("");
+      const [writer, setWriter] = useState<string>("");
+      const [title, setTitle] = useState<string>("");
+      const [contents, setContents] = useState<string>("");
 
-  const onClickSubmit = async () => {
-    const result = await createBoard({
-      variables: {
-        writer: writer,
-        title: title,
-        contents: contents,
-      },
+      const onClickSubmit = async () => {
+        const result = await createBoard({
+          variables: {
+            writer: writer,
+            title: title,
+            contents: contents,
+          },
     });
     console.log(result);
   };
