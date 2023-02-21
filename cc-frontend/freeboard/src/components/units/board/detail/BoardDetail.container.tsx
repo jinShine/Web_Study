@@ -8,15 +8,17 @@ export default function BoardDetail() {
   // Router
   const router = useRouter();
 
-  if (typeof router.query.boardId !== "string") {
-    alert("올바르지 않은 게시글 아이디입니다.");
-    void router.push("/");
-    return <></>;
-  }
+  // if (typeof router.query.boardId !== "string") {
+  //   alert("올바르지 않은 게시글 아이디입니다.");
+  //   void router.push("/");
+  //   console.log("########111111", router.query.boardId);
+  //   return <></>;
+  // }
 
   // GQL
   const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(FETCH_BOARD, {
-    variables: { boardId: router.query.boardId },
+    // variables: { boardId: router.query.boardId },
+    variables: { boardId: String(router.query.boardId) },
   });
 
   // Handler
