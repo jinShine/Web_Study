@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Modal } from "antd";
-import DaumPostcodeEmbed from "react-daum-postcode";
-import { Address } from "cluster";
+import DaumPostcodeEmbed, { Address } from "react-daum-postcode";
 
 const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
