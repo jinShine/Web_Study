@@ -1,12 +1,15 @@
 {
-  "include": ["src/**/*.ts", "src/01-hello.ts"],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "module": "commonjs",
     "rootDir": "src",
+    "baseUrl": ".",
     "outDir": "dist",
     "target": "ES5",
     "sourceMap": true,
-    "noImplicitAny": true // Any형태의 타입을 방지한다.
+    "downlevelIteration": true,
+    // "noImplicitAny": true, // Any형태의 타입을 방지한다.
+    "paths": { "*": ["node_modules/*"] }
   }
 }
