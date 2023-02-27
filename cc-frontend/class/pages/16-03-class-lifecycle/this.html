@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <title>this의 이해</title>
+  <script>
+    class Counter {
+      count = 10
+
+      onClickButton() {
+        console.log("현재 카운트: ", this.count);
+        this.count += 10
+      }
+
+      render() {
+        const button = document.createElement("button")
+        button.innerText = "클릭하세요"
+        button.addEventListener("click", this.onClickButton.bind(this))
+        document.body.appendChild(button)
+      }
+    }
+
+    window.onload = function () {
+      const counter = new Counter();
+      counter.render();
+    }
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

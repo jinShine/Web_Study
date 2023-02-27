@@ -18,15 +18,6 @@ const FETCH_BOARDS = gql`
   }
 `;
 
-const Row = styled.div`
-  display: flex;
-  height: 30px;
-`;
-
-const Column = styled.div`
-  width: 25%;
-`;
-
 export default function staticRoutedPage() {
   const { data } = useQuery<Pick<IQuery, "fetchBoards">, IQueryFetchBoardsArgs>(
     FETCH_BOARDS
