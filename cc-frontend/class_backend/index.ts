@@ -1,5 +1,7 @@
+import process from "process";
 import { DataSource, DataSourceOptions } from "typeorm";
 import { Board } from "./Board.postgres";
+import { DB_HOST, DB_PASS, DB_PORT, DB_USER } from "./envInfo";
 
 console.log("반갑습니다.");
 
@@ -7,10 +9,10 @@ const aaa: number = 2;
 
 const options: DataSourceOptions = {
   type: "postgres",
-  host: "34.22.64.245",
-  port: 5002,
-  username: "postgres",
-  password: "postgres2022",
+  host: DB_HOST,
+  port: DB_PORT,
+  username: DB_USER,
+  password: DB_PASS,
   database: "postgres",
   synchronize: true,
   logging: true,
