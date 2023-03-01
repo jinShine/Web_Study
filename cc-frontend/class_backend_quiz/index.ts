@@ -1,10 +1,6 @@
 import { DataSource, DataSourceOptions } from "typeorm";
-import { Board } from "./Board.postgres";
-import { DB_HOST, DB_PASS, DB_PORT, DB_USER } from "./envInfo";
-
-console.log("반갑습니다.");
-
-const aaa: number = 2;
+import { DB_HOST, DB_PASS, DB_PORT, DB_USER } from "./src/env/env";
+import { Board } from "./src/postgres/Board.postgres";
 
 const options: DataSourceOptions = {
   type: "postgres",
