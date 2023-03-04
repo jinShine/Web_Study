@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import styled from "@emotion/styled";
 import AppBannerPageUI from "./banner/LayoutBanner.presenter";
 import AppSidebarPage from "./sidebar/LayoutSideBar.container";
@@ -6,14 +7,20 @@ interface ILayoutProps {
   children: JSX.Element | JSX.Element[];
 }
 
+const HIDDEN_BANNER = ["/boards/write", "/boards/edit"];
+
 export default function Layout(props: ILayoutProps) {
+  const router = useRouter();
+
+  const isHiddenBanner = HIDDEN_BANNER.includes(router.asPath);
+
   return (
     <Wrapper>
       <InnerSidebarWrapper>
         <AppSidebarPage />
       </InnerSidebarWrapper>
       <InnerContentWrapper>
-        <AppBannerPageUI />
+        {!isHiddenBanner && <AppBannerPageUI />}
         <Body>{props.children}</Body>
       </InnerContentWrapper>
     </Wrapper>
@@ -44,6 +51,5 @@ const InnerContentWrapper = styled.div`
 `;
 
 const Body = styled.div`
-  height: 500px;
   overflow: auto;
 `;

@@ -1,3 +1,5 @@
+import BoardWrite from "../../../src/components/units/board/write/BoardWrite.container";
+
 export default function BoardWritePage() {
-  return <>게시물 작성</>;
+  return <BoardWrite />;
 }
