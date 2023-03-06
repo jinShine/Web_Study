@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { addDoc, collection, getDocs, getFirestore } from "firebase/firestore";
-import { db } from "../_app";
+import { db } from "../../src/commons/libraries/firebase";
 
 export default function FirebasePage() {
   const onClickSubmit = async () => {

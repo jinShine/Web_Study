@@ -2,7 +2,11 @@ import { gql, useMutation } from "@apollo/client";
 
 const CREATE_BOARD = gql`
   mutation {
-    createBoard(writer: "버즈2", title: " 제목입니다.", contents: "내용이에요") {
+    createBoard(
+      writer: "버즈2"
+      title: " 제목입니다."
+      contents: "내용이에요"
+    ) {
       _id
       number
       message
