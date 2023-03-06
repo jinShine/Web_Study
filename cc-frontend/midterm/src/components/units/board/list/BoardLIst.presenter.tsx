@@ -16,7 +16,7 @@ export default function BoardListUI(props: IBoardListUIProps) {
           {props.data ? (
             props.data?.fetchBoards.map((el) => {
               return (
-                <Container key={el._id}>
+                <Container key={el._id} id={el._id} onClick={props.onClickMoveToBoardDetail}>
                   <Title>{el.title}</Title>
                   <Date>{getDate(el.createdAt)}</Date>
                 </Container>

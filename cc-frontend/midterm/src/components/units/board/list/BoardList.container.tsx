@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import BoardListUI from "./BoardLIst.presenter";
 import { IQuery, IQueryFetchBoardsArgs } from "../../../../commons/types/generated/types";
 import { FETCH_BOARDS } from "./BoardList.queries";
+import { MouseEvent } from "react";
 
 export default function BoardList() {
   const router = useRouter();
@@ -27,5 +28,17 @@ export default function BoardList() {
     });
   };
 
-  return <BoardListUI pageStart={0} onLoadMore={onLoadMore} hasMore={true} data={data} />;
+  const onClickMoveToBoardDetail = (event: MouseEvent<HTMLDivElement>) => {
+    void router.push(`/boards/${event.currentTarget.id}`);
+  };
+
+  return (
+    <BoardListUI
+      pageStart={0}
+      onLoadMore={onLoadMore}
+      hasMore={true}
+      data={data}
+      onClickMoveToBoardDetail={onClickMoveToBoardDetail}
+    />
+  );
 }

@@ -7,10 +7,10 @@ interface ILayoutProps {
   children: JSX.Element | JSX.Element[];
 }
 
-const HIDDEN_BANNER = ["/boards/write", "/boards/edit"];
-
 export default function Layout(props: ILayoutProps) {
   const router = useRouter();
+
+  const HIDDEN_BANNER = ["/boards/write", `/boards/${router.query.boardId}/edit`];
 
   const isHiddenBanner = HIDDEN_BANNER.includes(router.asPath);
 

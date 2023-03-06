@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
   justify-content: flex-start;
   background-color: ${(props) => props.theme.color.bg};
 `;
-
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -14,75 +13,65 @@ export const Container = styled.div`
   background-color: white;
   border-radius: 10px;
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.05);
+  min-height: 378px;
+  margin-top: 20px;
 `;
 
 export const Title = styled.p`
   font-size: 18px;
   font-weight: 700;
   margin-left: 40px;
-  margin-top: 40px;
+  margin-top: 20px;
   color: black;
 `;
 
 export const Divider = styled.div`
   height: 1px;
   width: calc(100% - 80px);
-  background-color: ${(props) => props.theme.color.main};
+  background-color: ${(props) => props.theme.color.border};
   margin: 0 auto;
   margin-top: 20px;
-`;
-
-export const TitleWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 30px 40px 0px 40px;
-`;
-
-export const Label = styled.div`
-  font-size: 14px;
-  font-weight: 700;
-  width: 60px;
-  height: 20px;
-`;
-
-export const ContentsWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 20px 40px 0px 40px;
 `;
 
 export const ImagesWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  width: calc(100% - 80px);
+  height: 125px;
+  padding: 20px 40px 0 40px;
+`;
+
+export const ImageItem = styled.img`
+  width: calc(100% / 3 - 24px);
+  height: 125px;
+`;
+
+export const ContentWrapper = styled.div`
+  display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 20px 40px 0px 40px;
+  margin: 32px 40px 0 40px;
+`;
+export const ProfileImg = styled.img`
+  width: 17px;
+  height: 17px;
 `;
 
-export const ImagesContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  margin-left: 34px;
+export const Writer = styled.p`
+  font-size: 14px;
+  font-weight: 700;
+  margin-left: 10px;
+  color: black;
+  width: 50px;
+  white-space: nowrap;
 `;
 
-export const WriterWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 40px 63px 40px;
-`;
-
-export const WriterInputWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+export const Contents = styled.p`
+  font-size: 15px;
+  font-weight: 400;
+  margin-left: 43px;
+  color: #333333;
 `;
 
 export const ActionWrapper = styled.div`
@@ -90,7 +79,7 @@ export const ActionWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 30px 0;
+  padding-top: 30px;
 `;
 
 export const ActionButton = styled.button`

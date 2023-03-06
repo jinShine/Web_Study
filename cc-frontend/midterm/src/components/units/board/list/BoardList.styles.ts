@@ -15,6 +15,7 @@ export const Container = styled.div`
   height: 50px;
   margin-top: 16px;
   background-color: white;
+  cursor: pointer;
 `;
 
 export const Title = styled.p`

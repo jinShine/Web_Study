@@ -1,27 +1,60 @@
 import styled from "@emotion/styled";
+import { ChangeEvent } from "react";
 
 // Enum
 
 enum InputType {
   Input = "input",
   Textarea = "textarea",
+  Password = "password",
 }
 
 // Interface
 
 interface IProps {
   type: string;
+  name?: string;
   disabled?: boolean;
   width?: string;
   height?: string;
+  defaultValue?: string | undefined;
+  onChange?: (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 export default function BoardInput(props: IProps) {
   if (props.type === InputType.Input) {
-    return <Input disabled={props.disabled ?? false} width={props.width} height={props.height} />;
+    return (
+      <Input
+        name={props.name}
+        disabled={props.disabled ?? false}
+        width={props.width}
+        height={props.height}
+        defaultValue={props.defaultValue}
+        onChange={props.onChange}
+      />
+    );
+  } else if (props.type === InputType.Textarea) {
+    return (
+      <Textarea
+        name={props.name}
+        disabled={props.disabled ?? false}
+        width={props.width}
+        height={props.height}
+        defaultValue={props.defaultValue}
+        onChange={props.onChange}
+      />
+    );
   } else {
     return (
-      <Textarea disabled={props.disabled ?? false} width={props.width} height={props.height} />
+      <Input
+        type={props.name}
+        name={props.name}
+        disabled={props.disabled ?? false}
+        width={props.width}
+        height={props.height}
+        defaultValue={props.defaultValue}
+        onChange={props.onChange}
+      />
     );
   }
 }
