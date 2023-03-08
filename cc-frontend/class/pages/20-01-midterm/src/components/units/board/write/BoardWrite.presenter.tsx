@@ -1,5 +1,5 @@
 import { UploadControl } from "@/src/components/commons/UploadButton";
-import BoardInput from "../../../../components/commons/BoardInput";
+import BoardInput from "../../../commons/BoardInput";
 import {
   ActionButton,
   ActionWrapper,
