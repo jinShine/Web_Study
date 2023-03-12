@@ -53,7 +53,7 @@ export default function Home() {
               height={31}
               priority
             />
-          </div>
+          </div> 
         </div>
       </main>
     </>

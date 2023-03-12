@@ -17,7 +17,7 @@ export default function GlobalStatePage() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
-  const { data } = useQuery(FETCH_BOARDS);
+  const { data } = useQuery(FETCH_BOARDS, { refetch });
 
   const onClickIsOpen = () => {
     setIsOpen(true);
