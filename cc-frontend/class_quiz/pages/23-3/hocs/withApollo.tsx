@@ -1,16 +1,11 @@
 import { ApolloClient, ApolloLink, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { createUploadLink } from "apollo-upload-client";
-import { Component } from "react";
 import { useRecoilState } from "recoil";
-import { accessTokenState } from "../../../../pages/22/store";
-
-interface IApolloSettingProps {
-  children: JSX.Element;
-}
+import { accessTokenState } from "../store";
 
 const cache = new InMemoryCache();
 
-export default function ApolloSetting(props: IApolloSettingProps) {
+const withApollo = (Component) => (props) => {
   const [accessToken, _] = useRecoilState(accessTokenState);
 
   const uploadLink = createUploadLink({
@@ -25,5 +20,11 @@ export default function ApolloSetting(props: IApolloSettingProps) {
     cache: cache,
   });
 
-  return <ApolloProvider client={client}>{props.children}</ApolloProvider>;
-}
+  return (
+    <ApolloProvider client={client}>
+      <Component {...props} />;
+    </ApolloProvider>
+  );
+};
+
+export default withApollo;
