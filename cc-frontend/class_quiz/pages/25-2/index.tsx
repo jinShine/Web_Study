@@ -2,8 +2,8 @@ import { gql, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import { useRecoilState } from "recoil";
+import { accessTokenState } from "../../src/commons/store";
 import { IMutation, IMutationLoginUserArgs } from "../../src/commons/types/generated/types";
-import { accessTokenState } from "./store";
 
 const LOGIN_USER = gql`
   mutation loginUser($email: String!, $password: String!) {
@@ -47,7 +47,7 @@ export default function LoginPage() {
       localStorage.setItem("accessTokenState", accessToken);
       setAccessToken(accessToken);
 
-      void router.push("/22/login");
+      void router.push("/25-2/page/login");
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }

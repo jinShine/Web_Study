@@ -2,7 +2,7 @@ import { ApolloClient, ApolloLink, ApolloProvider, InMemoryCache } from "@apollo
 import { createUploadLink } from "apollo-upload-client";
 import { Component } from "react";
 import { useRecoilState } from "recoil";
-import { accessTokenState } from "../../../../pages/22/store";
+import { accessTokenState } from "../../../commons/store";
 
 interface IApolloSettingProps {
   children: JSX.Element;
