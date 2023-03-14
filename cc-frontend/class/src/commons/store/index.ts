@@ -10,8 +10,7 @@ export const accessTokenState = atom({
   default: "",
 });
 
-/**
- Expectation Violation: Duplicate atom key "accessTokenState". This is a FATAL ERROR in
-      production. But it is safe to ignore this warning if it occurred because of
-      hot module replacement.
- */
+export const visitedPageState = atom({
+  key: "visitedPageState",
+  default: "",
+});

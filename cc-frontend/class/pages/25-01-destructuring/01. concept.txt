@@ -1,0 +1,38 @@
+
+// 객체
+
+function useQuery(aaa) {
+
+ // aaa(ex, FETCH_BOARDS)를 통해서 Backend에 API요청함
+    return {
+        data: { fetchBoards: {writer: "철수"} },
+        loading: false,
+        refetch: () => {
+            console.log("fetch 실행")
+        }
+    }
+}
+
+const { data, refetch } = useQuery("FETCH_BOARDS")
+data.fetchBoards.writer // 철수
+
+
+///////////////////////////////////////////////////////////
+
+// 배열
+
+function useState(aaa) {
+
+    const myState = aaa // aaa를 사용해서 state의 초기값 설정
+
+    const mySetState = (bbb) => {
+        // 1. bbb로 myState 변경하기
+        console.log(`${myState}에서 ${bbb}로 state를 변경하겠습니다!!`)
+        // 2. 해당 컴포넌트를 리렌더링 시키기!!!(render 함수)
+        console.log(`변경된 ${bbb}를 사용해서 컴포넌트를 리렌더링 하겠습니다!!`)
+    }
+
+    return [myState, mySetState]
+}
+
+const [count, setCount] = useState(10)
