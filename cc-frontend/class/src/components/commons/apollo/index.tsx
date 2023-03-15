@@ -59,6 +59,7 @@ export default function ApolloSetting(props: IApolloSettingProps) {
     // uri: "http://backendonline.codebootcamp.co.kr/graphql",
     link: ApolloLink.from([uploadLink]),
     cache: cache,
+    connectToDevTools: true,
   });
 
   // prettier-ignore
