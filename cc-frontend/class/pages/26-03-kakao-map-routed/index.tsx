@@ -1,8 +1,5 @@
 import Head from "next/head";
 import { useEffect } from "react";
-
-const KAKAO_MAP_KEY = "0fa8f702fd7e13ee596673be29777b83";
-
 // window는 kakao를 알수 없기 떄문에 declare해줘야 한다.
 declare const window: typeof globalThis & {
   kakao: any;
