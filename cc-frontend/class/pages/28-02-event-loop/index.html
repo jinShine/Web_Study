@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Loop</title>
+
+  <script>
+
+
+    function onClickLoop() {
+      console.log("시작!!!")
+
+      setTimeout(() => {
+        console.log("0초 뒤에 실행될 꺼에요");
+      }, 0)
+
+      let sum = 0
+      for (let i = 0; i <= 9000000000; i++) {
+        sum += 1;
+      }
+
+      console.log("끝!!!")
+    }
+
+
+
+
+  </script>
+</head>
+
+<body>
+  <button onclick="onClickLoop()">시작하기</button>
+</body>
+
+</html>
