@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise 연습!!</title>
+  <script>
+    const onClickThen = () => {
+      new Promise((resolve, reject) => {
+        // 시간이 걸리는 작업 (ex, API 보내기 등)
+        // ...
+        // ...
+
+        setTimeout(() => {
+          try {
+            const res = "철수"
+            resolve(res) // 성공하면 이거 실행
+          } catch (error) {
+            reject(`에러가 발생${error.message}`)
+          }
+        }, 2000)
+      })
+        .then((res) => console.log(res))
+
+    }
+
+    const onClickAwait = async () => {
+      const result = await new Promise((resolve, reject) => {
+        // 시간이 걸리는 작업 (ex, API 보내기 등)
+        // ...
+        // ...
+
+        setTimeout(() => {
+          try {
+            const res = "철수"
+            resolve(res) // 성공하면 이거 실행
+          } catch (error) {
+            reject(`에러가 발생${error.message}`)
+          }
+        }, 2000)
+      })
+
+      console.log(result);
+    }
+  </script>
+</head>
+
+<body>
+  <button onclick="onClickThen()">Promise 실행하기 (.then)</button>
+  <button onclick="onClickAwait()">Promise 실행하기 (await)</button>
+</body>
+
+</html>

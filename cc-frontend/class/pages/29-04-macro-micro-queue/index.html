@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Loop</title>
+
+  <script>
+
+
+    function onClickLoop() {
+      console.log("시작!!!")
+
+      // 비동기 작업 (테스크큐에 들어감)
+      setTimeout(() => {
+        new Promise((resolve) => resolve("철수")).then(() => {
+          console.log("Promise(3)!!! setTimeout 안에서 실행될 거에요");
+        })
+        console.log("setTimeout!! 매크로 큐!! 0초 뒤에 실행될 거에요");
+      }, 0)
+
+      // 비동기작업(마이크로큐에 들어감)
+      new Promise((resolve) => resolve("철수")).then(() => {
+        console.log("Promise(1)!!! 마이크로큐!! 0초 뒤에 실행될 거에요");
+      })
+
+      // 비동기작업(태스크큐에 들어감)
+      setInterval(() => {
+        console.log("setInterval!! 매크로 큐!! 0초 마다 실행될 거에요");
+      }, 0);
+
+      let sum = 0
+      for (let i = 0; i <= 9000000000; i++) {
+        sum += 1;
+      }
+
+      // 비동기작업(마이크로큐에 들어감)
+      new Promise((resolve) => resolve("철수")).then(() => {
+        console.log("Promise(2)!!! 마이크로큐!! 0초 뒤에 실행될 거에요");
+      })
+
+      console.log("끝!!!")
+
+      // * 순서 *
+
+      // 시작!!!
+      // 끝!!!
+      // Promise(1)
+      // Promise(2)
+      // setTimeout
+      // Promise(3)
+      // setInterval
+    }
+
+
+  </script>
+</head>
+
+<body>
+  <button onclick="onClickLoop()">시작하기</button>
+</body>
+
+</html>

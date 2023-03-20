@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <title>Document</title>
+
+  <script>
+    // 1. 랜덤한 숫자 가져오는 API
+    // 2. posts/170
+    // 3. 170번 게시글 작성한 유저가 쓴 다른 글 가져오기
+
+    // 🗣 **콜백 내부에서 사용할 API**
+
+    // 1. 랜덤한 숫자를 가지고 오는 API : `http://numbersapi.com/random?min=1&max=200` 
+    // 2. post API:  `https://koreanjson.com/posts/${num}` 
+    // 3. 유저가 쓴 다른 글 API : `https://koreanjson.com/posts?userId=${userId}` 
+
+    const myCallback = () => {
+      const http = new XMLHttpRequest()
+      http.open("get", "http://numbersapi.com/random?min=1&max=200")
+      http.send()
+      http.addEventListener("load", (res) => {
+        const randomNum = res.target.response.split(" ")[0]
+        console.log(`# random number : ${randomNum}`);
+
+        const http = new XMLHttpRequest()
+        http.open("get", `https://koreanjson.com/posts/${randomNum}`)
+        http.send()
+        http.addEventListener("load", (res) => {
+          console.log(JSON.parse(res.target.response));
+          const userId = JSON.parse(res.target.response).UserId
+
+          const http = new XMLHttpRequest()
+          http.open("get", `https://koreanjson.com/posts?userId=${userId}`)
+          http.send()
+          http.addEventListener("load", () => {
+            console.log(JSON.parse(res.target.response));
+          })
+        })
+      })
+
+    }
+
+    const myPromise = () => {
+
+      console.log("1번째 실행");
+      axios.get("http://numbersapi.com/random?min=1&max=200")
+        .then((res) => {
+          console.log("2번째 실행");
+          const randomNum = res.data.split(" ")[0]
+          return axios.get(`https://koreanjson.com/posts/${randomNum}`)
+        })
+        .then((res) => {
+          console.log("3번째 실행");
+          const userId = res.data.UserId
+          return axios.get(`https://koreanjson.com/posts?userId=${userId}`)
+        })
+        .then((res) => {
+          console.log("4번째 실행");
+          console.log(res);
+        })
+
+      console.log("5번째 실행");
+
+      // 1 -> 5 -> 2 -> 3 -> 4
+      // 원하는 실행순서를 주의해아함으로 async-await이 등장
+    }
+
+    const myAsyncAwait = async () => {
+      console.log("1번째 실행");
+
+      await axios.get("http://numbersapi.com/random?min=1&max=200")
+        .then((res) => {
+          console.log("2번째 실행");
+          const randomNum = res.data.split(" ")[0]
+          return axios.get(`https://koreanjson.com/posts/${randomNum}`)
+        })
+        .then((res) => {
+          console.log("3번째 실행");
+          const userId = res.data.UserId
+          return axios.get(`https://koreanjson.com/posts?userId=${userId}`)
+        })
+        .then((res) => {
+          console.log("4번째 실행");
+          console.log(res);
+        })
+
+      console.log("5번째 실행");
+
+      // 1 -> 2 -> 3 -> 4 -> 5
+      // 원하는 실행순서
+    }
+
+  </script>
+</head>
+
+<body>
+  <button onclick="myCallback()">Callback 연습하기</button>
+  <button onclick="myPromise()">Promise 연습하기</button>
+  <button onclick="myAsyncAwait()">AsyncAwait 연습하기</button>
+</body>
+
+</html>
