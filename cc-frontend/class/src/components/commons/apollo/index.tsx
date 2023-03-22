@@ -2,11 +2,14 @@ import {
   ApolloClient,
   ApolloLink,
   ApolloProvider,
+  fromPromise,
   InMemoryCache,
 } from "@apollo/client";
+import { onError } from "@apollo/client/link/error";
 import { createUploadLink } from "apollo-upload-client";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
+import { getAccessToken } from "../../../commons/libraries/getAccessToken";
 import { accessTokenState } from "../../../commons/store";
 
 interface IApolloSettingProps {
@@ -38,27 +41,68 @@ export default function ApolloSetting(props: IApolloSettingProps) {
   // }
 
   // 3. 프리렌더링 무시하고 브라우저에서만 실행 - useEffect 방법
+  // 3. 프리렌더링 무시 - useEffect 방법
 
   useEffect(() => {
-    const result = localStorage.getItem("accessToken");
-    console.log("######", result);
-    if (result) {
-      setAccessToken(result);
-    }
+    // 1. 기존방식(refreshToken 이전)
+    // console.log("지금은 브라우저다!!!!!");
+    // const result = localStorage.getItem("accessToken");
+    // console.log(result);
+    // if (result) setAccessToken(result);
+
+    // 2. 새로운방식(refreshToken 이후) - 새로고침 이후에도 토큰 유지할 수 있도록
+    void getAccessToken().then((newAccessToken) => {
+      console.log("!!!!!!!!!!!!!!!!!", newAccessToken);
+      setAccessToken(newAccessToken);
+    });
   }, []);
 
+  /**
+   * graphQLErrors : 에러
+   * operation : 쿼리
+   * forward : 재전송
+   */
+
+  const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+    // 1-1. 에러를 캐치
+    if (graphQLErrors) {
+      for (const err of graphQLErrors) {
+        // 1-2. 해당 에러가 토큰만료 에러인지 체크(UNAUTHENTICATED)
+        if (err.extensions.code === "UNAUTHENTICATED") {
+          // 2-1. refreshToken으로 accessToken을 재발급 받기
+          return fromPromise(
+            getAccessToken().then((newAccessToken) => {
+              console.log("############", newAccessToken as string);
+              // 2-2. 재발급 받은 accessToken 저장하기
+              setAccessToken(newAccessToken);
+
+              if (typeof newAccessToken !== "string") return;
+
+              // 3-1. 재발급 받은 accessToken으로 방금 실패한 쿼리 재요청하기
+              operation.setContext({
+                headers: {
+                  ...operation.getContext().headers,
+                  Authorization: `Bearer ${newAccessToken}`, // accessToken만 새걸로 바꿔치기
+                },
+              });
+            })
+          ).flatMap(() => forward(operation)); // 3-2. 변경된 operation 재요청하기!!!
+        }
+      }
+    }
+  });
+
   const uploadLink = createUploadLink({
-    uri: "http://backendonline.codebootcamp.co.kr/graphql",
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
+    uri: "https://backendonline.codebootcamp.co.kr/graphql",
+    headers: { Authorization: `Bearer ${accessToken}` },
+    credentials: "include",
   });
 
   const client = new ApolloClient({
     // uri: "http://practice.codebootcamp.co.kr/graphql",
     // uri: "http://backendonline.codebootcamp.co.kr/graphql",
-    link: ApolloLink.from([uploadLink]),
-    cache: cache,
+    link: ApolloLink.from([errorLink, uploadLink]),
+    cache,
     connectToDevTools: true,
   });
 
