@@ -10,7 +10,7 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: ["react"],
+  plugins: ["react", ""],
   ignorePatterns: ["src/commons/types/generated/types.ts"],
   rules: {
     "react/react-in-jsx-scope": "off",

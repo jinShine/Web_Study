@@ -1,7 +1,0 @@
-{
-  "name": "01-03-token-facade-import-export",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "type": "module"
-}
