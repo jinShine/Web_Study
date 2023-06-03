@@ -17,3 +17,19 @@ name1 = "버즈2"; // let은 재할당 가능
 var name3 = "버즈";
 var name3 = "버즈2"; // var는 재할당 재선언이 가능
 console.log(name3);
+
+//////////////////////////
+// 변수명
+
+// 나쁜 예제
+let audio1;
+let audio2;
+
+// 좋은 예제
+let backgroundAudio;
+let windAudio;
+
+// 더 좋은 꿀팁
+// 무엇인지를 먼저 나타내고 구체적인것으로 지어주면 더 좋다.
+let audioBackground;
+let audioWind;

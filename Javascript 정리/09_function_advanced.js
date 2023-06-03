@@ -8,6 +8,19 @@
 
 // 함수도 하나의 자료형이므로매개변수로 전달할 수 있으며, 매개변수로 전달하는 함수를 콜백(callback)함수라고 합니다.
 
+const add = (a, b) => a + b;
+const multiply = (a, b) => a * b;
+
+function calc(a, b, action) {
+  let result = action(a, b);
+  console.log(result);
+
+  return result;
+}
+
+calc(1, 2, add);
+calc(1, 2, multiply);
+
 function callTime(time, callback) {
   for (let i = 1; i <= time; i++) {
     callback(i);

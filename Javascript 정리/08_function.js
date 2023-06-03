@@ -61,3 +61,14 @@ function func4(a, b, ...items) {
 
 func4(1, 2, arr); // 전개하기 전 -> [Array(3)]
 func4(1, 2, ...arr); // 전개연산자를 사용하면 -> 이렇게 전개되서 나온다 [3,4,5]
+
+// 메모리
+function add(a, b) {
+  return a + b;
+}
+
+const sum = add; // add의 레퍼런스 주소가 sum도 가리키고 있다.
+sum(1, 2);
+
+console.log(sum(1, 2));
+console.log(add(1, 2));
