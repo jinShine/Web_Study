@@ -137,3 +137,31 @@ data = 10;
 console.log(data);
 data2 = 10;
 console.log(data2);
+
+///////////////////////////////
+// 생성자 함수
+// 대문자로 시작,
+
+// ex) 객체를 생성자로 만들어 보자
+const apple = {
+  name: "apple",
+  display: () => {
+    console.log(`${this.name}: 🍎`);
+  },
+};
+
+function Fruit(name, emoji) {
+  this.name = name;
+  this.emoji = emoji;
+  this.display = () => {
+    console.log(`${this.name}: ${this.emoji}`);
+  };
+
+  return this; // 생략 가능
+}
+
+const apple1 = new Fruit("apple", "🍎");
+const orange1 = new Fruit("orange", "🍊");
+
+console.log(apple1.display());
+console.log(orange1.display());

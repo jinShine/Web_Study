@@ -19,14 +19,9 @@ typeof [];
 // 배열
 // 인덱스, 요소(값)
 // 모든 자료형을 가질수 있다.
-const arr1 = [
-  "사과",
-  "바나나",
-  "망고",
-  1000,
-  ["하와이", "대한민국"],
-  32.111111,
-];
+const arr1 = ["사과", "바나나", "망고", 1000, ["하와이", "대한민국"], 32.111111];
+
+// 접근하기 위해서는
 arr1[0];
 arr1[1];
 
@@ -34,6 +29,10 @@ arr1[1];
 // 키 : 값
 // 모든 자료형을 가질수 있다.
 // 객체 내부에는 속성과 메서드가 존재한다.
+
+// Object literal { key: value }
+// new Object
+// Object.create()
 
 const product = {
   아이디: 100029992,
@@ -51,6 +50,9 @@ const product = {
   },
 };
 
+// 접근 하기 위해서는
+product.아이디; // 마침표 표기법 dot notation
+product["아이디"]; // 대괄호 표기법 bracket notation
 console.log(product["제품명"]);
 console.log(product.제품명);
 
