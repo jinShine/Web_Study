@@ -44,3 +44,17 @@ console.log(str6.includes("jeju")); // true
 
 // substring() : 시작위치, 끝 위치의 직전까지 리턴
 console.log(str6.substring(0, 5)); // Welco
+
+const textObj = new String("Hello World");
+const ttt = "Hello World";
+ttt[0];
+ttt.charAt(0);
+ttt[1];
+ttt.charAt(1);
+console.log(ttt.indexOf("l"));
+console.log(ttt.indexOf("a")); // 없으면 -1
+console.log(ttt.includes("a")); // false
+console.log(ttt.substring(0, 2)); // He
+console.log(ttt.slice(2));
+console.log(ttt.slice(-5));
+console.log(ttt.slice(2, 5));
