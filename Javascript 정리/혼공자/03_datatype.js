@@ -49,6 +49,12 @@ let b3 = 3;
 let b4 = 10;
 let isB5 = b3 < b4;
 
+// Falshy 거짓인 값
+// => 0, -0, ""(empty string), null, undefined, NaN
+
+// Truthy 참인 값
+// => 1, -1, "text", {}, Infinity
+
 /*
     4. undefined
       * 값이면서 자료형
@@ -70,7 +76,7 @@ console.log(n2);
 console.log(typeof null);
 
 // undefined는 사용자가 실수로 값을 지정하지 않을떄의 값
-// null은 사용자가 일부로 유효하지 않은 값을 지정한 값
+// null은 사용자가 일부로 유효하지 않은 값을 지정한 값, 확실하게 비어있는 값을 표현
 
 /*
     6. symbol

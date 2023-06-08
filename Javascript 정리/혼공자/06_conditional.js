@@ -30,6 +30,13 @@ if (hour < 12) {
     */
 
 const inputData = 3;
+switch (inputData) {
+  case 2:
+    console.log(2);
+    break;
+  case 3:
+    break;
+}
 switch (inputData % 2) {
   case 0:
     console.log("짝수 입니다.");

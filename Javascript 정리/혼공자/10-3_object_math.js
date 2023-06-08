@@ -32,3 +32,11 @@ console.log(Math.floor(-4.2)); // -5
 // trunc() - 소수점 이하는 무조건 버림 처리
 console.log(Math.trunc(4.7)); // 4
 console.log(Math.trunc(-4.2)); // -4
+
+Math.random() * 10 + 1;
+Math.max();
+Math.min();
+Math.round();
+Math.ceil();
+Math.floor();
+Math.pow();
