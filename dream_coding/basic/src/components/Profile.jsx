@@ -1,13 +1,12 @@
 import React from "react";
+import Avartar from "./Avartar";
 
-function Profile(props) {
+export default function Profile({ image, name, title, isNew }) {
   return (
-    <div>
-      <img src="" alt="avatar" />
-      <h1>Buzz</h1>
-      <p>프론트엔드</p>
+    <div className="profile">
+      <Avartar image={image} isNew={isNew} />
+      <h1>{name}</h1>
+      <p>{title}</p>
     </div>
   );
 }
-
-export default Profile;
