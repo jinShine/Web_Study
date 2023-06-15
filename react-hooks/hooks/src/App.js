@@ -1,8 +1,8 @@
-import logo from "./logo.svg";
 import "./App.css";
 import useInput from "./hooks/1.useInput";
 import useTabs from "./hooks/2.useTabs";
 import useTitle from "./hooks/3.useTitle";
+import useClick from "./hooks/4.useClick";
 
 const contents = [
   {
@@ -24,6 +24,9 @@ function App() {
   const { currentItem, changeItem } = useTabs(0, contents);
 
   const titleUpdater = useTitle("Loading...");
+
+  const sayHello = () => alert("안녕?");
+  const clicker = useClick(sayHello);
 
   return (
     <div className="App">
@@ -72,6 +75,17 @@ function App() {
             Title 변경하기
           </button>
         </div>
+      </div>
+
+      <div>
+        <br />
+        --------------------------------
+        <br />
+      </div>
+
+      <div>
+        <h2>[ useClick ]</h2>
+        <h3 ref={clicker}>클릭해볼래?</h3>
       </div>
     </div>
   );
