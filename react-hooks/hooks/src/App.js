@@ -3,6 +3,7 @@ import useInput from "./hooks/1.useInput";
 import useTabs from "./hooks/2.useTabs";
 import useTitle from "./hooks/3.useTitle";
 import useClick from "./hooks/4.useClick";
+import useHover from "./hooks/5.useHover";
 
 const contents = [
   {
@@ -27,6 +28,9 @@ function App() {
 
   const sayHello = () => alert("안녕?");
   const clicker = useClick(sayHello);
+
+  const hoverEvent = () => alert("Mouse enter");
+  const hoverer = useHover(hoverEvent);
 
   return (
     <div className="App">
@@ -86,6 +90,17 @@ function App() {
       <div>
         <h2>[ useClick ]</h2>
         <h3 ref={clicker}>클릭해볼래?</h3>
+      </div>
+
+      <div>
+        <br />
+        --------------------------------
+        <br />
+      </div>
+
+      <div>
+        <h2>[ useHover ]</h2>
+        <h3 ref={hoverer}>마우스 올려볼래?</h3>
       </div>
     </div>
   );

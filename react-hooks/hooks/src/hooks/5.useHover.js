@@ -1,27 +1,27 @@
 import { useEffect, useRef } from "react";
 
-const useClick = (onClick) => {
+const useHover = (onHover) => {
   const ref = useRef();
 
   useEffect(() => {
     const element = ref.current;
 
     if (element) {
-      element.addEventListener("click", onClick);
+      element.addEventListener("mouseenter", onHover);
     }
 
     return () => {
       if (element) {
-        element.removeEventListener("click", onClick);
+        element.removeEventListener("mouseenter", onHover);
       }
     };
-  }, [onClick]);
+  }, [onHover]);
 
-  if (typeof onClick !== "function") {
+  if (typeof onHover !== "function") {
     return;
   }
 
   return ref;
 };
 
-export default useClick;
+export default useHover;
