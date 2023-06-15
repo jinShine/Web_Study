@@ -41,3 +41,38 @@ console.log("------------------------------");
 
 filterResult = products.filter((product) => product.stock <= 10);
 console.log(filterResult);
+
+console.clear();
+
+// map : 배열의 아이템들을 각각 다른 아이템으로 매핑할 수 있는, 변환해서 새로운 배열 생성
+const nums = [1, 2, 3, 4, 5];
+const mapResult = nums.map((item) => item * 2);
+console.log(mapResult);
+
+// flatmap :
+const flatMapResult = ["dream", "coding"].flatMap((text) => text.split(""));
+console.log(flatMapResult);
+/**
+ * [
+  'd', 'r', 'e', 'a',
+  'm', 'c', 'o', 'd',
+  'i', 'n', 'g'
+  ]
+ */
+
+// sort : 배열의 아이템들을 정렬
+const texts = ["h1", "abc"];
+texts.sort();
+console.log(texts); // [ 'abc', 'h1' ]
+const testNums = [1, 10, 5, 3, 2]; // sorting시 숫자를 조심해야한다.
+testNums.sort();
+console.log(testNums); // [ 1, 10, 2, 3, 5 ]
+testNums.sort((a, b) => a - b); // a가 작다면 오름차순
+console.log(testNums);
+
+// reduce : 배열의 요소들을 접어서 접어서 값을 하나로!
+const reduceResult = testNums.reduce((sum, value) => {
+  sum += value;
+  return sum;
+}, 0);
+console.log(reduceResult);
