@@ -17,3 +17,23 @@
  */
 
 // for loop
+function pingpong(x) {
+  let result = 0;
+  let direction = 1;
+
+  for (let i = 1; i <= x; i++) {
+    result += direction;
+
+    if (i % 7 === 0 || i % 10 === 7 || Math.floor(i / 10) === 7) {
+      // console.log(`${i} : `, result);
+      direction *= -1;
+    }
+  }
+
+  return result;
+}
+
+console.log(pingpong(8)); // 6
+console.log(pingpong(22)); // 0
+console.log(pingpong(68)); // 2
+console.log(pingpong(100)); // 2
