@@ -13,6 +13,4 @@ const multiple = {
   },
 };
 
-for (const num of multiple) {
-  console.log(num);
-}
+// forEach는 안된다.
