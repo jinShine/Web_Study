@@ -4,6 +4,7 @@ import useTabs from "./hooks/2.useTabs";
 import useTitle from "./hooks/3.useTitle";
 import useClick from "./hooks/4.useClick";
 import useHover from "./hooks/5.useHover";
+import useAxios from "./hooks/useAxios";
 
 const contents = [
   {
@@ -31,6 +32,11 @@ function App() {
 
   const hoverEvent = () => alert("Mouse enter");
   const hoverer = useHover(hoverEvent);
+
+  const { loading, data, error, refetch } = useAxios({
+    url: "https://yts.mx/api/v2/list_movies.json",
+  });
+  console.log(`Loading: ${loading}\nError: ${error}\nData: ${JSON.stringify(data)}`);
 
   return (
     <div className="App">
@@ -101,6 +107,19 @@ function App() {
       <div>
         <h2>[ useHover ]</h2>
         <h3 ref={hoverer}>마우스 올려볼래?</h3>
+      </div>
+
+      <div>
+        <br />
+        --------------------------------
+        <br />
+      </div>
+
+      <div>
+        <h2>[ useAxios ]</h2>
+        <h3>{data && data.status}</h3>
+        <h3>{loading && "Loading..."}</h3>
+        <button onClick={refetch}>Refetch</button>
       </div>
     </div>
   );
