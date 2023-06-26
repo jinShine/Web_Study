@@ -18,7 +18,24 @@
 
 // for loop
 
-console.log("A");
-setTimeout(() => console.log("B"), 1000);
-setTimeout(() => console.log("C"), 0);
-console.log("D");
+// console.log("A");
+// setTimeout(() => console.log("B"), 1000);
+// setTimeout(() => console.log("C"), 0);
+// console.log("D");
+
+// const obj = {
+//   hello: function () {
+//     console.log(this);
+//   },
+// };
+
+// obj.hello();
+
+function a() {
+  console.log(b); // undefined 같지만 b는 function b
+  var b = "bbb";
+  console.log(b); // bbb
+  function b() {}
+  console.log(b); // b함수
+}
+a();
