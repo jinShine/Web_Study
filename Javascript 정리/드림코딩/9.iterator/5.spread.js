@@ -12,7 +12,7 @@ function add(a, b, c) {
 const nums = [1, 2, 3];
 console.log(...nums);
 
-add(num[0], num[1], num[2]);
+add(nums[0], nums[1], nums[2]);
 console.log(add(...nums));
 
 // Rest parameters
@@ -35,3 +35,12 @@ const update = {
   job: "s/w engineer",
 };
 console.log(update);
+
+const num2 = [1, 2, 3, 4, 5];
+function test(a, b, c) {
+  console.log("a", a);
+  console.log("b", b);
+  console.log("c", c);
+}
+
+test(...num2); // 4, 5는 없어짐
