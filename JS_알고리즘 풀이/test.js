@@ -102,7 +102,47 @@ function solution(languages, scores) {
 
   for (let i = 0; i < languages.length; i++) {
     const lan = languages[i];
-    datas[lan] = { score: scores[i] };
+    const score = scores[i];
+
+    if (!datas[lan]) {
+      datas[lan] = { scores: scores[i], count: 1 };
+    } else {
+      datas[lan].count += 1;
+      datas[lan].scores = datas[lan].scores.map((s, index) => s + score[index]);
+    }
+  }
+
+  let keys = Object.keys(datas);
+
+  for (let i = 0; i < keys.length; i++) {
+    const lan = keys[i];
+    datas[lan].scores = datas[lan].scores.map((s) => s / datas[lan].count);
+  }
+
+  for (let i = 0; i < scores[0].length; i++) {
+    let maxAvg = 0;
+    let maxLan = "";
+    let maxCount = 1;
+
+    for (const lan of keys) {
+      const avg = datas[lan].scores[i];
+
+      if (avg > maxAvg) {
+        maxAvg = avg;
+        maxLan = lan;
+        maxCount = datas[lan].count;
+      } else if (avg === maxAvg) {
+        if (datas[lan].count > maxCount) {
+          maxLan = lan;
+        }
+
+        if (datas[lan].count === maxCount) {
+          maxLan = [maxLan, lan].sort()[1];
+        }
+      }
+    }
+
+    answer.push(maxLan);
   }
 
   console.log(datas);
