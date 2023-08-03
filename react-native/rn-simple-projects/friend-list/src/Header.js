@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingVertical: 10,
-    backgroundColor: "aqua",
   },
   title: {
     fontSize: 22,
