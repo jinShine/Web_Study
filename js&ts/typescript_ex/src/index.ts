@@ -57,3 +57,18 @@ const heros: Heros = {
 };
 
 console.log(heros);
+
+type Dropdown<T> = {
+  id: string;
+  title: T;
+};
+
+interface IDropdown<T> {
+  id: string;
+  title: T;
+}
+
+const dd: IDropdown<string> = {
+  id: "123",
+  title: "123",
+};
