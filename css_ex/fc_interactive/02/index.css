@@ -1,0 +1,138 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #24145e;
+}
+
+@keyframes rotation {
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+#planet_1 {
+  animation-name: rotation;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+#planet_2 {
+  animation-name: rotation;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes shrinkAndGrow {
+  0% {
+    transform: scale(0);
+  }
+  25% {
+    transform: scale(0.5);
+  }
+  50% {
+    transform: scale(0);
+  }
+  75% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+#star_1,
+#star_2,
+#star_3 {
+  animation-name: shrinkAndGrow;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+#star_4,
+#star_5,
+#star_6 {
+  animation-name: shrinkAndGrow;
+  animation-duration: 7s;
+  animation-iteration-count: infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+#star_7,
+#star_8,
+#star_9 {
+  animation-name: shrinkAndGrow;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes expandHorizontal {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+#UFO-beam {
+  animation-name: expandHorizontal;
+  animation-duration: 1s;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes appearFromTop {
+  from {
+    transform: translateY(-300px) scale(0);
+  }
+  to {
+    transform: translateY(0) scale(1);
+  }
+}
+
+#number-0 {
+  animation-name: appearFromTop;
+  animation-duration: 2.5s;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes shakingUpAndDown {
+  from {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-5px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  75% {
+    transform: translateY(-5px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+#alien_hand-L,
+#alien_hand-R {
+  animation-name: shakingUpAndDown;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
