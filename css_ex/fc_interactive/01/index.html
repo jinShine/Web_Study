@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./reset.css">
+  <link rel="stylesheet" href="./index.css">
+  <title>Interactive-UI</title>
+</head>
+
+<body>
+  <header>
+    <img id="logo" src="./imgs/airbnb_logo.svg" alt="Logo" />
+    <div id="little-search">
+      <button class="little-search_button">어디든지</button>
+      <span class="divider"></span>
+      <button class="little-search_button">언제든 일주일</button>
+      <span class="divider"></span>
+      <button class="little-search_button">게스트 추가</button>
+      <div id="magnifying-class-wrapper">
+        <img id="magnifying-class-icon" src="./imgs/Magnifying_glass_icon.svg" alt="Magnifying_glass" />
+      </div>
+    </div>
+    <div id="header-right-section">
+      <div id="do-airbnb">
+        당신의 공간을 에어비앤비하세요
+      </div>
+      <div id="profile-section">
+        <img id="hamberger-menu-icon" src="./imgs/list.svg" alt="list icon">
+        <img id="profile-icon" src="./imgs/user-circle.svg" alt="user circle icon">
+      </div>
+    </div>
+  </header>
+  <div id="category-bar">
+
+
+    <button class="category-button" id="active-category-button">
+      <img class="category-img-inactive" src="./imgs/home.png" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/home_black.png" alt="airplane-icon">
+      <div>방</div>
+    </button>
+    <button class="category-button">
+      <img class="category-img-inactive" src="./imgs/camping.png" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/camping_black.png" alt="airplane-icon">
+      <div>캠핑장</div>
+    </button>
+    <button class="category-button">
+      <img class="category-img-inactive" src="./imgs/airplane.svg" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/airplane_black.svg" alt="airplane-icon">
+      <div>공항 근처</div>
+    </button>
+    <button class="category-button">
+      <img class="category-img-inactive" src="./imgs/lake.png" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/lake_black.png" alt="airplane-icon">
+      <div>호수 근처</div>
+    </button>
+    <button class="category-button">
+      <img class="category-img-inactive" src="./imgs/armchair.svg" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/armchair_black.svg" alt="airplane-icon">
+      <div>아늑한곳</div>
+    </button>
+    <button class="category-button">
+      <img class="category-img-inactive" src="./imgs/park.png" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/park_black.png" alt="airplane-icon">
+      <div>공원 근처</div>
+    </button>
+    <button class="category-button">
+      <img class="category-img-inactive" src="./imgs/home.png" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/home_black.png" alt="airplane-icon">
+      <div>방</div>
+    </button>
+    <button class="category-button">
+      <img class="category-img-inactive" src="./imgs/camping.png" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/camping_black.png" alt="airplane-icon">
+      <div>캠핑장</div>
+    </button>
+    <button class="category-button">
+      <img class="category-img-inactive" src="./imgs/airplane.svg" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/airplane_black.svg" alt="airplane-icon">
+      <div>공항 근처</div>
+    </button>
+    <button class="category-button">
+      <img class="category-img-inactive" src="./imgs/lake.png" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/lake_black.png" alt="airplane-icon">
+      <div>호수 근처</div>
+    </button>
+    <button class="category-button">
+      <img class="category-img-inactive" src="./imgs/armchair.svg" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/armchair_black.svg" alt="airplane-icon">
+      <div>아늑한곳</div>
+    </button>
+    <button class="category-button">
+      <img class="category-img-inactive" src="./imgs/park.png" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/park_black.png" alt="airplane-icon">
+      <div>공원 근처</div>
+    </button>
+    <button class="category-button">
+      <img class="category-img-inactive" src="./imgs/home.png" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/home_black.png" alt="airplane-icon">
+      <div>방</div>
+    </button>
+    <button class="category-button">
+      <img class="category-img-inactive" src="./imgs/camping.png" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/camping_black.png" alt="airplane-icon">
+      <div>캠핑장</div>
+    </button>
+    <button class="category-button">
+      <img class="category-img-inactive" src="./imgs/airplane.svg" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/airplane_black.svg" alt="airplane-icon">
+      <div>공항 근처</div>
+    </button>
+    <button class="category-button">
+      <img class="category-img-inactive" src="./imgs/lake.png" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/lake_black.png" alt="airplane-icon">
+      <div>호수 근처</div>
+    </button>
+    <button class="category-button">
+      <img class="category-img-inactive" src="./imgs/armchair.svg" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/armchair_black.svg" alt="airplane-icon">
+      <div>아늑한곳</div>
+    </button>
+    <button class="category-button">
+      <img class="category-img-inactive" src="./imgs/park.png" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/park_black.png" alt="airplane-icon">
+      <div>공원 근처</div>
+    </button>
+    <button class="category-button">
+      <img class="category-img-inactive" src="./imgs/home.png" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/home_black.png" alt="airplane-icon">
+      <div>방</div>
+    </button>
+    <button class="category-button">
+      <img class="category-img-inactive" src="./imgs/camping.png" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/camping_black.png" alt="airplane-icon">
+      <div>캠핑장</div>
+    </button>
+    <button class="category-button">
+      <img class="category-img-inactive" src="./imgs/airplane.svg" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/airplane_black.svg" alt="airplane-icon">
+      <div>공항 근처</div>
+    </button>
+    <button class="category-button">
+      <img class="category-img-inactive" src="./imgs/lake.png" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/lake_black.png" alt="airplane-icon">
+      <div>호수 근처</div>
+    </button>
+    <button class="category-button">
+      <img class="category-img-inactive" src="./imgs/armchair.svg" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/armchair_black.svg" alt="airplane-icon">
+      <div>아늑한곳</div>
+    </button>
+    <button class="category-button">
+      <img class="category-img-inactive" src="./imgs/park.png" alt="airplane-icon">
+      <img class="category-img-active" src="./imgs/park_black.png" alt="airplane-icon">
+      <div>공원 근처</div>
+    </button>
+  </div>
+  <main>
+    <div class="place-items-wrapper">
+      <div class="place-list-item">
+        <div class="place-image-wrapper">
+          <img class="place-image" src="https://picsum.photos/id/101/1000/1000" alt="place image">
+          <img class="heart-icon" src="./imgs/heart.svg" alt="heart icon">
+        </div>
+        <div class="description-section">
+          <div class="description-section_title">중구, 한국</div>
+          <div class="description-section_sub">City views</div>
+          <div class="description-section_sub">11월 15일~19일</div>
+        </div>
+      </div>
+      <div class="place-list-item">
+        <div class="place-image-wrapper">
+          <img class="place-image" src="https://picsum.photos/id/102/1000/1000" alt="place image">
+          <img class="heart-icon" src="./imgs/heart.svg" alt="heart icon">
+        </div>
+        <div class="description-section">
+          <div class="description-section_title">중구, 한국</div>
+          <div class="description-section_sub">City views</div>
+          <div class="description-section_sub">11월 15일~19일</div>
+        </div>
+      </div>
+      <div class="place-list-item">
+        <div class="place-image-wrapper">
+          <img class="place-image" src="https://picsum.photos/id/103/1000/1000" alt="place image">
+          <img class="heart-icon" src="./imgs/heart.svg" alt="heart icon">
+        </div>
+        <div class="description-section">
+          <div class="description-section_title">중구, 한국</div>
+          <div class="description-section_sub">City views</div>
+          <div class="description-section_sub">11월 15일~19일</div>
+        </div>
+      </div>
+      <div class="place-list-item">
+        <div class="place-image-wrapper">
+          <img class="place-image" src="https://picsum.photos/id/104/1000/1000" alt="place image">
+          <img class="heart-icon" src="./imgs/heart.svg" alt="heart icon">
+        </div>
+        <div class="description-section">
+          <div class="description-section_title">중구, 한국</div>
+          <div class="description-section_sub">City views</div>
+          <div class="description-section_sub">11월 15일~19일</div>
+        </div>
+      </div>
+      <div class="place-list-item">
+        <div class="place-image-wrapper">
+          <img class="place-image" src="https://picsum.photos/id/107/1000/1000" alt="place image">
+          <img class="heart-icon" src="./imgs/heart.svg" alt="heart icon">
+        </div>
+        <div class="description-section">
+          <div class="description-section_title">중구, 한국</div>
+          <div class="description-section_sub">City views</div>
+          <div class="description-section_sub">11월 15일~19일</div>
+        </div>
+      </div>
+      <div class="place-list-item">
+        <div class="place-image-wrapper">
+          <img class="place-image" src="https://picsum.photos/id/106/1000/1000" alt="place image">
+          <img class="heart-icon" src="./imgs/heart.svg" alt="heart icon">
+        </div>
+        <div class="description-section">
+          <div class="description-section_title">중구, 한국</div>
+          <div class="description-section_sub">City views</div>
+          <div class="description-section_sub">11월 15일~19일</div>
+        </div>
+      </div>
+      <div class="place-list-item">
+        <div class="place-image-wrapper">
+          <img class="place-image" src="https://picsum.photos/id/107/1000/1000" alt="place image">
+          <img class="heart-icon" src="./imgs/heart.svg" alt="heart icon">
+        </div>
+        <div class="description-section">
+          <div class="description-section_title">중구, 한국</div>
+          <div class="description-section_sub">City views</div>
+          <div class="description-section_sub">11월 15일~19일</div>
+        </div>
+      </div>
+      <div class="place-list-item">
+        <div class="place-image-wrapper">
+          <img class="place-image" src="https://picsum.photos/id/108/1000/1000" alt="place image">
+          <img class="heart-icon" src="./imgs/heart.svg" alt="heart icon">
+        </div>
+        <div class="description-section">
+          <div class="description-section_title">중구, 한국</div>
+          <div class="description-section_sub">City views</div>
+          <div class="description-section_sub">11월 15일~19일</div>
+        </div>
+      </div>
+      <div class="place-list-item">
+        <div class="place-image-wrapper">
+          <img class="place-image" src="https://picsum.photos/id/109/1000/1000" alt="place image">
+          <img class="heart-icon" src="./imgs/heart.svg" alt="heart icon">
+        </div>
+        <div class="description-section">
+          <div class="description-section_title">중구, 한국</div>
+          <div class="description-section_sub">City views</div>
+          <div class="description-section_sub">11월 15일~19일</div>
+        </div>
+      </div>
+      <div class="place-list-item">
+        <div class="place-image-wrapper">
+          <img class="place-image" src="https://picsum.photos/id/110/1000/1000" alt="place image">
+          <img class="heart-icon" src="./imgs/heart.svg" alt="heart icon">
+        </div>
+        <div class="description-section">
+          <div class="description-section_title">중구, 한국</div>
+          <div class="description-section_sub">City views</div>
+          <div class="description-section_sub">11월 15일~19일</div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <button id="floating-map-button">
+    <span>지도표시하기</span>
+    <img width="16px" src="./imgs/map-trifold.svg" alt="map icon" />
+  </button>
+</body>
+
+<script>
+  document.querySelectorAll(".category-button").forEach(button => {
+    button.addEventListener("click", (event) => {
+      document.querySelector("#active-category-button").removeAttribute("id")
+      button.setAttribute("id", "active-category-button")
+    })
+  })
+</script>
+
+</html>
