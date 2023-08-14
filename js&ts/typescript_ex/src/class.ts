@@ -55,5 +55,5 @@ class WatherPurifier {
 
 const machine1 = new WatherPurifier(30);
 machine1.wash(); // 정상
-machine1.waterAmount = 0; // 이렇게 접근해서 오작동을 일으키면 안좋겠지
-machine1.wash(); // 오류
+//machine1.waterAmount = 0; // 이렇게 접근해서 오작동을 일으키면 안좋겠지
+//machine1.wash(); // 오류
