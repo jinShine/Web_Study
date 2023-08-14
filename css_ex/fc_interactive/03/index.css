@@ -1,0 +1,86 @@
+body {
+  height: 200vh;
+  background-color: #00110c;
+}
+
+a {
+  color: unset;
+  text-decoration: unset;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  background-color: #04120c;
+  color: #b8e1ee;
+}
+
+.button-in-header {
+  padding: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  height: 40px;
+  box-sizing: border-box;
+}
+
+.button-in-header:hover {
+  height: 40px;
+  background-color: #127374;
+}
+
+#right-buttons {
+  display: flex;
+}
+
+#active-menu {
+  background-color: #013a3b;
+}
+
+#image-wrapper {
+  overflow: hidden;
+}
+
+#main-image {
+  min-width: 1000px;
+}
+
+#document-title {
+  color: #b8e1ee;
+  font-size: 170%;
+  font-weight: 300;
+  letter-spacing: 10px;
+  margin-bottom: 40px;
+}
+
+#mountain-tag-wrapper {
+  display: flex;
+  font-size: 19px;
+  font-weight: 700;
+  gap: 40px;
+}
+
+#main-content-wrapper {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mountain-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.mountain-content-list {
+  display: flex;
+  width: 325px;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
+  background-color: #b8e1ee;
+  color: #04120c;
+}
