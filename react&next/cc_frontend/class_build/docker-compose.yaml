@@ -1,0 +1,12 @@
+version: "3.7"
+
+# 컴퓨터들
+services:
+  # 첫번째 컴퓨터 이름..
+  my-first-fe:
+    build:
+      context: . # context는 Dockerfile 위치를 나타냄
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000 # 3000으로 들어온 port를 3000으로 내보내줄래
+  # 두번째 컴퓨터 이름..
