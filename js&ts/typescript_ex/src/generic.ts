@@ -43,7 +43,6 @@ let address: Dropdown<{ city: string; address: string }>;
 
 // 타입 제약
 // extends, keyof
-
 function embraceEverything<T extends string | number>(thing: T): T {
   return thing;
 }
