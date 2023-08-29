@@ -1,13 +1,17 @@
 // Import the functions you need from the SDKs you need
-import { getAnalytics } from "firebase/analytics";
 import { initializeApp } from "firebase/app";
 import {
-  getAuth,
-  signInWithPopup,
   GoogleAuthProvider,
-  signOut,
+  getAuth,
   onAuthStateChanged,
+  signInWithPopup,
+  signOut,
 } from "firebase/auth";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
+
+const collections = {
+  admins: "admins",
+};
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -20,6 +24,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
+
+const db = getFirestore(app);
 
 export async function login() {
   return signInWithPopup(auth, provider)
@@ -40,7 +46,21 @@ export async function logout() {
 }
 
 export function onUserStateChange(callback) {
-  onAuthStateChanged(auth, (user) => {
-    callback(user);
+  onAuthStateChanged(auth, async (user) => {
+    const updatedUser = user ? await adminUser(user) : user;
+    console.log(updatedUser);
+    callback(updatedUser);
   });
+}
+
+async function adminUser(user) {
+  const querySnapshot = await getDocs(collection(db, collections.admins));
+  let isAdmin = false;
+
+  querySnapshot.forEach((doc) => {
+    const data = doc.data();
+    isAdmin = data.uids.includes(user.uid);
+  });
+
+  return { ...user, isAdmin };
 }
