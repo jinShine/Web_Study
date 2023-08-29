@@ -1,0 +1,50 @@
+/* styles */
+@import url("./styles/reset.css");
+
+@import url("./styles/intro.css");
+@import url("./styles/header.css");
+@import url("./styles/main.css");
+@import url("./styles/about.css");
+@import url("./styles/html-css.css");
+@import url("./styles/curriculum.css");
+@import url("./styles/contact.css");
+@import url("./styles/footer.css");
+
+/* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap");
+
+/* constants */
+:root {
+  --color-main: #ff4200;
+  --color-sub: #00a200;
+  --color-dark: #2f4858;
+  --color-emph: #f10f5f;
+  --color-text: #281812;
+  --color-lighter: #dc9c86;
+  --color-light-bd: #ffe6d6;
+  --color-light-bg: #fff5ed;
+
+  --font-code: "Nanum Gothic Coding", monospace;
+
+  --font-size-title: 44px;
+  --font-size-subtitle: 32px;
+  --font-size-tag: 26px;
+  --font-size-larger: 20px;
+  --font-size-text: 18px;
+
+  --height-toolbar: 72px;
+}
+
+/* 스크린 리더 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
