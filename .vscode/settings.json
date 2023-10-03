@@ -1,5 +1,5 @@
 {
-  "editor.fontSize": 12,
+  "editor.fontSize": 13,
   "editor.fontFamily": "SF Mono",
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
