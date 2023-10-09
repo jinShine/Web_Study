@@ -1,8 +1,10 @@
 import { useState } from "react";
 import ProductTable from "./ProductTable";
 import SearchBar from "./SearchBar";
-import Product from "./types/product";
-import filterProducts from "./utils/filterProducts";
+
+import Product from "../types/product";
+
+import filterProducts from "../utils/filterProducts";
 
 type FilterableProductTableProps = {
   products: Product[];

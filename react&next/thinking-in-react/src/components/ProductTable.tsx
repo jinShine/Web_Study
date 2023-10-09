@@ -1,8 +1,8 @@
 import ProductsInCategory from "./ProductsInCategory";
 
-import Product from "./types/product";
+import Product from "../types/product";
 
-import selectCategories from "./utils/selectCategories";
+import selectCategories from "../utils/selectCategories";
 
 export default function ProductTable({ products }: { products: Product[] }) {
   const categories = selectCategories(products);

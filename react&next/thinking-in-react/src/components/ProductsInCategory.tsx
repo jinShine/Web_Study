@@ -1,8 +1,8 @@
 import CategoryRow from "./ProductCategoryRow";
 import ProductRow from "./ProductRow";
 
-import Product from "./types/product";
-import selectProducts from "./utils/selectProducts";
+import Product from "../types/product";
+import selectProducts from "../utils/selectProducts";
 
 type ProductsInCategoryProps = {
   category: string;

@@ -1,5 +1,4 @@
-import FilterableProductTable from "./FilterableProductTable";
-
+import FilterableProductTable from "./components/FilterableProductTable";
 import Product from "./types/product";
 
 const products: Product[] = [
@@ -11,7 +10,7 @@ const products: Product[] = [
   { category: "Vegetables", price: "$1", stocked: true, name: "Peas" },
 ];
 
-export default function App() {
+export default function App({ products }: { products: Product[] }) {
   return (
     <div>
       <FilterableProductTable products={products} />
