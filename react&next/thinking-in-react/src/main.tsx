@@ -1,20 +1,15 @@
-import { createRoot } from "react-dom/client";
-import App from "./App";
+import ReactDOM from 'react-dom/client';
 
-async function main() {
-  const url = "http://localhost:3000/products";
-  const response = await fetch(url);
-  const data = await response.json();
-  const { products } = data;
+import App from './App';
 
-  const element = document.getElementById("root");
-
-  if (!element) {
+function main() {
+  const container = document.getElementById('root');
+  if (!container) {
     return;
   }
 
-  const root = createRoot(element);
-  root.render(<App products={products} />);
+  const root = ReactDOM.createRoot(container);
+  root.render(<App />);
 }
 
 main();
