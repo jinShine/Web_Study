@@ -1,36 +1,19 @@
-// type CounterProps = {};
-
-import useForceUpdate from "../hooks/useForceUpdate";
+import useCounterStore from "../hooks/useCounterStore";
 
 // Business Logic
 
-const state = {
-  count: 0,
-};
+// const state = {
+//   count: 0,
+// };
 
-function increase() {
-  state.count += 1;
-}
+// function increase() {
+//   state.count += 1;
+// }
 
 // UI
 
 export default function Counter() {
-  const forceUpdate = useForceUpdate();
+  const store = useCounterStore();
 
-  // const [ignored, forceUpdate] = useReducer(reducer, 0);
-
-  const handleClick = () => {
-    // setCount(count + 1);
-    increase();
-    forceUpdate();
-  };
-
-  return (
-    <>
-      <p>{state.count}</p>
-      <button type="button" onClick={handleClick}>
-        Increase
-      </button>
-    </>
-  );
+  return <p>Count: {store.count}</p>;
 }
