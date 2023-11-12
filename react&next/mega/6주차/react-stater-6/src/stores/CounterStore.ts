@@ -1,34 +1,22 @@
 import { singleton } from "tsyringe";
+import { Action, Store } from "usestore-ts";
 
 type Listener = () => void;
 
 @singleton()
+@Store()
 export default class CounterStore {
   count = 0;
 
   listners = new Set<Listener>();
 
+  @Action()
   increase() {
     this.count += 1;
-    this.publish();
   }
 
+  @Action()
   decrease() {
     this.count -= 1;
-    this.publish();
-  }
-
-  publish() {
-    this.listners.forEach((listner) => {
-      listner();
-    });
-  }
-
-  addListener(listner: Listener) {
-    this.listners.add(listner);
-  }
-
-  removeListener(listener: Listener) {
-    this.listners.delete(listener);
   }
 }

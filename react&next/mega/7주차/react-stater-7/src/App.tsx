@@ -1,27 +1,9 @@
-import { ReactElement, ReactNode } from "react";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import AboutPage from "./pages/AboutPage";
-import HomePage from "./pages/HomePage";
+import routes from "./routes";
 
-const pages: Record<string, React.FC> = {
-  "/": HomePage,
-  "/about": AboutPage,
-};
+const router = createBrowserRouter(routes);
 
 export default function App() {
-  const path = window.location.pathname;
-
-  const Page = pages[path];
-
-  return (
-    <div>
-      <Header />
-      <main>
-        <Page />
-      </main>
-      <Footer />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }

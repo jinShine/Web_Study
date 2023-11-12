@@ -1,13 +1,35 @@
+import { Link } from "react-router-dom";
+
 export default function Header() {
+  const handleClick = (event) => {
+    event.preventDefault();
+
+    // const state = {};
+    // const title = "";
+    // const url = "/about";
+    // history.pushState(state, title, url);
+    //
+  };
+
   return (
     <header>
       <nav>
         <ul>
           <li>
-            <a href="/">Home</a>
+            <Link
+              to="/"
+              // onClick={handleClick}
+            >
+              Home
+            </Link>
           </li>
           <li>
-            <a href="/about">About</a>
+            <Link
+              to="/about"
+              // onClick={handleClick}
+            >
+              About
+            </Link>
           </li>
         </ul>
       </nav>
