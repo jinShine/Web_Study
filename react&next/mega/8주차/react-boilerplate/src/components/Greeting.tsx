@@ -1,11 +1,17 @@
+import styled from "styled-components";
+
+const Paragraph = styled.p`
+  color: #00f;
+`;
+const BigParagraph = styled(Paragraph)`
+  font-size: 2rem;
+`;
+
 export default function Greeting() {
   return (
-    <p
-      style={{
-        color: "yellow",
-      }}
-    >
+    <Paragraph>
       Greeting
-    </p>
+      <BigParagraph>BIG</BigParagraph>
+    </Paragraph>
   );
 }
