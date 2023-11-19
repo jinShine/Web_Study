@@ -1,11 +1,11 @@
 export type Category = {
   id: string;
   name: string;
-}
+};
 
 export type Image = {
   url: string;
-}
+};
 
 export type ProductSummary = {
   id: string;
@@ -13,7 +13,7 @@ export type ProductSummary = {
   thumbnail: Image;
   name: string;
   price: number;
-}
+};
 
 export type ProductOptionItem = {
   id: string;
@@ -34,16 +34,16 @@ export type ProductDetail = {
   price: number;
   options: ProductOption[];
   description: string;
-}
+};
 
 export const nullProductDetail: ProductDetail = {
-  id: '',
-  category: { id: '', name: '' },
+  id: "",
+  category: { id: "", name: "" },
   images: [],
-  name: '',
+  name: "",
   price: 0,
   options: [],
-  description: '',
+  description: "",
 };
 
 export type OrderOptionItem = {
@@ -65,12 +65,12 @@ export type LineItem = {
   unitPrice: number;
   quantity: number;
   totalPrice: number;
-}
+};
 
 export type Cart = {
   lineItems: LineItem[];
   totalPrice: number;
-}
+};
 
 export type OrderSummary = {
   id: string;
@@ -78,7 +78,7 @@ export type OrderSummary = {
   totalPrice: number;
   status: string;
   orderedAt: string;
-}
+};
 
 export type OrderDetail = {
   id: string;
@@ -87,13 +87,13 @@ export type OrderDetail = {
   totalPrice: number;
   status: string;
   orderedAt: string;
-}
+};
 
 export const nullOrderDetail: OrderDetail = {
-  id: '',
-  title: '',
+  id: "",
+  title: "",
   lineItems: [],
   totalPrice: 0,
-  status: '',
-  orderedAt: '',
+  status: "",
+  orderedAt: "",
 };
