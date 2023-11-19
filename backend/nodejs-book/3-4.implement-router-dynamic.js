@@ -21,7 +21,8 @@ http
   });
 
 const user = (req, res) => {
-  res.end("[user] name : andy, age: 33");
+  const userInfo = url.parse(req.url, true).query;
+  res.end("user naem : " + userInfo.name + ", age : " + userInfo.age);
 };
 
 const feed = (req, res) => {

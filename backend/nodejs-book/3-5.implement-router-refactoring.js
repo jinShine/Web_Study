@@ -7,21 +7,23 @@ http
 
     res.setHeader("Content-Type", "text/html; charset=utf-8");
 
-    if (path === "/user") {
-      user(req, res);
-    } else if (path === "/feed") {
-      feed(req, res);
+    if (path in urlMap) {
+      urlMap[path](req, res);
     } else {
-      res.statusCode = 404;
-      res.end("404 page not found");
+      notFound(req, res);
     }
   })
   .listen(8000, () => {
     console.log("라우터를 만들어보자");
   });
 
+const home = (req, res) => {
+  res.end("Home");
+};
+
 const user = (req, res) => {
-  res.end("[user] name : andy, age: 33");
+  const userInfo = url.parse(req.url, true).query;
+  res.end("user naem : " + userInfo.name + ", age : " + userInfo.age);
 };
 
 const feed = (req, res) => {
@@ -37,4 +39,10 @@ const feed = (req, res) => {
 const notFound = (req, res) => {
   res.statusCode = 404;
   res.end("404 page not found");
+};
+
+const urlMap = {
+  "/": home,
+  "/user": user,
+  "/feed": feed,
 };
