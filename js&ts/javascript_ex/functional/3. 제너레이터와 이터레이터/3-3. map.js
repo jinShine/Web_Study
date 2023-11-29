@@ -22,7 +22,7 @@ const map1 = () => {
 
 // console.log(map1());
 
-const map2 = (f, iter) => {
+const map = (f, iter) => {
   let res = [];
   for (const a of iter) {
     res.push(f(a));
@@ -30,7 +30,7 @@ const map2 = (f, iter) => {
   return res;
 };
 
-const resultNames = map2((p) => p.name, products);
+const resultNames = map((p) => p.name, products);
 console.log(resultNames);
-const resultPrices = map2((p) => p.price, products);
+const resultPrices = map((p) => p.price, products);
 console.log(resultPrices);
