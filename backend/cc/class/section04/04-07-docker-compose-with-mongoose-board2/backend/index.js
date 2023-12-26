@@ -11,7 +11,7 @@ import mongoose from "mongoose";
 import swaggerUi from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
 import { options } from "./swagger/config.js";
-import { Board } from "../../04-06-docker-compose-with-mongoose-board/backend/models/board.model.js";
+import { Board } from "./models/board.model.js";
 
 const app = express();
 
@@ -29,7 +29,6 @@ app.get("/boards", async (req, res) => {
 
 app.post("/boards", async (req, res) => {
   // 1. 브라우저에서 보내준 데이터 확인하기
-  console.log(req);
   console.log("==================");
   console.log(req.body);
   console.log("==================");
@@ -81,8 +80,10 @@ app.post("/users", (req, res) => {
   res.send("가입완료");
 });
 
+mongoose.set("debug", true);
+
 mongoose
-  .connect("mongodb://db:27017/dbtest") // docker-compose.yml에 있는 db 이름 (네임 리졸루션)
+  .connect("mongodb://db:27017/dbtest") // docker-compose.yml에 있는 db 이름 (네임리졸루션)
   .then(() => console.log("DB Connected"))
   .catch(() => console.log("DB Connection Error"));
 
