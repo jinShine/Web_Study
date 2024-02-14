@@ -1,5 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import { getPosts, getPostsByUsername } from "./api";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  UploadPostType,
+  getPosts,
+  getPostsByUsername,
+  uploadPost,
+} from "./api";
+import { ChangeEvent, FormEvent, FormEventHandler, useState } from "react";
 
 export default function HomePage() {
   const {
@@ -31,5 +37,47 @@ export default function HomePage() {
 
   console.log(postsDataByUsername);
 
-  return <div>홈페이지</div>;
+  /////////////////////////////////////
+
+  const queryClient = useQueryClient();
+  const [content, setContent] = useState("");
+
+  const uploadPostMutation = useMutation({
+    mutationFn: (newPost: UploadPostType) => uploadPost(newPost),
+    onSuccess: () => {
+      queryClient.invalidateQueries();
+    },
+  });
+
+  const handleInputChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setContent(event.target.value);
+  };
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const newPost: UploadPostType = { username: "helloworld", content };
+    uploadPostMutation.mutate(newPost, {
+      onSuccess: () => {
+        //
+      },
+    });
+    setContent("");
+  };
+
+  return (
+    <div>
+      <div>
+        <form onSubmit={handleSubmit}>
+          <textarea
+            name="content"
+            value={content}
+            onChange={handleInputChange}
+          />
+          <button disabled={!content} type="submit">
+            업로드
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 }
