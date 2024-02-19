@@ -1,4 +1,9 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  keepPreviousData,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import {
   UploadPostType,
   getPosts,
@@ -63,6 +68,21 @@ export default function HomePage() {
     });
     setContent("");
   };
+
+  /////////////////////////////////////
+
+  const { data: userInfo } = useQuery({
+    queryKey: ["user", email],
+    queryFn: getPostsByEmail,
+  });
+
+  const userId = userInfo?.id;
+
+  const { data: projects } = useQuery({
+    queryKey: ["projects", userId],
+    queryFn: getProjectsByUser,
+    enabled: !!userId,
+  });
 
   return (
     <div>
