@@ -84,6 +84,22 @@ export default function HomePage() {
     enabled: !!userId,
   });
 
+  const likesMutation = useMutation({
+    mutationFn: async ({ postId, username, userAction }) => {
+      if (userAction === "LIKE_POST") {
+        await likePost(postId, username);
+      } else {
+        await unlikePost(postId, username);
+      }
+    },
+    onMutate: async ({ postId, username, userAction }) => {
+      await queryClient.cancelQueries({
+        queryKey: ["likeStatus", postId, username],
+      });
+      await queryClient.cancelQueries({ queryKey: ["likeCount", postId] });
+    },
+  });
+
   return (
     <div>
       <div>
