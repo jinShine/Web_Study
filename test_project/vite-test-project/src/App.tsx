@@ -56,10 +56,11 @@ function App() {
     const v1 = typeof person; // "object"
     const v2 = typeof name; // "function"
 
+    console.log("@@@@@@2", v1);
+    console.log("@@@@@@2", v2);
+
     type T1 = typeof person; // 타입은 Person
     type T2 = typeof name; // 타입은 (person: Person) => void
-
-    console.log("@@@@@@2", v2);
   }, []);
 
   return (
