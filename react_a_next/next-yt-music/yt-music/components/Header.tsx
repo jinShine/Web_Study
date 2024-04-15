@@ -1,5 +1,7 @@
+"use client";
+
 import Image from "next/image";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import UserIcon from "./UserIcon";
 import PagePadding from "./PagePadding";
 import { FaChromecast } from "react-icons/fa";
@@ -19,15 +21,22 @@ import Logo from "./elements/Logo";
 import Navigator from "./elements/Navigator";
 
 const HeaderDrawer = ({ children }: { children: ReactNode }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <Drawer direction="left">
+    <Drawer direction="left" open={isOpen} onOpenChange={setIsOpen}>
       <DrawerTrigger>{children}</DrawerTrigger>
       <DrawerContent className="w-[240px] h-full">
         {/* 로고 */}
         {/* 네비게이션 + 재생목록 */}
         <div className="py-3">
           <div className="px-3">
-            <Logo />
+            <Logo
+              isInDrawer={true}
+              onClickClose={() => {
+                setIsOpen(false);
+              }}
+            />
           </div>
           <Navigator />
         </div>
