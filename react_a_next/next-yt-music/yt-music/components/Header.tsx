@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
 import UserIcon from "./UserIcon";
 import PagePadding from "./PagePadding";
 import { FaChromecast } from "react-icons/fa";
@@ -19,6 +19,8 @@ import {
 } from "@/components/ui/drawer";
 import Logo from "./elements/Logo";
 import Navigator from "./elements/Navigator";
+import { cn } from "@/lib/utils";
+import useUIState from "@/hooks/useUIState";
 
 const HeaderDrawer = ({ children }: { children: ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,14 +48,35 @@ const HeaderDrawer = ({ children }: { children: ReactNode }) => {
 };
 
 const Header = ({ children }: { children: React.ReactNode }) => {
+  const { headerImageSrc } = useUIState();
+
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const headRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollValue = headRef.current?.scrollTop;
+      console.log(scrollValue);
+      setIsScrolled(scrollValue !== 0);
+    };
+
+    const element = headRef.current;
+    element?.addEventListener("scroll", handleScroll);
+
+    return () => {
+      element?.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
-    <header className="relative overflow-y-auto w-full h-full">
+    <header ref={headRef} className="relative overflow-y-auto w-full h-full">
       {/* bg section */}
       <section className="absolute top-0 w-full">
         <div className=" relative h-[400px] w-full">
           <Image
             fill
             src={
+              headerImageSrc ||
               "https://images.unsplash.com/photo-1712971404210-658cb22c84fe?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             }
             alt="bg-image"
@@ -65,10 +88,12 @@ const Header = ({ children }: { children: React.ReactNode }) => {
         </div>
       </section>
       {/* search section */}
-      <section className="sticky">
+      <section
+        className={cn("sticky top-0 left-0 z-10", isScrolled && "bg-black")}
+      >
         <PagePadding>
           <div className="flex flex-row justify-between items-center h-[64px]">
-            <article className="hidden lg:flex flex-row items-center bg-[rgba(0,0,0,0.14)] h-[42px] min-w-[480px] rounded-2xl px-[16px] gap-[16px]">
+            <article className="hidden lg:flex flex-row items-center bg-[rgba(0,0,0,0.14)] h-[42px] min-w-[480px] rounded-2xl px-[16px] gap-[16px] border border-neutral-500">
               <div>
                 <FiSearch size={24} />
               </div>

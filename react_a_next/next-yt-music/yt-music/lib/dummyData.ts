@@ -1,3 +1,4 @@
+import { Playlist } from "@/types";
 import { getRandomInt } from "./utils";
 
 export const dummyAllSongList = [
@@ -141,7 +142,7 @@ export const dummyPlaylistArray = [
       ...getSongsBychannel("daldam music"),
     ],
   },
-];
+] as Playlist[];
 
 export const getAllPlaylist = async () => [...dummyPlaylistArray];
 
