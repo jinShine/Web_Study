@@ -4,10 +4,13 @@ import style from "./index.module.css";
 import { ReactNode } from "react";
 import books from "@/mock/books.json";
 import BookItem from "@/components/book-item";
-import { InferGetServerSidePropsType } from "next";
+import { InferGetServerSidePropsType, InferGetStaticPropsType } from "next";
 import fetchBooks from "@/lib/fetch-books";
 import fetchRandomBooks from "@/lib/fetch-random-books";
 
+// ========================================
+// SSR(Server Side Rendering) 예제
+// ========================================
 export const getServerSideProps = async () => {
   // 컴포넌트보다 먼저 실행되어서, 컴포넌트에 필요한 데이터를 불러오는 함수
   // 사전렌더링 시 실행되는 함수이므로 한번만 실행된다.
@@ -34,6 +37,7 @@ export default function Home({
   allBooks,
   recommendedBooks,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  console.log(allBooks, recommendedBooks);
   return (
     <div className={style.container}>
       <section>
@@ -51,7 +55,3 @@ export default function Home({
     </div>
   );
 }
-
-Home.getLayout = (page: ReactNode) => {
-  return <SearchableLayout>{page}</SearchableLayout>;
-};
