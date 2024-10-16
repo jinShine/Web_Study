@@ -5,7 +5,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    await res.revalidate("/");
+    await res.revalidate("/"); // 어떤 페이지를 revalidate 할지 정함
     return res.json({ revalidated: true });
   } catch {
     return res.status(500).send("Error Revalidating");
