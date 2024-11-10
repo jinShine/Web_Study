@@ -1,15 +1,22 @@
 import {
   Body,
+  ClassSerializerInterceptor,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
   Post,
   Query,
+  UseInterceptors,
 } from '@nestjs/common';
 import { MovieService } from './movie.service';
+import { CreateMovieDto } from './dto/create-movie.dto';
+import { title } from 'process';
+import { UpdateMovieDto } from './dto/update-movie.dto';
 
 @Controller('movie')
+@UseInterceptors(ClassSerializerInterceptor)
 export class MovieController {
   constructor(private readonly movieService: MovieService) {}
 
@@ -24,13 +31,24 @@ export class MovieController {
   }
 
   @Post()
-  postMovie(@Body('title') title: string, @Body('year') year: number) {
-    return this.movieService.createMovie(title, year);
+  postMovie(
+    // @Body('title') title: string,
+    // @Body('year') year: number,
+    // @Body('genre') genre: string,
+    @Body() body: CreateMovieDto,
+  ) {
+    // return this.movieService.createMovie(title, year, genre);
+    return this.movieService.createMovie(body);
   }
 
   @Patch(':id')
-  patchMovie(@Param('id') id: string, @Body('year') year: number) {
-    return this.movieService.updateMovie(+id, year);
+  patchMovie(
+    @Param('id') id: string,
+    // @Body('year') year: number,
+    // @Body('genre') genre: string,
+    @Body() body: UpdateMovieDto,
+  ) {
+    return this.movieService.updateMovie(+id, body);
   }
 
   // Put은 업데이트 하려다가 없으면 생성하는 방식
@@ -39,6 +57,6 @@ export class MovieController {
   // 일반적으로 삭제한 id만 반환한다.
   @Delete(':id')
   deleteMovie(@Param('id') id: string) {
-    return this.appService.deleteMovie(+id);
+    return this.movieService.deleteMovie(+id);
   }
 }
