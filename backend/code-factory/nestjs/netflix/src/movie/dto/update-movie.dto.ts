@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsOptional } from 'class-validator';
+import { Column, PrimaryGeneratedColumn } from 'typeorm';
 
 // @ValidatorConstraint()
 // class PasswordValidator implements ValidatorConstraintInterface {
@@ -27,6 +28,7 @@ import { IsNotEmpty, IsOptional } from 'class-validator';
 
 export class UpdateMovieDto {
   @IsNotEmpty()
+  @IsOptional()
   title?: string;
 
   @IsNotEmpty()

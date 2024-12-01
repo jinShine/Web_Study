@@ -21,8 +21,8 @@ export class MovieController {
   constructor(private readonly movieService: MovieService) {}
 
   @Get()
-  getMovies(@Query('year') year?: string) {
-    return this.movieService.getManyMovies(year);
+  getMovies(@Query('title') title?: string) {
+    return this.movieService.getManyMovies(title);
   }
 
   @Get('/:id')
