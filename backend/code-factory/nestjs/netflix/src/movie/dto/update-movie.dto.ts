@@ -1,5 +1,16 @@
-import { IsNotEmpty, IsOptional } from 'class-validator';
+import { PartialType } from '@nestjs/mapped-types';
+import {
+  ArrayNotEmpty,
+  IsArray,
+  isArray,
+  isNotEmpty,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import { CreateMovieDto } from './create-movie.dto';
 
 // @ValidatorConstraint()
 // class PasswordValidator implements ValidatorConstraintInterface {
@@ -26,16 +37,32 @@ import { Column, PrimaryGeneratedColumn } from 'typeorm';
 //   };
 // }
 
-export class UpdateMovieDto {
-  @IsNotEmpty()
-  @IsOptional()
-  title?: string;
+// export class UpdateMovieDto {
+//   @IsNotEmpty()
+//   @IsString()
+//   @IsOptional()
+//   title?: string;
 
-  @IsNotEmpty()
-  @IsOptional()
-  year?: number;
+//   @IsNotEmpty()
+//   @IsNumber()
+//   @IsOptional()
+//   year?: number;
 
-  @IsNotEmpty()
-  @IsOptional()
-  genre?: string;
-}
+//   @IsArray()
+//   @ArrayNotEmpty()
+//   @IsNumber({}, { each: true })
+//   @IsOptional()
+//   genreIds?: number[];
+
+//   @IsNotEmpty()
+//   @IsString()
+//   @IsOptional()
+//   detail?: string;
+
+//   @IsNotEmpty()
+//   @IsNumber()
+//   @IsOptional()
+//   directorId?: number;
+// }
+
+export class UpdateMovieDto extends PartialType(CreateMovieDto) {}
