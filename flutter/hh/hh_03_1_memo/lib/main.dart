@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hh_03_1_memo/memo_service.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+late SharedPreferences prefs;
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  prefs = await SharedPreferences.getInstance();
+
   runApp(MultiProvider(
       providers: [ChangeNotifierProvider(create: (context) => MemoService())],
       child: const MyApp()));
@@ -64,7 +70,6 @@ class _HomePageState extends State<HomePage> {
                             MaterialPageRoute(
                               builder: (context) => DetailPage(
                                 index: index,
-                                memoList: memoList,
                               ),
                             ),
                           );
@@ -73,16 +78,13 @@ class _HomePageState extends State<HomePage> {
                     }),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
-                Memo memo = Memo(content: "");
-                setState(() {
-                  memoList.add(memo);
-                });
+                memoService.createMemo(content: "");
 
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => DetailPage(
-                          index: memoList.indexOf(memo), memoList: memoList)),
+                      builder: (context) =>
+                          DetailPage(index: memoService.memoList.length - 1)),
                 );
               },
               child: const Icon(Icons.add),
@@ -94,16 +96,18 @@ class _HomePageState extends State<HomePage> {
 
 // Memo Page
 class DetailPage extends StatelessWidget {
-  final List<Memo> memoList;
   final int index;
 
-  DetailPage({super.key, required this.memoList, required this.index});
+  DetailPage({super.key, required this.index});
 
   TextEditingController contentController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    contentController.text = memoList[index].content;
+    MemoService memoService = context.read<MemoService>();
+    Memo memo = memoService.memoList[index];
+
+    contentController.text = memo.content;
 
     return Scaffold(
       appBar: AppBar(
@@ -111,27 +115,7 @@ class DetailPage extends StatelessWidget {
           IconButton(
             onPressed: () {
               // 삭제 버튼 클릭시
-              showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: const Text("정말로 삭제하시겠습니까?"),
-                      actions: [
-                        TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text("삭제")),
-                        TextButton(
-                            onPressed: () {
-                              memoList.removeAt(index);
-                              Navigator.pop(context); // 팝업 닫기
-                              Navigator.pop(context); // HomePage로 이동
-                            },
-                            child: const Text("취소")),
-                      ],
-                    );
-                  });
+              showDeleteDialog(context, memoService);
             },
             icon: const Icon(Icons.delete),
           )
@@ -150,10 +134,34 @@ class DetailPage extends StatelessWidget {
           expands: true,
           keyboardType: TextInputType.multiline,
           onChanged: (value) {
-            memoList[index] = Memo(content: value);
+            memoService.updateMemo(index: index, content: value);
           },
         ),
       ),
     );
+  }
+
+  void showDeleteDialog(BuildContext context, MemoService memoService) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text("정말로 삭제하시겠습니까?"),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    memoService.deleteMemo(index: index);
+                    Navigator.pop(context); // 팝업 닫기
+                    Navigator.pop(context); // HomePage로 이동
+                  },
+                  child: const Text("삭제")),
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context); // 팝업 닫기
+                  },
+                  child: const Text("취소")),
+            ],
+          );
+        });
   }
 }
