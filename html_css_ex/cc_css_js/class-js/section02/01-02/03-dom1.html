@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM 조작 실습</title>
+
+    <script>
+      const 과일찾는기능 = () => {
+        const 과일 = document.getElementById("box").innerText;
+        alert(과일);
+      };
+
+      const 프로필등록기능 = () => {
+        const 프로필 = document.getElementById("input").value;
+        document.getElementById("greeting").innerText = 프로필;
+      };
+    </script>
+  </head>
+  <body>
+    <div id="box">사과</div>
+    <button id="btn" onclick="{과일찾는기능}">버튼</button>
+
+    <br />
+    <br />
+
+    오늘의 인삿말:
+    <div id="greeting"></div>
+    <input type="text" id="input" />
+    <button onclick="{프로필등록기능}">프로필등록</button>
+  </body>
+</html>

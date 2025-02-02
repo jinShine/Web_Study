@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>플렉스박스-세로 실습</title>
+    <style>
+      .CSS_부모 {
+        background-color: aqua;
+        display: flex;
+
+        flex-direction: column;
+        justify-content: center;
+
+        /* height: 500px; */
+
+        height: 100vh;
+        /* 참고) vh란? viewport-height => 보이는 화면 높이
+                    vw란? viewport-width => 보이는 화면 너비 */
+
+        /* height: 100%; */
+        /* 참고) 100%가 안먹히는 이유: %란 부모를 기준으로 몇 %를 의미함 */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="CSS_부모">
+      <div>메뉴아이콘</div>
+      <div>알람아이콘</div>
+    </div>
+  </body>
+</html>

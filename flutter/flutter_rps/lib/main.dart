@@ -8,7 +8,6 @@ void main() {
 class RPSApp extends StatelessWidget {
   const RPSApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>템플릿 리터럴 실습</title>
+    <script>
+      const name = "철수";
+      const age = 8;
+      const school = "다람쥐초등학교";
+
+      // 1. 문자열 더하기 방법
+      console.log(name + "는 " + age + "살 이고, " + school + "에 다닙니다.");
+
+      // 2. 템플릿 리터럴 방법
+      console.log(`${name}는 ${age}살 이고, ${school}에 다닙니다.`);
+
+      // 3. 템플릿 리터럴 여러줄 응용
+      console.log(`
+            안녕하세요!
+            철수는 ${age}살 입니다.
+            그리고 ${school}에 다닙니다.
+        `);
+
+      // 4. 변수에 저장도 가능
+      const 내가만든문장1 =
+        name + "는 " + age + "살 이고, " + school + "에 다닙니다.";
+      const 내가만든문장2 = `${name}는 ${age}살 이고, ${school}에 다닙니다.`;
+      const 내가만든문장3 = `
+            안녕하세요!
+            철수는 ${age}살 입니다.
+            그리고 ${school}에 다닙니다.
+        `;
+      console.log(내가만든문장1);
+      console.log(내가만든문장2);
+      console.log(내가만든문장3);
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>로딩 실습</title>
+    <style>
+      .CSS_동그라미 {
+        width: 100px;
+        height: 100px;
+        border-radius: 100%; /* 네모박스가 360도 도는 상황에서, 테두리만 둥글게 바꿈 */
+        border: 3px solid skyblue;
+        border-top-color: blue; /* 테두리 윗부분만 색칠된 박스가 360도 돌게 되니, 로딩 처럼 보임 */
+
+        animation-name: 맹구의애니메이션;
+        animation-duration: 1s;
+        animation-timing-function: ease-in-out; /* ease? 천천히 in-out? 처음과 끝 => 처음과 끝 천천히 */
+        animation-iteration-count: infinite; /* 계속반복해줘 */
+      }
+
+      @keyframes 맹구의애니메이션 {
+        /* from {
+                transform: rotateZ(0deg); => 360도가 0도이고, 계속 반복할거라 굳이 안써도됨
+            } */
+        to {
+          transform: rotateZ(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="CSS_동그라미"></div>
+  </body>
+</html>

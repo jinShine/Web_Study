@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>페이지이동 실습</title>
+    <script>
+      const JS_게시글수정기능 = () => {
+        alert("게시글이 수정되었습니다.");
+
+        location.href = "./03-routing2-detail.html"; // 현재페이지 위에 다음페이지를 올려놓음 => 뒤로가기하면 현재페이지로 돌아옴
+      };
+
+      const JS_결제하기기능 = () => {
+        alert("결제가 완료되었습니다.");
+
+        location.replace("./03-routing2-detail.html"); // 현재페이지를 지우고, 다음페이지로 교체 => 뒤로가기해도 현재페이지는 지워져서 못감
+      };
+    </script>
+  </head>
+  <body>
+    <!-- 클릭해서 곧바로 이동하기 -->
+    <a href="./03-routing2-detail.html">상세보기</a>
+
+    <br /><br />
+
+    <!-- 클릭해서 게시글 수정하고 상세로 이동하기 -->
+    <button onclick="JS_게시글수정기능()">게시글 수정하기</button>
+
+    <br /><br />
+
+    <!-- 클릭해서 결제하고 상세로 이동하기 -->
+    <button onclick="JS_결제하기기능()">결제하기</button>
+
+    <br /><br />
+
+    <!-- 클릭해서 곧바로 이동하기 -->
+    <a href="./03-routing3-detail-querystring.html?banana=15&apple=10"
+      >데이터가지고 페이지이동하기</a
+    >
+  </body>
+</html>

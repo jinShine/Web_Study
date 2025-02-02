@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>자바스크립트 로드 실습</title>
+    <script>
+      // 1. 이름 입력아서 화면에 보여주기 => 실패: 태그가 그려지기도 전에 실행되서 그릴데가 없음
+      // const 나의이름 = prompt("이름을 입력하세요.")
+      // console.log(나의이름)
+      // document.getElementById("HTML_제목입력하는곳").innerText = 나의이름
+
+      // 2. 이름 입력아서 화면에 보여주기(화면 로드 이후에 실행) => 성공
+      window.onload = () => {
+        const 나의이름 = prompt("이름을 입력하세요.");
+        console.log(나의이름);
+        document.getElementById("HTML_제목입력하는곳").innerText = 나의이름;
+      };
+
+      // 3. 어차피 만들어만 놓고 나중에 버튼눌렀을때 실행할거라 onload 이전에 미리 만들어놔도 됨
+      const 프로필등록기능 = () => {
+        // 3-1) 현재 보여지고 있는 프로필 목록들 가져오기
+        const 보여지고있는프로필들 =
+          document.getElementById("HTML_프로필보여주는곳").innerHTML;
+
+        // 3-2) 입력창에 입력한 프로필이름 가져오기
+        const 프로필이름 =
+          document.getElementById("HTML_프로필이름입력창").value;
+
+        // 3-3) 입력창에 입력한 이름으로 새 프로필 1개 만들고, 기존프로필 + 새프로필 합쳐서 화면에 그려주기
+        // const 새로추가될프로필 = `
+        //     <div>
+        //         <b>${프로필이름}</b> 님이 추가되었습니다.
+        //     </div>
+        // `
+        // document.getElementById("HTML_프로필보여주는곳").innerHTML = 보여지고있는프로필들 + 새로추가될프로필
+
+        // 3-4) 클릭기능까지 추가해서 화면에 그려주기
+        const 새로추가될프로필 = `
+                <div onclick="프로필보기기능('${프로필이름}')">
+                    ${
+                      프로필이름 === ""
+                        ? "<span>이름없음</span>"
+                        : `<b>${프로필이름}</b>`
+                    } 님이 추가되었습니다.
+                </div>
+            `;
+        document.getElementById("HTML_프로필보여주는곳").innerHTML =
+          보여지고있는프로필들 + 새로추가될프로필;
+      };
+
+      // 3-4) 클릭기능까지 추가해서 화면에 그려주기
+      const 프로필보기기능 = (전달받는통) => {
+        alert(`이름은 ${전달받는통}입니다.`);
+      };
+    </script>
+  </head>
+  <body>
+    <div>
+      <b id="HTML_제목입력하는곳"></b>의 다이어리에 오신 것을 환영합니다.
+    </div>
+
+    <div id="HTML_프로필보여주는곳"></div>
+    <input type="text" id="HTML_프로필이름입력창" />
+    <button onclick="프로필등록기능()">등록하기</button>
+  </body>
+</html>

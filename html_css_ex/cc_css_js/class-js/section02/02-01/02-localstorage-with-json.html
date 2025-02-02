@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>로컬스토리지와 JSON 실습</title>
+    <script>
+      // 1. 객체 저장 실패: [object Object] 처럼 이상하게 저장됨
+      // const JS_과일담기기능 = () => {
+      //     const 과일담는통 = {
+      //         사과: 3,
+      //         바나나: 2,
+      //         딸기: 10
+      //     }
+      //     localStorage.setItem("과일바구니", 과일담는통)
+      // }
+
+      // const JS_과일꺼내기기능 = () => {
+      //     const 과일꺼내담은통 = localStorage.getItem("과일바구니")
+      //     console.log(과일꺼내담은통)
+      // }
+
+      // 2. 객체 저장 성공: 객체가 문자열로 바뀌어서 저장됨
+      const JS_과일담기기능 = () => {
+        const 과일담는통 = {
+          사과: 3,
+          바나나: 2,
+          딸기: 10,
+        };
+        const 문자열로바뀐객체 = JSON.stringify(과일담는통);
+        localStorage.setItem("과일바구니", 문자열로바뀐객체);
+      };
+
+      const JS_과일꺼내기기능 = () => {
+        const 과일바구니문자열 = localStorage.getItem("과일바구니");
+        const 과일바구니객체 = JSON.parse(과일바구니문자열);
+        console.log(과일바구니객체);
+      };
+    </script>
+  </head>
+  <body>
+    <!-- 1. 로컬스토리지에 객체 담기 -->
+    <button onclick="JS_과일담기기능()">과일 담기</button><br />
+    <button onclick="JS_과일꺼내기기능()">과일 꺼내기</button> <br />
+  </body>
+</html>
