@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>rem 실습</title>
+    <style>
+      html {
+        /* 1-1) 절반사이즈(50%) */
+        /* font-size: 8px;  */
+
+        /* 1-2) px <-> rem 계산 쉬운사이즈(62.5%) */
+        /* font-size: 10px; */
+
+        /* 1-3) 기본사이즈(100%) */
+        font-size: 16px;
+
+        /* 1-4) 두배사이즈(200%) */
+        /* font-size: 32px; */
+      }
+
+      .CSS_상자 {
+        width: 9.375rem; /* 150px */
+        height: 9.375rem; /* 150px */
+        background-color: skyblue;
+        margin: 20px;
+      }
+
+      /* 모바일에서 전체사이즈를 절반으로 축소 */
+      @media (max-width: 767px) {
+        html {
+          font-size: 8px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="CSS_상자"></div>
+    <div class="CSS_상자"></div>
+    <div class="CSS_상자"></div>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>스크롤 바닥 감지 실습</title>
+
+    <script>
+      window.addEventListener("scroll", () => {
+        const 스크롤내려간길이 = window.scrollY;
+        console.log("@ 스크롤내려간길이 1", 스크롤내려간길이);
+
+        const 스크롤바길이 = document.documentElement.clientHeight;
+        console.log("@ 스크롤바길이 2", 스크롤바길이);
+
+        const 스크롤전체길이 = document.documentElement.scrollHeight;
+        console.log("@ 스크롤전체길이 3", 스크롤전체길이);
+
+        if (스크롤내려간길이 + 스크롤바길이 >= 스크롤전체길이) {
+          console.log("바닥에 도달했습니다.");
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <!-- <img src="./00-image.webp" width="100%" /> -->
+    <div style="height: 500px; border: 1px solid red">123123123</div>
+    <div style="height: 500px; border: 1px solid red">123123123</div>
+  </body>
+</html>

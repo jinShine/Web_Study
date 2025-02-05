@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>filter 실습</title>
+    <script>
+      const JS_필터링기능 = (event) => {
+        const 선택한내용 = event.target.value;
+        console.log(선택한내용);
+
+        let 학생증목록 = [
+          { 이름: "철수", 학교: "다람쥐초등학교" },
+          { 이름: "영희", 학교: "토끼초등학교" },
+          { 이름: "훈이", 학교: "공룡초등학교" },
+        ];
+
+        switch (선택한내용) {
+          case "철수선택함": {
+            학생증목록 = 학생증목록.filter((el) => el.이름 === "철수");
+            break;
+          }
+          case "영희선택함": {
+            학생증목록 = 학생증목록.filter((el) => el.이름 === "영희");
+            break;
+          }
+          default: {
+            학생증목록 = 학생증목록.filter((el) => el.이름 === "훈이");
+            break;
+          }
+        }
+
+        console.log(학생증목록);
+      };
+    </script>
+  </head>
+  <body>
+    <select onchange="JS_필터링기능(event)">
+      <option disabled selected>선택하세요</option>
+      <option value="철수선택함">철수</option>
+      <option value="영희선택함">영희</option>
+      <option value="훈이선택함">훈이</option>
+    </select>
+  </body>
+</html>

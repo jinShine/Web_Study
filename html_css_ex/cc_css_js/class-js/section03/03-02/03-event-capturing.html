@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>이벤트캡처링 실습</title>
+    <style>
+      .CSS_이미지사진 {
+        width: 100px;
+        height: 100px;
+        background-color: skyblue;
+        cursor: pointer;
+      }
+    </style>
+    <script>
+      const JS_확대하기기능 = () => {
+        document.getElementById("HTML_이미지사진").style =
+          "width: 100vw; height: 100vh;";
+      };
+
+      const JS_좋아요기능 = (event) => {
+        // event.preventDefault() // <a /> 태그처럼 기본(Default)으로 먹혀있는 기능만 금지(Prevent)하므로, 여기서는 소용 없음
+        event.stopPropagation(); // 부모태그로 클릭이벤트 전파(Propagation)를 중단(Stop)함 => 부모의 onclick인 JS_확대하기기능() 실행막음
+        alert("좋아요가 +1 올라갔습니다.");
+      };
+
+      /* 이벤트 캡처링: 바닥에서부터 클릭되므로 어딜 클릭해도 HTML이 먼저 클릭됨 */
+      const JS_로그인체크기능 = (event) => {
+        event.stopPropagation(); // 방향만 반대일 뿐, 전파를 막자!
+        const 비밀번호 = prompt("로그인 후 이용해 주세요.");
+        if (비밀번호 === "1234") {
+          alert("민지님 반갑습니다. 즐거운 여행 되세요~");
+          window.removeEventListener("click", JS_로그인체크기능, {
+            capture: true,
+          });
+        } else {
+          alert("로그인에 실패하였습니다. 다시 시도해 주세요.");
+        }
+      };
+      window.addEventListener("click", JS_로그인체크기능, { capture: true }); // HTML이 아니고, BODY에 등록하고 싶으면, document.body.addEventListener()로 등록하기
+    </script>
+  </head>
+  <body>
+    <div
+      id="HTML_이미지사진"
+      class="CSS_이미지사진"
+      onclick="JS_확대하기기능()"
+    >
+      <button onclick="JS_좋아요기능(event)">좋아요</button>
+    </div>
+    <p>사진을 클릭하면 전체화면으로 볼 수 있습니다</p>
+  </body>
+</html>

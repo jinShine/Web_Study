@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>그리드와 플렉스 비교</title>
+    <style>
+      /* 1. 플렉스 */
+      .CSS_결제수단그룹1 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* 정렬을 풀 수도 있지만, 원하는 모양이 아님(물론, 어떻게든 만들수는 있음) */
+        gap: 10px;
+        width: 400px;
+        background-color: lightgray;
+      }
+      .CSS_결제수단버튼1 {
+        width: 100px;
+        background-color: skyblue;
+        border: 1px solid blue;
+        text-align: center;
+      }
+
+      /* 2. 그리드 */
+      .CSS_결제수단그룹2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        place-items: center;
+        gap: 10px;
+        width: 400px;
+        background-color: lightgray;
+      }
+      .CSS_결제수단버튼2 {
+        width: 100px;
+        background-color: skyblue;
+        border: 1px solid blue;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 1. 플렉스 -->
+    <h1>결제수단을 선택해 주세요.</h1>
+    <div class="CSS_결제수단그룹1">
+      <div class="CSS_결제수단버튼1">신용카드</div>
+      <div class="CSS_결제수단버튼1">계좌이체</div>
+      <div class="CSS_결제수단버튼1">핸드폰결제</div>
+      <div class="CSS_결제수단버튼1">무통장입금</div>
+      <div class="CSS_결제수단버튼1">포인트결제</div>
+    </div>
+
+    <br /><br />
+
+    <!-- 2. 그리드 -->
+    <h1>결제수단을 선택해 주세요.</h1>
+    <div class="CSS_결제수단그룹2">
+      <div class="CSS_결제수단버튼2">신용카드</div>
+      <div class="CSS_결제수단버튼2">계좌이체</div>
+      <div class="CSS_결제수단버튼2">핸드폰결제</div>
+      <div class="CSS_결제수단버튼2">무통장입금</div>
+      <div class="CSS_결제수단버튼2">포인트결제</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>미디어쿼리 실습</title>
+    <style>
+      .CSS_상자그룹 {
+        /* 1-1) 상자그룹 넓이 1000px로 해줘(상자그룹 자체가 1000px보다 작아질 수 없으므로, 상자그룹안의 사진이 내려가거나 줄어들 수 없음) */
+        /* width: 1000px; */
+
+        /* 1-2) 상자그룹 넓이 최대 1000px로 해줘(상자그룹이 1000px보다 작아질 수 있으므로, 상자그룹 안의 사진 움직이기 가능) */
+        max-width: 1000px; 
+
+        background-color: skyblue;
+      }
+
+      .CSS_상자 {
+        /* 2-1) 상자그룹 넓이가 줄어들어도, 나는 150px을 유지할거야!(아래로 내려갈거야!) */
+        /* width: 150px; */
+
+        /* 2-2) 상자그룹 넓이가 줄어들면, 나도 비율에 맞게 줄어들거야!(아래로 안내려갈거야!) */
+        width: 20%;
+
+        height: 150px;
+      }
+    </style>
+</head>
+<body>
+  <div class="CSS_상자그룹">
+    <img class="CSS_상자" src="./00-image.jpg"></img>
+    <img class="CSS_상자" src="./00-image.jpg"></img>
+    <img class="CSS_상자" src="./00-image.jpg"></img>
+    <img class="CSS_상자" src="./00-image.jpg"></img>
+  </div>
+</body>
+</html>

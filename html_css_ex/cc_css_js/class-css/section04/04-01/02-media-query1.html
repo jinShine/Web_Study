@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>미디어쿼리 실습</title>
+    <style>
+      /* 강아지와 인풋 합친거 */
+      .CSS_전체그룹 {
+        display: flex; 
+        flex-direction: row; /* 강아지창과 인풋창 가로로 정렬해줘(row가 기본값이니까 생략 가능) */
+      }
+
+
+      
+      /* 강아지창 */
+      .CSS_상자그룹 {
+          height: 100%;
+          background-color: skyblue;
+          padding: 50px;
+      }
+      .CSS_상자 {
+          width: 150px;
+          height: 150px;
+      }
+
+
+
+      /* 인풋창 */
+      .CSS_인풋그룹 {
+        flex-shrink: 0; /* 전체창이 줄어들어도, 나는 줄어들지 않을거야! => 강아지창만 줄어듦 */
+        width: 300px;
+        background-color: yellow;
+      }
+
+
+
+      /* 미디어쿼리 */
+      @media (max-width: 767px) {
+        .CSS_전체그룹 {
+            flex-direction: column;
+        }
+        .CSS_상자그룹 {
+            background-color: red;
+            order: 2;      /* 부모인 CSS_전체그룹이 flexbox인 경우, 자식들의 순서 변경 가능 => 주의: flexbox의 자식인 상자그룹은 flexbox 아니어도 됨 */
+        }
+        .CSS_인풋그룹 {
+            width: 100%;
+            order: 1;      /* 부모인 CSS_전체그룹이 flexbox인 경우, 자식들의 순서 변경 가능 => 주의: flexbox의 자식인 인풋그룹은 flexbox 아니어도 됨 */
+        }
+      }
+    </style>
+</head>
+<body>
+  <div class="CSS_전체그룹">
+    <div class="CSS_상자그룹">
+        <img class="CSS_상자" src="./00-image.jpg"></img>
+        <img class="CSS_상자" src="./00-image.jpg"></img>
+        <img class="CSS_상자" src="./00-image.jpg"></img>
+        <img class="CSS_상자" src="./00-image.jpg"></img>
+    </div>
+    <div class="CSS_인풋그룹">
+      <h1>강아지옷 등록하기</h1>
+      옷이름: <input type="text" />
+      <button>등록하기</button>
+    </div>
+  </div>
+</body>
+</html>

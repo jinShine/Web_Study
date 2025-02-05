@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>디바이스높이 감지 실습</title>
+    <style>
+      * {
+        margin: 0;
+      }
+
+      .CSS_푸터 {
+        height: 100px;
+        background-color: lightgray;
+      }
+      .CSS_플로팅버튼 {
+        position: fixed;
+        left: 90%;
+        bottom: 10px;
+      }
+    </style>
+    <script>
+      window.addEventListener("scroll", () => {
+        const 푸터위치 = document
+          .getElementById("HTML_푸터")
+          .getBoundingClientRect();
+        console.log("@ 푸터위치", 푸터위치);
+
+        const 현재보이는높이 = window.innerHeight;
+        console.log("@ 현재보이는높이", 현재보이는높이);
+
+        if (현재보이는높이 >= 푸터위치.top) {
+          document.getElementById("HTML_플로팅버튼").style = `
+                    position: relative;
+                    left: 90%;
+                    bottom: 40px;
+                `;
+        } else {
+          document.getElementById("HTML_플로팅버튼").style = `
+                    position: fixed;
+                    left: 90%;
+                    bottom: 10px;
+                `;
+        }
+      });
+
+      const JS_스크롤기능 = () => {
+        window.scrollTo({ top: 0 });
+      };
+    </script>
+  </head>
+  <body>
+    <img src="./00-image.webp" width="100%" />
+    <button
+      id="HTML_플로팅버튼"
+      class="CSS_플로팅버튼"
+      onclick="JS_스크롤기능()"
+    >
+      ^
+    </button>
+    <footer id="HTML_푸터" class="CSS_푸터">푸터</footer>
+  </body>
+</html>

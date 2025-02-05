@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>이벤트버블링 기본기능막기 실습</title>
+    <style>
+      .CSS_이미지사진 {
+        width: 100px;
+        height: 100px;
+        background-color: skyblue;
+      }
+    </style>
+    <script>
+      const JS_삭제하기기능 = (event, 어떤거삭제할지받기) => {
+        event.preventDefault(); // 이게 없으면 버튼 밑바닥에 있는 <a />도 눌러짐
+        alert(`${어떤거삭제할지받기}번 사진이 삭제되었습니다.`);
+      };
+    </script>
+  </head>
+  <body>
+    <a href="./01-event-bubbling2-prevent-default-detail.html">
+      <div class="CSS_이미지사진">
+        <button onclick="JS_삭제하기기능(event, 1)">1번 삭제</button>
+      </div>
+    </a>
+
+    <br /><br />
+
+    <a href="./01-event-bubbling2-prevent-default-detail.html">
+      <div class="CSS_이미지사진">
+        <button onclick="JS_삭제하기기능(event, 2)">2번 삭제</button>
+      </div>
+    </a>
+  </body>
+</html>
