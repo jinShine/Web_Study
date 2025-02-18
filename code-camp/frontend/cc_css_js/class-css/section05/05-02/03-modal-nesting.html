@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>모달 실습</title>
+    <style>
+      /* 1. 껍데기: 공통사용 */
+      .CSS_모달그룹 {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .CSS_모달배경 {
+        width: 100vw;
+        height: 100vh;
+        background-color: lightgray;
+        opacity: 50%;
+      }
+
+      /* 2. 알맹이: 등록모달 */
+      .CSS_등록모달 {
+        position: absolute;
+        top: calc(50% - 500px / 2);
+        left: calc(50% - 400px / 2);
+        width: 400px;
+        height: 500px;
+        background-color: white;
+      }
+
+      /* 3. 알맹이: 등록완료모달 */
+      .CSS_등록완료모달 {
+        position: absolute;
+        top: calc(50% - 150px / 2);
+        left: calc(50% - 600px / 2);
+        width: 600px;
+        height: 150px;
+        background-color: white;
+      }
+    </style>
+    <script>
+      const JS_모달열기기능 = (모달종류) => {
+        document.getElementById(모달종류).style = "display: block;";
+      };
+      const JS_모달닫기기능 = (모달종류) => {
+        document.getElementById(모달종류).style = "display: none;";
+      };
+    </script>
+  </head>
+  <body>
+    <button onclick="JS_모달열기기능('HTML_등록모달그룹')">모달열기</button>
+
+    <!-- 등록모달 -->
+    <div id="HTML_등록모달그룹" class="CSS_모달그룹">
+      <div
+        class="CSS_모달배경"
+        onclick="JS_모달닫기기능('HTML_등록모달그룹')"
+      ></div>
+      <div class="CSS_등록모달">
+        <div>제목: <input /></div>
+        <div>내용: <textarea></textarea></div>
+        <div>
+          <button onclick="JS_모달열기기능('HTML_등록완료모달그룹')">
+            등록하기
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 등록완료모달 -->
+    <div id="HTML_등록완료모달그룹" class="CSS_모달그룹">
+      <div
+        class="CSS_모달배경"
+        onclick="JS_모달닫기기능('HTML_등록완료모달그룹')"
+      ></div>
+      <div class="CSS_등록완료모달">
+        <p>등록이 완료되었습니다.</p>
+      </div>
+    </div>
+  </body>
+</html>

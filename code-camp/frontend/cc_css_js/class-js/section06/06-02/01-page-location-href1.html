@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>페이지이동 복사방식 실습</title>
+    <style>
+      .CSS_배너 {
+        height: 100px;
+        background-color: skyblue;
+      }
+      .CSS_내비게이션 {
+        height: 50px;
+        background-color: yellow;
+        text-align: center;
+      }
+    </style>
+    <script>
+      const JS_메뉴이동 = (메뉴) => {
+        switch (메뉴) {
+          case "일기": {
+            location.href = "./01-page-location-href1.html";
+            break;
+          }
+          case "강아지": {
+            location.href = "./01-page-location-href2.html";
+            break;
+          }
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <header class="CSS_배너">배너화면입니다.</header>
+    <nav class="CSS_내비게이션">
+      <button onclick="JS_메뉴이동('일기')">일기</button>
+      <button onclick="JS_메뉴이동('강아지')">강아지</button>
+    </nav>
+
+    <main>
+      일기목록 메인화면입니다.
+
+      <div>일기1</div>
+      <div>일기2</div>
+      <div>일기3</div>
+      <div>...</div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>폼 실습</title>
+    <script>
+      const JS_글등록기능 = () => {
+        alert("게시글이 등록되었습니다.");
+      };
+    </script>
+  </head>
+  <body>
+    <form action="#" onsubmit="JS_글등록기능()">
+      <h1>게시글쓰기</h1>
+      제목: <input id="HTML_제목" type="text" /><br />
+      내용: <input id="HTML_내용" type="text" /><br />
+      <button>등록하기</button>
+    </form>
+
+    <!-- form으로 감싸진 button 속성들 -->
+    <!-- <button type="button">등록하기(버튼의 onclick 실행하기)</button>
+    <button type="reset">등록하기(감싸는 form의 input창 다 비우기)</button>
+    <button type="submit">등록하기(감싸는 form의 onsubmit 실행하기)</button> -->
+  </body>
+</html>

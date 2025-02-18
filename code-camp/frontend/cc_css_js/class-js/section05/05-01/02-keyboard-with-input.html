@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>키보드와 입력창 실습</title>
+    <script>
+      const JS_글등록기능 = () => {
+        alert("게시글이 등록되었습니다.");
+      };
+
+      window.addEventListener("keydown", (event) => {
+        console.log("다운됨");
+        if (event.key === "Enter") {
+          if (document.activeElement.id === "HTML_제목") {
+            JS_글등록기능();
+          }
+          if (document.activeElement.id === "HTML_내용") {
+            JS_글등록기능();
+          }
+        }
+      });
+
+      /* 1. 눈에 안보이는 shift, alt 등은 인식 못함 */
+      /* 2. 한글은 인식 못함 */
+      window.addEventListener("keypress", () => {
+        console.log("프레스됨");
+      });
+    </script>
+  </head>
+  <body>
+    <h1>게시글쓰기</h1>
+    제목: <input id="HTML_제목" type="text" /><br />
+    내용: <input id="HTML_내용" type="text" /><br />
+    <button onclick="JS_글등록기능()">등록하기</button>
+  </body>
+</html>

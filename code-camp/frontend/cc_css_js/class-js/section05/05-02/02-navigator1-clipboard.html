@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>클립보드 실습</title>
+    <script>
+      function JS_내용복사() {
+        const copyText = document.getElementById("HTML_COPY_TEXT").innerText;
+        navigator.clipboard.writeText(copyText);
+
+        alert("복사가 완료되었습니다.");
+      }
+
+      function JS_꾸며서복사() {
+        const copyText = document.getElementById("HTML_COPY_TEXT").innerText;
+        navigator.clipboard.writeText(`반갑습니다. ${copyText}`);
+
+        alert("복사가 완료되었습니다.");
+      }
+    </script>
+  </head>
+  <body>
+    <div id="HTML_COPY_TEXT">안녕하세요 Buzz입니다.</div>
+    <button onclick="JS_내용복사()">내용 복사하기</button>
+    <button onclick="JS_꾸며서복사()">꾸며서 복사하기</button>
+  </body>
+</html>

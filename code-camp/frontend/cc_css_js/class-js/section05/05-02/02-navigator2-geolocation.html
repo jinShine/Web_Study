@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>내위치 실습</title>
+
+    <script>
+      const JS_내위치보기 = () => {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            console.log(latitude, longitude);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      };
+    </script>
+  </head>
+  <body>
+    <button onclick="JS_내위치보기()">내 근처 맛집보기</button>
+  </body>
+</html>

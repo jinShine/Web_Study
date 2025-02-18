@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>페이지이동 컴포넌트방식 실습</title>
+    <style>
+      .CSS_배너 {
+        height: 100px;
+        background-color: skyblue;
+      }
+      .CSS_내비게이션 {
+        height: 50px;
+        background-color: yellow;
+        text-align: center;
+      }
+
+      .CSS_일기보여주는곳 {
+        display: block;
+      }
+      .CSS_강아지보여주는곳 {
+        display: none;
+      }
+    </style>
+    <script>
+      const JS_메뉴이동 = (메뉴) => {
+        switch (메뉴) {
+          case "일기": {
+            document.getElementById("HTML_일기보여주는곳").style =
+              "display: block;";
+            document.getElementById("HTML_강아지보여주는곳").style =
+              "display: none;";
+            break;
+          }
+          case "강아지": {
+            document.getElementById("HTML_일기보여주는곳").style =
+              "display: none;";
+            document.getElementById("HTML_강아지보여주는곳").style =
+              "display: block;";
+            break;
+          }
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <header class="CSS_배너">배너화면입니다.</header>
+    <nav class="CSS_내비게이션">
+      <button onclick="JS_메뉴이동('일기')">일기</button>
+      <button onclick="JS_메뉴이동('강아지')">강아지</button>
+    </nav>
+
+    <!-- 일기메뉴 -->
+    <main id="HTML_일기보여주는곳" class="CSS_일기보여주는곳">
+      일기목록 메인화면입니다.
+
+      <div>일기1</div>
+      <div>일기2</div>
+      <div>일기3</div>
+      <div>...</div>
+    </main>
+
+    <!-- 강아지메뉴 -->
+    <main id="HTML_강아지보여주는곳" class="CSS_강아지보여주는곳">
+      강아지목록 메인화면입니다.
+
+      <div>강아지1</div>
+      <div>강아지2</div>
+      <div>강아지3</div>
+      <div>...</div>
+    </main>
+  </body>
+</html>

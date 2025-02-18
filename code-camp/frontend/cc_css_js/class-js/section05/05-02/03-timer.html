@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>타이머 실습</title>
+    <style>
+      /* 1. 마우스 바꿔치기 */
+      html {
+        cursor: none;
+      }
+      .CSS_가짜마우스 {
+        position: absolute;
+        width: 100px;
+        z-index: 999;
+      }
+
+      /* 2. 강아지 그리기 */
+      .CSS_강아지1 {
+        position: absolute;
+        top: 100px;
+        left: 100px;
+        width: 100px;
+      }
+      .CSS_강아지2 {
+        position: absolute;
+        top: 300px;
+        left: 300px;
+        width: 100px;
+      }
+    </style>
+    <script>
+      window.addEventListener("mousemove", (event) => {
+        const 가짜마우스 = document.getElementById("HTML_가짜마우스");
+        가짜마우스.style.top = `${
+          event.clientY + 5
+        }px`; /* 진짜마우스에서 5만큼 떨어뜨리기(아래 클릭 가능하도록) */
+        가짜마우스.style.left = `${
+          event.clientX + 5
+        }px`; /* 진짜마우스에서 5만큼 떨어뜨리기(아래 클릭 가능하도록) */
+      });
+
+      const JS_강아지잡기기능 = (강아지아이디) => {
+        document.getElementById(강아지아이디).style = "display: none"; // 맞추기
+
+        // 타이머 API
+        window.setTimeout(() => {
+          document.getElementById(강아지아이디).style = "display: block"; // 다시살아나기
+        }, 2000);
+      };
+    </script>
+  </head>
+  <body>
+    <img src="./00-hammer.png" id="HTML_가짜마우스" class="CSS_가짜마우스" />
+    <img
+      src="./00-image.jpg"
+      id="HTML_강아지1"
+      class="CSS_강아지1"
+      onclick="JS_강아지잡기기능('HTML_강아지1')"
+    />
+    <img
+      src="./00-image.jpg"
+      id="HTML_강아지2"
+      class="CSS_강아지2"
+      onclick="JS_강아지잡기기능('HTML_강아지2')"
+    />
+  </body>
+</html>

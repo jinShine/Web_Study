@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>키보드감지 실습</title>
+    <style>
+      .CSS_강아지 {
+        position: absolute;
+        top: 300px;
+        left: 300px;
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+    <script>
+      let 부스터 = 1.0;
+      window.addEventListener("keydown", (event) => {
+        const 강아지 = document.getElementById("HTML_강아지");
+        const 강아지스타일가져오기 = getComputedStyle(강아지);
+        const 강아지Y좌표 = Number(강아지스타일가져오기.top.replace("px", ""));
+        const 강아지X좌표 = Number(강아지스타일가져오기.left.replace("px", ""));
+
+        switch (event.key) {
+          case "ArrowUp": {
+            document.getElementById("HTML_강아지").style = `top: ${
+              (강아지Y좌표 - 20) / 부스터
+            }px; left: ${강아지X좌표}px;`;
+            break;
+          }
+          case "ArrowDown": {
+            document.getElementById("HTML_강아지").style = `top: ${
+              (강아지Y좌표 + 20) * 부스터
+            }px; left: ${강아지X좌표}px;`;
+            break;
+          }
+          case "ArrowLeft": {
+            document.getElementById(
+              "HTML_강아지"
+            ).style = `top: ${강아지Y좌표}px; left: ${
+              (강아지X좌표 - 20) / 부스터
+            }px`;
+            break;
+          }
+          case "ArrowRight": {
+            document.getElementById(
+              "HTML_강아지"
+            ).style = `top: ${강아지Y좌표}px; left: ${
+              (강아지X좌표 + 20) * 부스터
+            }px`;
+            break;
+          }
+          case " ": {
+            부스터 = 부스터 + 0.1;
+            break;
+          }
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <img src="./00-image.jpg" id="HTML_강아지" class="CSS_강아지" />
+  </body>
+</html>

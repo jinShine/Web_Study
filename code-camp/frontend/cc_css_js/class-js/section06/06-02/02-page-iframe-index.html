@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>페이지이동 복사방식 실습</title>
+    <style>
+      .CSS_배너 {
+        height: 100px;
+        background-color: skyblue;
+      }
+      .CSS_내비게이션 {
+        height: 50px;
+        background-color: yellow;
+        text-align: center;
+      }
+      .CSS_아이프레임 {
+        border: none;
+      }
+    </style>
+    <script>
+      const JS_메뉴이동 = (메뉴) => {
+        switch (메뉴) {
+          case "일기": {
+            document.getElementById("HTML_아이프레임").src =
+              "./02-page-iframe1.html";
+            break;
+          }
+          case "강아지": {
+            document.getElementById("HTML_아이프레임").src =
+              "./02-page-iframe2.html";
+            break;
+          }
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <header class="CSS_배너">배너화면입니다.</header>
+    <nav class="CSS_내비게이션">
+      <button onclick="JS_메뉴이동('일기')">일기</button>
+      <button onclick="JS_메뉴이동('강아지')">강아지</button>
+    </nav>
+
+    <iframe
+      id="HTML_아이프레임"
+      class="CSS_아이프레임"
+      src="./02-page-iframe1.html"
+    ></iframe>
+  </body>
+</html>

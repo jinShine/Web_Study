@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>겹치기 리팩토링 실습</title>
+    <style>
+      .CSS_카드그룹 {
+        margin: 100px;
+        position: relative; /* 이게 없으면 최상위 부모에 가서 붙게되므로, 반드시 필요 */
+      }
+      .CSS_사진 {
+        width: 200px;
+        height: 200px;
+        background-color: skyblue;
+      }
+      .CSS_삭제버튼 {
+        position: absolute; /* 화면의 (0,0)에 가는 것이 아님. position: absolute, relative 등을 가진 가장 가까운 부모의 (0,0) 으로 감 => 여기서는 카드그룹 */
+        top: 0;
+        left: 190px;
+
+        /* position: relative;  겹치기할 때 absolute(아래 애들 재배치하기) vs relataive(아래 애들 그대로두기) => 일반적으로는 나만 붕 띄우고 아래는 다 재배치
+            top: -200px;
+            left: 190px; */
+      }
+      .CSS_설명서 {
+        width: 200px;
+        height: 100px;
+        background-color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="CSS_카드그룹">
+      <div class="CSS_사진"></div>
+      <button class="CSS_삭제버튼">X</button>
+      <div class="CSS_설명서">이 카드는 강아지 카드입니다.</div>
+    </div>
+  </body>
+</html>
