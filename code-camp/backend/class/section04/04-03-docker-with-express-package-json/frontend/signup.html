@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입 연습하기</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+      function onClickAuth() {
+        const phone = document.getElementById("phone").value;
+        console.log(phone);
+
+        axios
+          .post("http://localhost:3000/tokens/phone", {
+            phone,
+          })
+          .then((res) => {
+            console.log(res.data);
+            document.getElementById("result").innerText = res.data;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <div>
+      <div>
+        <label for="phone">휴대폰 번호</label>
+        <input id="phone" type="text" placeholder="휴대폰 번호" />
+        <button onclick="onClickAuth()">인증하기</button>
+      </div>
+      <div id="result">인증상태</div>
+      <button onclick=>회원가입하기</button>
+    </div>
+  </body>
+</html>

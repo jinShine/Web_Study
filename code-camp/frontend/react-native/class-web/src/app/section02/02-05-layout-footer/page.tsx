@@ -1,6 +1,6 @@
 "use client";
 
-import { Footer } from "@/components/layout/02-05-layout-footer/footer";
+import { Footer } from "@/commons/layout/02-05-layout-footer/footer";
 import { useState } from "react";
 
 export default function LayoutFooterPage() {

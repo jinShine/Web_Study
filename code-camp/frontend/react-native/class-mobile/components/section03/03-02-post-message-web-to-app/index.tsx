@@ -1,4 +1,3 @@
-import { Button } from "react-native";
 import WebView from "react-native-webview";
 
 const URL = "http://192.168.220.120:3001";

@@ -1,9 +1,10 @@
-import LayoutGlobalAndLocal from "@/components/layout/02-03-layout-header-local";
+import LayoutGlobalAndLocal from "@/commons/layout/02-03-layout-header-local";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import LayoutTransparent from "@/components/layout/02-04-layout-header-transparent";
-import LayoutFooter from "@/components/layout/02-05-layout-footer";
+import LayoutTransparent from "@/commons/layout/02-04-layout-header-transparent";
+import LayoutFooter from "@/commons/layout/02-05-layout-footer";
+import DeviceSetting from "@/commons/settings/03-06-device-setting";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -41,7 +42,10 @@ export default function RootLayout({
         {/* <LayoutTransparent>{children}</LayoutTransparent> */}
 
         {/* 02-05-layout-footer */}
-        <LayoutFooter>{children}</LayoutFooter>
+        {/* <LayoutFooter>{children}</LayoutFooter> */}
+
+        {/* 03-06-device-setting */}
+        <DeviceSetting>{children}</DeviceSetting>
       </body>
     </html>
   );

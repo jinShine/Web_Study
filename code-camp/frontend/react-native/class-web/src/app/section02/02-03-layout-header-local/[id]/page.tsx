@@ -1,6 +1,6 @@
 "use client";
 
-import { Header } from "@/components/layout/02-03-layout-header-local/header";
+import { Header } from "@/commons/layout/02-03-layout-header-local/header";
 import { useEffect, useState } from "react";
 
 export default function LayoutHeaderLocalPage() {
