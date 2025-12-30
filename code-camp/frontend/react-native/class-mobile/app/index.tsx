@@ -14,6 +14,10 @@ import LayoutFooterPage from "@/components/section02/02-05-layout-footer";
 // [Section03];
 import WebviewLogPage from "@/components/section03/03-01-webview-log";
 import PostMessageWebToAppPage from "@/components/section03/03-02-post-message-web-to-app";
+import PostMessageAppToWebPage from "@/components/section03/03-03-post-message-app-to-web";
+import PostMessageDeviceApiPage from "@/components/section03/03-04-post-message-device-api";
+import PostMessageDeviceApiPromisePage from "@/components/section03/03-05-post-message-device-api-promise";
+import PostMessageDeviceApiPromiseRefactoringPage from "@/components/section03/03-06-post-message-device-api-promise-refactoring";
 
 import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -31,7 +35,11 @@ export default function IndexPage() {
       {/* <LayoutHeaderTransparentPage /> */}
       {/* <LayoutFooterPage /> */}
       {/* <WebviewLogPage /> */}
-      <PostMessageWebToAppPage />
+      {/* <PostMessageWebToAppPage /> */}
+      {/* <PostMessageAppToWebPage /> */}
+      {/* <PostMessageDeviceApiPage /> */}
+      {/* <PostMessageDeviceApiPromisePage /> */}
+      <PostMessageDeviceApiPromiseRefactoringPage />
     </SafeAreaView>
   );
 }

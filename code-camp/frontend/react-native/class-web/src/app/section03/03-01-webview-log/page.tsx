@@ -1,6 +1,6 @@
 "use client";
 
-import { webviewlog } from "@/components/libraries/03-01-webview-log";
+import { webviewlog } from "@/commons/libraries/03-01-webview-log";
 
 export default function WebviewLogPage() {
   const onClickButton = () => {
