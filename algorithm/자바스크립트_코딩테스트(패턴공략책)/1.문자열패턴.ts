@@ -174,3 +174,27 @@ function isAnagramWithMap(str1, str2) {
 
 console.log("isAnagramWithMap", isAnagramWithMap("listen", "silent"));
 console.log("isAnagramWithMap", isAnagramWithMap("mouse", "moose"));
+
+/**
+ * 재정렬
+ *  - 숫자와 소문자 알파벳 a-z로 이루어진 한쌍 (예 "1a")
+ *    각단어의 두번째 문자의 알파벳 순서로 정렬하는 기능을 구현하래
+ *  예)
+ *    - "3d, 1c, 5f, 7h, 2a, 4e, 6g" -> "2a, 1c, 3d, 4e, 5f, 6g, 7h"
+ *    - "3d, 1a, 5e, 7d, 2a, 4c, 6b" -> "1a, 2a, 6b, 4c, 3d, 7d, 5e"
+ */
+
+function strToInt(str: string) {
+  const words = str.split(", ");
+
+  const result = words
+    .map((word) => ({ word, letter: word[1] }))
+    .sort((a, b) => a.letter.localeCompare(b.letter))
+    .map((obj) => obj.word)
+    .join(", ");
+
+  return result;
+}
+
+console.log(strToInt("3d, 1c, 5f, 7h, 2a, 4e, 6g"));
+console.log(strToInt("3d, 1a, 5e, 7d, 2a, 4c, 6b"));
