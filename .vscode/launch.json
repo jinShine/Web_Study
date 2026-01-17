@@ -3,6 +3,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "FinalTest",
+      "request": "launch",
+      "mainClass": "org.example.basic.FinalTest",
+      "projectName": "java-study"
+    },
+    {
+      "type": "java",
+      "name": "Practice1",
+      "request": "launch",
+      "mainClass": "org.example.g01_17.Practice1",
+      "projectName": "java-study"
+    },
+    {
+      "type": "java",
       "name": "Assignment",
       "request": "launch",
       "mainClass": "org.example.g01_13.Assignment",
@@ -13,7 +27,12 @@
       "request": "launch",
       "name": "Debug Nest Framework",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["run", "start:debug", "--", "--inspect-brk"],
+      "runtimeArgs": [
+        "run",
+        "start:debug",
+        "--",
+        "--inspect-brk"
+      ],
       "autoAttachChildProcesses": true,
       "restart": true,
       "sourceMaps": true,

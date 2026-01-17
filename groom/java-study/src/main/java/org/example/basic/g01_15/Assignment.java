@@ -1,7 +1,8 @@
-package org.example.g01_13;
+package org.example.basic.g01_15;
 
-import java.util.Scanner;
-
+/**
+ * 반복문
+ */
 public class Assignment {
   public static void main(String[] args) {
     System.out.println("╔════════════════════════════════════════╗");

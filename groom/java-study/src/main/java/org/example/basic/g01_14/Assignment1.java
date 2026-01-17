@@ -1,4 +1,4 @@
-package org.example.g01_14;
+package org.example.basic.g01_14;
 
 
 public class Assignment1 {

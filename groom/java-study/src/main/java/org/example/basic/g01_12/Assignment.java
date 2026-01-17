@@ -1,4 +1,4 @@
-package org.example.g01_12;
+package org.example.basic.g01_12;
 
 /// //////////////////////////////////////
 // 상품 정보를 저장하고 출력하는 프로그램을 작성하세요.
@@ -28,7 +28,7 @@ public class Assignment {
 
 		System.out.println("====== 결제 정보 ====== ");
 		System.out.println("상품 금액: " + totalPrice + "원");
-		System.out.println("세금 (10%): " + (int)tax + "원");
-		System.out.println("최종 금액: " + (int)finalPrice + "원");
+		System.out.println("세금 (10%): " + (int) tax + "원");
+		System.out.println("최종 금액: " + (int) finalPrice + "원");
 	}
 }
