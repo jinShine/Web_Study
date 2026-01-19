@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 void main() {
   print("hello");
 
@@ -37,6 +39,9 @@ void main() {
    */
 
   valueEquality();
+  immutableObject();
+  immutableClass();
+  serialization();
 }
 
 class A {
@@ -52,4 +57,51 @@ class A {
 void valueEquality() {
   print(A(1) == A(1));
   print(A(1));
+}
+
+void immutableObject() {
+  List<int> a = [1, 2, 3];
+  List<int> b = a; // 얕은 복사
+
+  a = [...a, 4];
+  print(a == b); // false
+  print(a);
+  print(b);
+
+  // 3개의 객체 생성 후 개별 참조
+  List<int> a1 = [];
+  List<int> a2 = [];
+  List<int> a3 = [];
+
+  const List<int> b1 = [];
+  const List<int> b2 = [];
+  const List<int> b3 = [];
+}
+
+// 불변 클래스 만들기
+// final을 붙혀야 되고, 생성자에 const를 붙혀야 한다.
+class ImmutableClass {
+  final String name;
+  final int age;
+
+  const ImmutableClass({required this.name, required this.age});
+
+  @override
+  String toString() {
+    return "ImmutableClass(name: $name, age: $age)";
+  }
+}
+
+void immutableClass() {
+  ImmutableClass a = ImmutableClass(name: "buzz", age: 33);
+  ImmutableClass b = a;
+
+  a = ImmutableClass(name: "buzz2", age: 36);
+  print(a);
+  print(b);
+}
+
+void serialization() {
+  Map<String, dynamic> map = jsonDecode('{"name": "buzz", "age": 33}');
+  print(map["name"]);
 }
