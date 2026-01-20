@@ -3,6 +3,27 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Assignment",
+      "request": "launch",
+      "mainClass": "org.example.intermediate.g01_20.Assignment",
+      "projectName": "java-study"
+    },
+    {
+      "type": "java",
+      "name": "Assignment",
+      "request": "launch",
+      "mainClass": "org.example.intermediate.g01_19.Assignment",
+      "projectName": "java-study"
+    },
+    {
+      "type": "java",
+      "name": "Class",
+      "request": "launch",
+      "mainClass": "org.example.intermediate.g01_19.Class",
+      "projectName": "java-study"
+    },
+    {
+      "type": "java",
       "name": "FinalTest",
       "request": "launch",
       "mainClass": "org.example.basic.FinalTest",
