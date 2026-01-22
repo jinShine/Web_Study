@@ -105,3 +105,14 @@ void serialization() {
   Map<String, dynamic> map = jsonDecode('{"name": "buzz", "age": 33}');
   print(map["name"]);
 }
+
+class Person {
+  final String name;
+  final int age;
+
+  const Person({required this.name, required this.age});
+
+  factory Person.fromJson(Map<String, dynamic> json) {
+    return Person(name: json["name"], age: json["age"]);
+  }
+}

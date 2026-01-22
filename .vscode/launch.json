@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Ex1",
+      "request": "launch",
+      "mainClass": "org.example.intermediate.g01_22.Ex1",
+      "projectName": "java-study"
+    },
+    {
+      "type": "java",
       "name": "Assignment",
       "request": "launch",
       "mainClass": "org.example.intermediate.g01_20.Assignment",
