@@ -2,6 +2,9 @@
 
 package org.example.intermediate.g01_27;
 
+import java.io.FileReader;
+import java.io.IOException;
+
 public class Ex2 {
   public static void main(String[] args) {
     ThrowExample example = new ThrowExample();
@@ -9,6 +12,21 @@ public class Ex2 {
     try {
       example.setAge(-1);
     } catch (IllegalArgumentException e) {
+      System.out.println(e.getMessage());
+    }
+
+    ThrowExample2 example2 = new ThrowExample2();
+    try {
+      example2.process("test.txt");
+    } catch (IOException e) {
+      System.out.println(e.getMessage());
+    }
+
+    try {
+      example2.process("test.txt");
+    } catch (IOException e) {
+      System.out.println(e.getMessage());
+    } catch (NumberFormatException e) {
       System.out.println(e.getMessage());
     }
 
@@ -47,5 +65,19 @@ class DataValidation {
     if (password == null || password.length() < 8) {
       throw new IllegalArgumentException("비밀번호는 8자 이상이어야 합니다.");
     }
+  }
+}
+
+class ThrowExample2 {
+  void process(String path) throws IOException {
+    FileReader reader = new FileReader(path);
+
+    reader.close();
+  }
+
+  void process2(String path) throws IOException, NumberFormatException {
+    FileReader reader = new FileReader(path);
+
+    reader.close();
   }
 }
