@@ -3,6 +3,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Assignment2",
+      "request": "launch",
+      "mainClass": "org.example.intermediate.g01_28.Assignment2",
+      "projectName": "java-study"
+    },
+    {
+      "type": "java",
+      "name": "ArrayListEx",
+      "request": "launch",
+      "mainClass": "org.example.intermediate.g01_28.ArrayListEx",
+      "projectName": "java-study"
+    },
+    {
+      "type": "java",
       "name": "Ex1",
       "request": "launch",
       "mainClass": "org.example.intermediate.g01_28.Ex1",
