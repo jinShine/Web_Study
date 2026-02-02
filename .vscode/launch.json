@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "StreamEx1",
+      "request": "launch",
+      "mainClass": "org.example.intermediate.g01_31.StreamEx1",
+      "projectName": "java-study"
+    },
+    {
+      "type": "java",
       "name": "Assignment2",
       "request": "launch",
       "mainClass": "org.example.intermediate.g01_28.Assignment2",
@@ -90,12 +97,7 @@
       "request": "launch",
       "name": "Debug Nest Framework",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": [
-        "run",
-        "start:debug",
-        "--",
-        "--inspect-brk"
-      ],
+      "runtimeArgs": ["run", "start:debug", "--", "--inspect-brk"],
       "autoAttachChildProcesses": true,
       "restart": true,
       "sourceMaps": true,
