@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.study.my_spring_study_diary.common.ApiResponse;
 import com.study.my_spring_study_diary.dto.request.StudyLogCreateRequest;
 import com.study.my_spring_study_diary.dto.response.StudyLogResponse;

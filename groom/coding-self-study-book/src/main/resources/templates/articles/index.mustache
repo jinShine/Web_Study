@@ -1,0 +1,23 @@
+{{>layouts/header}}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Content</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#articleList}}
+    <tr onclick="location.href='/articles/{{id}}'">
+      <td>{{id}}</td>
+      <td>{{title}}</td>
+      <td>{{content}}</td>
+    </tr>
+    {{/articleList}}
+  </tbody>
+</table>
+
+<a href="/articles/new" class="mt-3">New Article</a>
+
+{{>layouts/footer}}
