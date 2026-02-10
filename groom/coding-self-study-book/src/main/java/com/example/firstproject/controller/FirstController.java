@@ -1,21 +1,14 @@
 package com.example.firstproject.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class FirstController {
 
-  @GetMapping("/hi")
-  public String niceToMeetYou(Model model) {
-    model.addAttribute("name", "버즈");
-    return "greetings";
+  @GetMapping("/api/hello")
+  public String hello() {
+    return "hello world";
   }
 
-  @GetMapping("/bye")
-  public String seeYouNext(Model model) {
-    model.addAttribute("nickname", "버즈");
-    return "goodbye";
-  }
 }
