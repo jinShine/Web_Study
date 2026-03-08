@@ -549,6 +549,55 @@ public class OrderController {
 > 모든 계층이 **인터페이스에 의존**하고, **구현체는 Spring이 주입**한다.
 > 이것이 IoC/DI의 실전 적용이다.
 
+### 계층별 메서드 네이밍 관례
+
+각 계층마다 관례적인 네이밍이 다르다. 공식 규칙은 아니지만 거의 모든 프로젝트가 이렇게 쓴다:
+
+**Repository** — "데이터를 어떻게 찾고 저장하나" (Spring Data JPA 메서드 이름 기반)
+
+| 동작 | 네이밍 | 예시 |
+|------|--------|------|
+| 저장 | `save` | `save(order)` |
+| 단건 조회 | `findById` | `findById(1L)` |
+| 조건 조회 | `findBy~` | `findByProductName("맥북")` |
+| 전체 조회 | `findAll` | `findAll()` |
+| 삭제 | `deleteById` | `deleteById(1L)` |
+| 존재 확인 | `existsById` | `existsById(1L)` |
+| 개수 | `countBy~` | `countByStatus("PENDING")` |
+
+> Phase 3에서 `JpaRepository`를 쓰면 이 이름 그대로 메서드가 자동 생성된다. 미리 익숙해지면 편해.
+
+**Service** — "비즈니스에서 뭘 하나" (동작 중심)
+
+| 동작 | 네이밍 | 예시 |
+|------|--------|------|
+| 생성 | `create~` | `createOrder(order)` |
+| 단건 조회 | `get~` | `getOrder(id)` |
+| 목록 조회 | `get~s` / `getAll~` | `getAllOrders()` |
+| 수정 | `update~` | `updateOrder(id, request)` |
+| 삭제 | `delete~` | `deleteOrder(id)` |
+| 검색 | `search~` | `searchOrders(keyword)` |
+| 비즈니스 동작 | 동사로 표현 | `cancelOrder()`, `processPayment()` |
+
+**Controller** — Service와 비슷, HTTP 메서드와 매핑
+
+```java
+@PostMapping          → createOrder()
+@GetMapping("/{id}")  → getOrder()
+@GetMapping           → getAllOrders()
+@PutMapping("/{id}")  → updateOrder()
+@DeleteMapping("/{id}") → deleteOrder()
+```
+
+**계층 간 흐름:**
+```
+Controller: createOrder()  →  Service: createOrder()  →  Repository: save()
+Controller: getOrder()     →  Service: getOrder()     →  Repository: findById()
+Controller: deleteOrder()  →  Service: deleteOrder()  →  Repository: deleteById()
+```
+
+> Repository는 `find/save/delete`, Service는 `get/create/delete` — 이 감각이 몸에 익으면 코드 읽는 속도가 확 빨라진다.
+
 ---
 
 ## 면접 대비 한 줄 요약
