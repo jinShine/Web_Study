@@ -1,3 +1,0 @@
-class CashService {
-  checkValue = () => {};
-}

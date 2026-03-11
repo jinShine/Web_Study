@@ -42,8 +42,8 @@ Phase 6: 미니 프로젝트     ██████████ (38~42)
 | 08 | **Spring MVC 요청/응답 흐름** | @RequestMapping, @PathVariable, @RequestParam, @RequestBody, @ResponseBody | ✅ 완료 |
 | 09 | **Layered 아키텍처와 DAO 패턴** | Controller-Service-Repository 계층, DAO vs Repository, 의존성 방향 | ✅ 완료 |
 | 10 | **Lombok 활용** | @Getter/@Setter, @Builder, @RequiredArgsConstructor, @Data, @Slf4j, 주의사항 | ✅ 완료 |
-| 11 | **DTO와 Validation** | DTO 패턴, @Valid, @NotNull, @Size, BindingResult, 커스텀 Validator | ⬜ |
-| 12 | **MapStruct — 객체 매핑 자동화** | @Mapper, @Mapping, Entity↔DTO 변환, 컴파일 타임 매핑, vs ModelMapper | ⬜ |
+| 11 | **DTO와 Validation** | DTO 패턴, @Valid, @NotNull, @Size, BindingResult, 커스텀 Validator | ✅ 완료 |
+| 12 | **MapStruct — 객체 매핑 자동화** | @Mapper, @Mapping, Entity↔DTO 변환, 컴파일 타임 매핑, vs ModelMapper | ✅ 완료 |
 | 13 | **ResponseEntity와 API 응답 표준화** | ResponseEntity, 공통 응답 포맷, 페이징 응답 설계 | ⬜ |
 | 14 | **파일 업로드/다운로드** | MultipartFile, Resource, Content-Disposition, 저장 전략 | ⬜ |
 | 15 | **API 문서화** | Swagger/SpringDoc, @Operation, @Schema, OpenAPI 3.0 | ⬜ |
