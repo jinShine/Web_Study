@@ -2,7 +2,7 @@
 
 백엔드 부트캠프에서 배운 내용을 키워드 중심으로 정리한 학습 자료입니다.
 
-> 📋 [전체 커리큘럼 보기](./CURRICULUM.md) — 6단계, 42개 주제
+> 📋 [전체 커리큘럼 보기](./CURRICULUM.md) — 6단계, 43개 주제
 
 ---
 
@@ -30,3 +30,7 @@
 | 10 | [Lombok 활용](./phase2-API개발/10-lombok/) | 2026-03-08 | @Getter, @Setter, @Builder, @RequiredArgsConstructor, @Data, @Slf4j, 실무 추천 조합 등 |
 | 11 | [DTO와 Validation](./phase2-API개발/11-dto-and-validation/) | 2026-03-08 | @Valid, @NotBlank, @Email, @Size, DTO 설계, 커스텀 Validator, 에러 응답 처리 등 |
 | 12 | [MapStruct — 객체 매핑 자동화](./phase2-API개발/12-mapstruct/) | 2026-03-09 | @Mapper, @Mapping, Entity↔DTO 자동 변환, 컴파일 타임 매핑, @MappingTarget 등 |
+| 13 | [ResponseEntity와 API 응답 표준화](./phase2-API개발/13-responseentity/) | 2026-03-11 | ResponseEntity, ApiResponse, 공통 응답 포맷, 페이징 응답, 에러 응답 통일 등 |
+| 14 | [파일 업로드/다운로드](./phase2-API개발/14-file-upload-download/) | 2026-03-12 | MultipartFile, Resource, Content-Disposition, UUID 파일명, 다중 업로드, 저장 전략 등 |
+| 15 | [API 문서화](./phase2-API개발/15-api-docs/) | 2026-03-12 | SpringDoc, Swagger UI, OpenAPI 3.0, @Operation, @Schema, @Tag, 트러블슈팅 등 |
+| 16 | [디버깅 완벽 가이드](./phase2-API개발/16-debugging/) | 2026-03-12 | Breakpoint, Step Over/Into/Out, Variables, Watches, 조건부 BP, 예외 BP 등 |
