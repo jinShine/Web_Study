@@ -391,6 +391,36 @@ public ResponseEntity<OrderResponse> getOrder(@PathVariable Long id) {
 }
 ```
 
+### @ExampleObject — 상세 응답 예제 추가
+
+> 실제 JSON 응답이 어떻게 생겼는지 Swagger UI에서 바로 보여줄 수 있다
+
+```java
+@io.swagger.v3.oas.annotations.responses.ApiResponse(
+    responseCode = "201",
+    description = "생성 성공",
+    content = @Content(
+        mediaType = "application/json",
+        examples = @ExampleObject(
+            name = "성공 예제",
+            value = """
+                {
+                  "status": 201,
+                  "data": {
+                    "id": 1,
+                    "productName": "맥북 프로",
+                    "status": "PENDING",
+                    "orderedAt": "2026-03-12T14:30:00"
+                  }
+                }
+                """
+        )
+    )
+)
+```
+
+> **팁:** `"string"` 같은 의미 없는 예시 대신 **실제처럼 보이는 값**을 넣어야 프론트 개발자가 이해하기 쉽다
+
 ### Swagger UI 결과
 
 ```
@@ -408,7 +438,28 @@ com.example.common.ApiResponse<T>                     ← 13번에서 만든 공
 이름이 같지만 완전히 다른 것!
 ```
 
-> import 할 때 헷갈리지 않도록 주의
+> ⚠️ **Java는 import alias를 지원하지 않는다!** Kotlin처럼 `import ... as SwaggerApiResponse` 불가능
+
+### 이름 충돌 해결법 — Fully Qualified Name
+
+```java
+// ❌ Java에서는 이렇게 못 함 (Kotlin 문법)
+import io.swagger.v3.oas.annotations.responses.ApiResponse as SwaggerApiResponse;
+
+// ✅ Fully Qualified Name으로 직접 써야 함
+@io.swagger.v3.oas.annotations.responses.ApiResponses(value = {
+    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+        responseCode = "200",
+        description = "조회 성공"
+    ),
+    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+        responseCode = "404",
+        description = "주문을 찾을 수 없음"
+    )
+})
+```
+
+> 실무에서 공통 응답 래퍼(`ApiResponse<T>`)를 쓰면 **반드시** 마주치는 문제. 당황하지 말고 FQN 사용!
 
 ---
 
@@ -567,6 +618,43 @@ springdoc:
 
 > ⚠️ **운영에서는 반드시 비활성화!** API 명세가 외부에 노출되면 보안 위협이 된다
 
+### 문제 6: Spring Boot & SpringDoc 버전 호환성
+
+```
+NoSuchMethodError: 'void org.springframework.web.method.ControllerAdviceBean.<init>...'
+```
+
+> Spring Boot 버전에 맞는 SpringDoc 버전을 써야 한다
+
+| Spring Boot | SpringDoc | 상태 |
+|---|---|---|
+| 3.2.x | 2.3.0 | ✅ 안정 |
+| 3.3.x | 2.5.0 | ✅ 안정 |
+| 3.4.x | 2.6.0+ | ✅ 권장 |
+| 3.5.x (SNAPSHOT) | 2.6.0+ | ⚠️ 테스트 필요 |
+
+```groovy
+// 버전 불일치 시 → SpringDoc 최신 버전으로 업그레이드
+implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.6'
+```
+
+### 문제 7: JWT 필터가 Swagger 요청도 가로챔 (401)
+
+```
+Swagger UI는 열리는데, "Try it out" 하면 전부 401
+→ JWT 필터에서 Swagger 경로를 스킵하지 않아서
+```
+
+```java
+// JwtAuthenticationFilter에서 Swagger 경로 스킵
+@Override
+protected boolean shouldNotFilter(HttpServletRequest request) {
+    String path = request.getRequestURI();
+    return path.startsWith("/swagger-ui")
+        || path.startsWith("/v3/api-docs");
+}
+```
+
 ---
 
 ## 12. 실전 예제: 주문 API 문서화
@@ -623,6 +711,22 @@ public class OrderController {
         return ResponseEntity.ok(ApiResponse.success(response));
     }
 }
+```
+
+### application.yml 실전 설정 (복붙용)
+
+```yaml
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha               # 태그(그룹) 알파벳 정렬
+    operations-sorter: method        # HTTP 메서드별 정렬 (DELETE → GET → POST → PUT)
+    display-request-duration: true   # API 호출 소요 시간 표시
+    disable-swagger-default-url: true # 샘플 URL 제거
+  api-docs:
+    path: /v3/api-docs
+  packages-to-scan: com.example      # 내 패키지만 스캔
+  show-actuator: false               # Actuator 엔드포인트 문서에서 제외
 ```
 
 ### 어노테이션 요약 — 어디에 뭘 쓰나?
@@ -686,3 +790,6 @@ API 명세가 외부에 노출되면 공격자가 엔드포인트, 파라미터 
 | **@ApiResponse** | API가 반환할 수 있는 HTTP 상태 코드와 응답 구조를 문서화한다 |
 | **@Hidden** | 내부용 API를 Swagger 문서에서 제외할 때 사용한다 |
 | **운영 비활성화** | 보안을 위해 운영 환경에서는 반드시 Swagger를 비활성화해야 한다 |
+| **@ExampleObject** | 실제 JSON 응답 예제를 Swagger UI에 직접 보여줄 수 있다 |
+| **이름 충돌 (FQN)** | 프로젝트의 ApiResponse와 Swagger의 @ApiResponse가 충돌하면 Fully Qualified Name으로 해결한다 |
+| **버전 호환성** | Spring Boot 버전에 맞는 SpringDoc 버전을 사용해야 하며, 불일치 시 NoSuchMethodError가 발생한다 |
