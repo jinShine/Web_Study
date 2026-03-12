@@ -522,11 +522,121 @@ Entity에는 있지만 DTO에 없는 필드:
 
 > ⚠️ **ignore를 안 하면?** MapStruct가 컴파일 시 경고(warning)를 낸다: "타겟에 매핑되지 않는 필드가 있습니다"
 
+### 핵심 원리: @Mapping은 언제 써야 하나?
+
+> **한 줄 정의:** `@Mapping`은 모든 필드에 쓰는 게 아니라, 자동 매핑이 안 되는 경우에만 쓴다
+
+```
+MapStruct의 기본 동작:
+  "소스와 타겟의 필드명이 같으면 자동으로 매핑한다"
+
+@Mapping은 이 자동 매핑이 안 될 때만 개입하는 것!
+```
+
+#### 예시로 이해하기
+
+```java
+@Mapper(componentModel = "spring")
+public interface OrderMapper {
+
+    // ① toEntity — @Mapping 필요!
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "status", constant = "PENDING")
+    @Mapping(target = "orderedAt", expression = "java(java.time.LocalDateTime.now())")
+    Order toEntity(OrderCreateRequest request);
+
+    // ② toResponse — @Mapping 불필요!
+    OrderResponse toResponse(Order order);
+
+    // ③ toResponseList — @Mapping 불필요!
+    List<OrderResponse> toResponseList(List<Order> orders);
+}
+```
+
+```
+① toEntity()에 @Mapping이 필요한 이유:
+
+OrderCreateRequest (소스)       Order (타겟)
+┌──────────────────┐           ┌──────────────────┐
+│ productName      │ ────────→ │ productName      │  ✅ 이름 같음 → 자동
+│ price            │ ────────→ │ price            │  ✅ 이름 같음 → 자동
+│ quantity         │ ────────→ │ quantity         │  ✅ 이름 같음 → 자동
+│                  │           │ id               │  ❌ 소스에 없음 → ignore 필요
+│                  │           │ status           │  ❌ 소스에 없음 → constant 필요
+│                  │           │ orderedAt        │  ❌ 소스에 없음 → expression 필요
+└──────────────────┘           └──────────────────┘
+
+→ 타겟에 채울 수 없는 필드 3개 → @Mapping으로 지시!
+```
+
+```
+② toResponse()에 @Mapping이 불필요한 이유:
+
+Order (소스)                    OrderResponse (타겟)
+┌──────────────────┐           ┌──────────────────┐
+│ id               │ ────────→ │ id               │  ✅ 자동
+│ productName      │ ────────→ │ productName      │  ✅ 자동
+│ price            │ ────────→ │ price            │  ✅ 자동
+│ quantity         │ ────────→ │ quantity         │  ✅ 자동
+│ status           │ ────────→ │ status           │  ✅ 자동
+│ orderedAt        │ ────────→ │ orderedAt        │  ✅ 자동
+│ getTotalPrice()  │ ────────→ │ totalPrice       │  ✅ 자동 (getter 이름 매칭!)
+└──────────────────┘           └──────────────────┘
+
+→ 타겟의 모든 필드를 소스에서 채울 수 있음 → @Mapping 전혀 불필요!
+```
+
+#### @Mapping이 필요한 4가지 경우
+
+| 상황 | @Mapping 필요? | 예시 |
+|---|---|---|
+| 소스와 타겟 필드명이 **같다** | ❌ 불필요 (자동) | `name → name` |
+| 필드명이 **다르다** | ✅ `source`, `target` 지정 | `userName → name` |
+| 타겟에 있지만 **소스에 없다** | ✅ `ignore`, `constant`, `expression` | `id`, `createdAt` |
+| 소스에 있지만 **타겟에 없다** | ❌ 불필요 (자동 무시) | `password` (Response에 없음) |
+
+> 💡 **@Mapping은 "예외 처리용"이다.** 기본은 전부 자동이고, 자동으로 안 되는 것만 알려주면 된다!
+
 ---
 
 ## 10. Update 매핑 — 기존 객체에 덮어쓰기
 
 > **한 줄 정의:** 새 객체를 만들지 않고, 기존 Entity의 필드를 업데이트한다
+
+### 왜 Update 매핑이 필요한가?
+
+```
+PUT /api/users/1  ← "1번 유저 정보 수정해줘"
+
+두 가지 방법이 있다:
+
+❌ 방법 1: 새 객체를 만들어서 덮어쓰기
+   Request → 새 Entity 생성 → DB 저장
+   문제: id, createdAt 같은 기존 값을 다시 세팅해야 함
+   문제: JPA 영속성 컨텍스트와 분리된 새 객체 → 관리 복잡
+
+✅ 방법 2: 기존 객체의 필드만 수정 (Update 매핑)
+   DB에서 기존 Entity 조회 → Request 값으로 필드만 교체 → DB 저장
+   장점: id, createdAt 등 기존 값 유지
+   장점: JPA 영속성 컨텍스트 안에서 변경 감지(dirty checking) 활용
+```
+
+### 기본 사용법
+
+```java
+// Update용 Request DTO
+@Getter
+@NoArgsConstructor
+public class UserUpdateRequest {
+    @NotBlank(message = "이름은 필수입니다")
+    private String name;
+
+    @Email(message = "이메일 형식이 아닙니다")
+    private String email;
+
+    private int age;
+}
+```
 
 ```java
 @Mapper(componentModel = "spring")
@@ -534,22 +644,9 @@ public interface UserMapper {
 
     // 기존 user 객체에 request의 값을 덮어쓰기
     @Mapping(target = "id", ignore = true)         // id는 변경 안 함
+    @Mapping(target = "password", ignore = true)   // 비밀번호도 변경 안 함
     @Mapping(target = "createdAt", ignore = true)  // 생성일도 변경 안 함
     void updateFromRequest(UserUpdateRequest request, @MappingTarget User user);
-}
-```
-
-```java
-// Service에서 사용
-public UserResponse updateUser(Long id, UserUpdateRequest request) {
-    User user = userRepository.findById(id)
-        .orElseThrow(() -> new UserNotFoundException(id));
-
-    // 기존 user 객체를 직접 수정 (새 객체 안 만듦)
-    userMapper.updateFromRequest(request, user);
-
-    User saved = userRepository.save(user);
-    return userMapper.toResponse(saved);
 }
 ```
 
@@ -557,10 +654,194 @@ public UserResponse updateUser(Long id, UserUpdateRequest request) {
 
 ```
 일반 매핑:    Request → 새 Entity 생성 (toEntity)
+              리턴 타입이 Entity — 새 객체를 반환
+
 Update 매핑:  Request → 기존 Entity 수정 (@MappingTarget)
+              리턴 타입이 void — 기존 객체를 직접 수정
 
 @MappingTarget = "이 객체에 값을 덮어써라"
 ```
+
+### 자동 생성되는 코드 (이해용)
+
+```java
+// MapStruct가 생성하는 UserMapperImpl.java
+@Override
+public void updateFromRequest(UserUpdateRequest request, User user) {
+    if (request == null) {
+        return;  // null이면 아무것도 안 함 (기존 값 유지)
+    }
+
+    // id → ignore이므로 건드리지 않음
+    // password → ignore이므로 건드리지 않음
+    // createdAt → ignore이므로 건드리지 않음
+
+    user.setName(request.getName());     // name만 덮어쓰기
+    user.setEmail(request.getEmail());   // email만 덮어쓰기
+    user.setAge(request.getAge());       // age만 덮어쓰기
+}
+```
+
+> ⚠️ **주의:** Update 매핑은 Setter가 필요하다! Entity에 `@Setter`가 있거나, 필드를 수정할 수 있는 메서드가 있어야 한다.
+
+### Entity에 Setter 없이 쓰는 방법 (실무 권장)
+
+실무에서는 Entity에 `@Setter`를 쓰지 않는 게 원칙이다. 대신 **의미 있는 메서드**를 만든다.
+
+```java
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
+public class User {
+    private Long id;
+    private String name;
+    private String email;
+    private String password;
+    private int age;
+    private LocalDateTime createdAt;
+
+    // Setter 대신 의미 있는 변경 메서드
+    public void updateProfile(String name, String email, int age) {
+        this.name = name;
+        this.email = email;
+        this.age = age;
+    }
+}
+```
+
+```java
+// MapStruct 없이 직접 업데이트
+public UserResponse updateUser(Long id, UserUpdateRequest request) {
+    User user = userRepository.findById(id)
+        .orElseThrow(() -> new UserNotFoundException(id));
+
+    user.updateProfile(request.getName(), request.getEmail(), request.getAge());
+
+    User saved = userRepository.save(user);
+    return userMapper.toResponse(saved);
+}
+```
+
+```
+Q: 그럼 @MappingTarget은 언제 쓰나?
+
+Setter가 있는 경우 → @MappingTarget 사용 가능
+Setter가 없는 경우 → Entity의 변경 메서드를 직접 호출
+
+실무 판단 기준:
+├─ 필드가 많고 Setter 허용하는 팀 → @MappingTarget 편리
+├─ DDD 스타일로 Setter 금지하는 팀 → 직접 변경 메서드 사용
+└─ 두 방식 다 섞어 쓰는 프로젝트도 있음 (DTO끼리는 MapStruct, Entity는 직접)
+```
+
+### Service에서 사용 (전체 흐름)
+
+```java
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class UserService {
+
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
+
+    // ✅ @MappingTarget 방식 (Setter 있을 때)
+    public UserResponse updateUser(Long id, UserUpdateRequest request) {
+        // 1. 기존 Entity 조회
+        User user = userRepository.findById(id)
+            .orElseThrow(() -> new UserNotFoundException(id));
+
+        // 2. 기존 Entity에 새 값 덮어쓰기 (새 객체 안 만듦!)
+        userMapper.updateFromRequest(request, user);
+
+        // 3. 변경된 Entity 저장
+        User saved = userRepository.save(user);
+
+        // 4. 응답 변환
+        return userMapper.toResponse(saved);
+    }
+}
+```
+
+### toEntity() vs updateFromRequest() 비교
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  POST /api/users (생성)                                             │
+│                                                                     │
+│  Request ──→ toEntity() ──→ 새 Entity 생성 ──→ save() ──→ DB       │
+│              (리턴: User)                                           │
+│                                                                     │
+│  id = null (DB가 자동 생성)                                         │
+│  createdAt = now() (서버가 설정)                                    │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  PUT /api/users/1 (수정)                                            │
+│                                                                     │
+│  findById(1) ──→ 기존 Entity 조회                                   │
+│       │                                                             │
+│       ▼                                                             │
+│  updateFromRequest(request, user) ──→ 기존 Entity 필드만 교체       │
+│  (리턴: void, @MappingTarget)                                       │
+│       │                                                             │
+│       ▼                                                             │
+│  save() ──→ DB                                                      │
+│                                                                     │
+│  id = 1 (유지!)                                                     │
+│  createdAt = 원래 값 (유지!)                                        │
+│  name, email, age = 새 값으로 교체!                                 │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+### 부분 업데이트 (Patch) — null 필드는 무시하기
+
+```java
+// PATCH: 보낸 필드만 업데이트, 안 보낸 필드(null)는 기존 값 유지
+@Mapper(
+    componentModel = "spring",
+    nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE  // ← 핵심!
+)
+public interface UserMapper {
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    void patchFromRequest(UserPatchRequest request, @MappingTarget User user);
+}
+```
+
+```
+NullValuePropertyMappingStrategy 옵션:
+
+SET_TO_NULL   → null이면 타겟도 null로 설정 (기본값)
+SET_TO_DEFAULT → null이면 타겟을 기본값으로 (0, false 등)
+IGNORE        → null이면 아예 건드리지 않음 ← PATCH에 사용!
+```
+
+```java
+// 예시: name만 보내고 email은 안 보냄
+// PATCH /api/users/1
+// { "name": "새이름" }       ← email은 null
+
+// IGNORE 전략이면:
+// user.name = "새이름"       ← 업데이트됨
+// user.email = 기존값 유지    ← null이니까 무시!
+
+// SET_TO_NULL 전략이면:
+// user.name = "새이름"       ← 업데이트됨
+// user.email = null          ← null로 덮어써버림! 위험!
+```
+
+### PUT vs PATCH 매핑 정리
+
+| 구분 | PUT (전체 수정) | PATCH (부분 수정) |
+|---|---|---|
+| **HTTP 메서드** | PUT | PATCH |
+| **요청 바디** | 모든 필드 필수 | 변경할 필드만 |
+| **null 전략** | `SET_TO_NULL` (기본) | `IGNORE` |
+| **MapStruct 메서드** | `updateFromRequest()` | `patchFromRequest()` |
+| **DTO Validation** | `@NotBlank` 등 필수 | 대부분 `@Nullable` |
 
 ---
 
