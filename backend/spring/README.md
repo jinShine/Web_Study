@@ -12,7 +12,7 @@
 |---|------|------|--------|
 | 01 | [Servlet, Spring, Spring Boot](./phase1-기초체력/01-servlet-spring-springboot/) | 2026-02-23 | POJO, AOP, WebMVC, DispatcherServlet, @SpringBootApplication, @Configuration, @Bean 등 |
 | 02 | [Resources 폴더 구조](./phase1-기초체력/02-resources/) | 2026-02-23 | static, public, templates, META-INF, application.yml, Profile 등 |
-| 03 | [Logging과 설정 파일 심화](./phase1-기초체력/03-logging-and-config/) | 2026-02-24 | @Slf4j, Log Level, logging.level, logging.pattern, .properties vs .yml 등 |
+| 03 | [첫 번째 REST API 만들기](./phase1-기초체력/03-first-rest-api/) | 2026-02-24 | @RestController, @GetMapping, @PostMapping, @PathVariable, @RequestBody, @Slf4j, Logging, Postman 등 |
 | 04 | [IoC와 DI 깊게 파기](./phase1-기초체력/04-ioc-and-di/) | 2026-02-27 | @Component, @Autowired, @Qualifier, @Primary, Bean Lifecycle, Scope, @RequiredArgsConstructor 등 |
 | 05 | [AOP 실전](./phase1-기초체력/05-aop/) | 2026-03-04 | @Aspect, @Around, Pointcut, @annotation, JoinPoint, Proxy, Self-invocation 등 |
 | 06 | [예외 처리 전략](./phase1-기초체력/06-exception-handling/) | 2026-03-04 | @ExceptionHandler, @RestControllerAdvice, BusinessException, ErrorResponse, HTTP Status Code 등 |
@@ -34,3 +34,9 @@
 | 14 | [파일 업로드/다운로드](./phase2-API개발/14-file-upload-download/) | 2026-03-12 | MultipartFile, Resource, Content-Disposition, UUID 파일명, 다중 업로드, 저장 전략 등 |
 | 15 | [API 문서화](./phase2-API개발/15-api-docs/) | 2026-03-12 | SpringDoc, Swagger UI, OpenAPI 3.0, @Operation, @Schema, @Tag, 트러블슈팅 등 |
 | 16 | [디버깅 완벽 가이드](./phase2-API개발/16-debugging/) | 2026-03-12 | Breakpoint, Step Over/Into/Out, Variables, Watches, 조건부 BP, 예외 BP 등 |
+
+### 복습 프로젝트
+
+| 프로젝트 | 범위 | 설명 |
+|---|---|---|
+| [Phase 1~2 복습: 학습 일지 API](./phase1-2-review/) | 01~16번 전체 | Phase 1~2에서 배운 16개 주제를 하나의 프로젝트에 전부 적용하는 실전 복습 |

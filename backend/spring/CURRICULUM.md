@@ -25,7 +25,7 @@ Phase 6: 미니 프로젝트     ██████████ (39~43)
 |---|------|------------|------|
 | 01 | Servlet, Spring, Spring Boot | POJO, AOP, WebMVC, DispatcherServlet | ✅ 완료 |
 | 02 | Resources 폴더 구조 | static, templates, application.yml, Profile | ✅ 완료 |
-| 03 | Logging과 설정 파일 심화 | @Slf4j, Log Level, .properties vs .yml | ✅ 완료 |
+| 03 | 첫 번째 REST API 만들기 | @RestController, @GetMapping, @PostMapping, Logging, Postman | ✅ 완료 |
 | 04 | **IoC와 DI 깊게 파기** | @Component, @Autowired, @Qualifier, Bean Lifecycle, Scope | ✅ 완료 |
 | 05 | **AOP 실전** | @Aspect, @Before/@After/@Around, Pointcut 표현식, 로깅/트랜잭션 적용 | ✅ 완료 |
 | 06 | **예외 처리 전략** | @ExceptionHandler, @ControllerAdvice, @RestControllerAdvice, ErrorResponse 설계 | ✅ 완료 |
